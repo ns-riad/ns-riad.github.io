@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Lecturer in Computer Science, <a href='https://www.green.edu.bd/'>Green University of Bangladesh</a>
 
 profile:
   align: right

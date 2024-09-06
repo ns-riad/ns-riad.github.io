@@ -7,19 +7,19 @@ subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: true # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
-
+    <p></p>
+    
 news: true # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+<p>I am Md. Nazmus Shakib, currently serving as a Lecturer in the esteemed Department of Computer Science and Engineering at the Green University of Bangladesh. I bring a passion for academic excellence and a commitment to stimulating a dynamic learning environment for my students.</p>
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+<p>I completed my bachelor degree at Khulna University of Engineering & Technology (KUET), Khulna, Bangladesh in 2022. During my time at KUET, I pursued a rigorous course of study, emerging with a profound understanding of Computer Science and Engineering principles. I take pride in my consistent academic achievements, having been honored with the Dean's Award for three consecutive years spanning from the 2017-18 session to the 2019-20 session. This award shows my steadfast commitment to achieving academic excellence and my continuous pursuit of knowledge. In addition to my academic accomplishments, I have been fortunate to receive a government scholarship in recognition of my outstanding results at the primary, secondary, and higher secondary levels. This scholarship stands as a recognition of my commitment to scholarly pursuits and my ability to consistently excel in diverse academic domains.</p>
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+<p>My research interests encompass diverse areas within the realm of Computer Science and Engineering, notably focusing on machine learning, deep learning, data science, and intelligent vehicles. To date, I have successfully published two peer-reviewed articles in international conferences, with two more articles already accepted and awaiting publication. As an academic professional, I am committed to contributing to the academic community through research, publication, and active participation in academic forums. My aim is to make meaningful contributions to the field of Computer Science and Engineering while continuously evolving as an educator and researcher. My commitment lies in creating a supportive and intellectually engaging learning atmosphere. My teaching philosophy is centered around inspiring and guiding students to unlock their full potential, encouraging critical thinking, and instilling a lifelong love for learning.</p>
+
+<p>Thank you for visiting my academic profile, and I look forward to engaging in meaningful academic endeavors and collaborations.</p>

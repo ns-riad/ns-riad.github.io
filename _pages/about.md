@@ -12,7 +12,7 @@ profile:
     
 news: true # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+social: false # includes social icons at the bottom of the page
 ---
 
 <p align="justify">I am Md. Nazmus Shakib, currently serving as a Lecturer in the esteemed Department of Computer Science and Engineering at the Green University of Bangladesh. I bring a passion for academic excellence and a commitment to stimulating a dynamic learning environment for my students.</p>

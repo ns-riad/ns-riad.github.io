@@ -678,12 +678,20 @@ footer.sticky-bottom {
       font-size: 1rem;
     }
   }
+  
+  h5 {
+  margin-bottom: 1rem;
 
-  h2.bibliography {
+  span {
+    font-size: 1rem;
+  }
+  }
+
+  h5.bibliography {
     color: var(--global-text-color);
-    border-top: 1px solid var(--global-divider-color);
-    padding-top: 1rem;
-    margin-top: 2rem;
+    border-bottom: 1px solid var(--global-divider-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
     text-align: right;
   }
 

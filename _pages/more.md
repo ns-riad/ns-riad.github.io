@@ -17,4 +17,3 @@ children:
   - title: Misc.
     permalink: /misc/
 ---
-

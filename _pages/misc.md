@@ -4,5 +4,5 @@ title: "Miscellaneous"
 permalink: /misc/
 nav: false
 ---
-Content coming soon.
 
+Content coming soon.

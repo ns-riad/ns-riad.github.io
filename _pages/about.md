@@ -8,8 +8,8 @@ profile:
   align: right
   image: prof_pic.png
   image_circular: true # crops the image to make it circular
-  more_info: 
-    
+  more_info:
+
 news: true # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
@@ -26,4 +26,3 @@ My research interests include <i>machine learning, deep learning, intelligent tr
 <p align="justify">
 Thank you for visiting my profile, and I look forward to engaging in meaningful academic endeavors and collaborations.
 </p>
-

@@ -7,16 +7,19 @@ nav_order: 4
 ---
 
 ### 🎓 Academic Honors
-- **Dean’s Award** — KUET (2017–2020, three consecutive years)  
+
+- **Dean’s Award** — KUET (2017–2020, three consecutive years)
 
 ### 🏆 Research Recognition
-- **Best Paper Award** — [Conference Name], Year  
+
+- **Best Paper Award** — [Conference Name], Year
 
 ### 📜 Training & Certifications
-- **CTL Training Award**, UAH  
-- **FERPA Training**, UAH  
-- **CITI Program (Research Ethics & Compliance)**  
-- **Coursera Certifications** — [Course name(s)]  
+
+- **CTL Training Award**, UAH
+- **FERPA Training**, UAH
+- **CITI Program (Research Ethics & Compliance)**
+- **Coursera Certifications** — [Course name(s)]
 
 ## Certifications
 
@@ -53,6 +56,7 @@ nav_order: 4
             data-src="{{ '/assets/pdf/Deans_Award_4th_year.pdf' | relative_url }}">
       View Certificate (2019–20)
     </button>
+
   </div>
 
   <!-- Shared preview panel (hidden by default) -->
@@ -60,7 +64,6 @@ nav_order: 4
     <embed src="" type="application/pdf" />
   </div>
 </div>
-
 
 <!-- Education Board Scholarship -->
 <div class="award-card">
@@ -93,8 +96,6 @@ nav_order: 4
     </div>
   </details>
 </div>
-
-
 
 <!-- css -->
 <style>
@@ -221,5 +222,3 @@ document.addEventListener('click', function (e) {
 </script>
 
 ---
-
-

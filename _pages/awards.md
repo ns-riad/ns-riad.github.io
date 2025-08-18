@@ -185,40 +185,50 @@ nav_order: 4
 
 <script>
 document.addEventListener('click', function (e) {
-  const btn = e.target.closest('.cert-tabs .btn');
+  var btn = e.target.closest ? e.target.closest('.cert-tabs .btn') : null;
   if (!btn) return;
 
-  const tabs = btn.closest('.cert-tabs');
-  const panelId = tabs?.dataset?.target;
-  const panel = document.getElementById(panelId);
+  // prevent the page from jumping when the button is clicked
+  e.preventDefault();
+
+  var tabs = btn.closest ? btn.closest('.cert-tabs') : null;
+  var panelId = (tabs && tabs.dataset) ? tabs.dataset.target : null;
+  if (!panelId) return;
+
+  var panel = document.getElementById(panelId);
   if (!panel) return;
 
-  const viewer = panel.querySelector('embed, object, iframe');
-  const nextSrc = btn.getAttribute('data-src');
+  var viewer = panel.querySelector('embed, object, iframe');
+  var nextSrc = btn.getAttribute('data-src');
 
-  const isActive = btn.classList.contains('is-active');
-  const isVisible = !panel.classList.contains('hidden');
+  var isActive = btn.classList.contains('is-active');
+  var isVisible = panel.className.indexOf('hidden') === -1;
+  var currentSrc = panel.dataset ? panel.dataset.currentSrc || '' : '';
 
-  // collapse if same button clicked while open
+  // Collapse if clicking the same active button
   if (isActive && isVisible) {
     panel.classList.add('hidden');
-    tabs.querySelectorAll('.btn').forEach(b => b.classList.remove('is-active'));
-    panel.dataset.currentSrc = '';
+    var allBtns = tabs.querySelectorAll('.btn');
+    for (var i = 0; i < allBtns.length; i++) allBtns[i].classList.remove('is-active');
+    if (panel.dataset) panel.dataset.currentSrc = '';
     return;
   }
 
-  // show and swap src
-  if (viewer && nextSrc) viewer.setAttribute('src', nextSrc);
+  // Show and load requested certificate
+  if (viewer) viewer.setAttribute('src', nextSrc);
   panel.classList.remove('hidden');
-  panel.dataset.currentSrc = nextSrc;
+  if (panel.dataset) panel.dataset.currentSrc = nextSrc;
 
-  // button active state
-  tabs.querySelectorAll('.btn').forEach(b => b.classList.remove('is-active'));
+  // Active button state
+  var all = tabs.querySelectorAll('.btn');
+  for (var j = 0; j < all.length; j++) all[j].classList.remove('is-active');
   btn.classList.add('is-active');
 
-  // bring into view (nice UX)
-  // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Smooth scroll (fallback for older engines)
+  try { panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  catch (err) { panel.scrollIntoView(); }
 });
 </script>
+
 
 ---

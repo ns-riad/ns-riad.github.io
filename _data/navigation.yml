@@ -1,0 +1,17 @@
+- title: "About"
+  url: /
+
+- title: "Research"
+  url: /research/
+
+- title: "Projects"
+  url: /projects/
+
+- title: "Experience"
+  url: /experience/
+
+- title: "Education & Awards"
+  url: /education-awards/
+
+- title: "More"
+  url: /dropdown/ 

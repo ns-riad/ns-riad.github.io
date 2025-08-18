@@ -72,3 +72,61 @@ abstract = {Error detection and correction are crucial for data transmission and
 	dimensions={true},
   abbr = {IEEE}
 }
+
+@INPROCEEDINGS{10950893,
+  author={Islam, Md. Ariful and Rahman, MD Mijanur and Rahman, Md. Orasur and Shakib, Md Nazmus},
+  booktitle={2024 6th International Conference on Sustainable Technologies for Industry 5.0 (STI)}, 
+  title={Analyzing Aggressive Driving Patterns with GPS Data: A Machine Learning Approach}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Machine learning algorithms;Static VAr compensators;Standardization;Prediction algorithms;Road safety;Vectors;Classification algorithms;Driver behavior;Random forests;Global Positioning System;Aggressive driving behavior;GPS data analysis;Traffic Safety;Driver behavior prediction},
+  url={https://ieeexplore.ieee.org/abstract/document/10950893},
+  abstract = {Aggressive driving behavior is a critical issue with significant implications for road safety and traffic management. Researchers have extensively studied methods to predict such behaviors, utilizing various data sources and machine learning techniques. This research focuses on predicting aggressive driving behavior using GPS data from the Green University Bus Route Dataset. We developed a novel preprocessing algorithm, along with label encoding and standardization techniques, to prepare the dataset for analysis. Seven machine-learning algorithms were used to guess how often aggressive driving would happen. These were Decision Tree classifiers (DTC), AdaBoost classifiers (ABC), Gradient Boosting classifiers (GBC), Extra Tree classifiers (ETC), Support Vector classifiers (SVC), Gaussian Naive Bayes (GNB), and Random Forest classifiers (RFC). Our results indicate that the GBC, ETC, SVC, and RFC outperform other models, with each one achieving the highest accuracy of 99.445%. This study demonstrates the potential of GPS data to effectively predict aggressive driving behavior, offering valuable insights for improving road safety measures.},
+  bibtex_show={true},
+  html = {https://ieeexplore.ieee.org/document/10465152},
+  dimensions={true},
+  abbr = {IEEE}
+}
+
+%2025
+
+@inproceedings{shakib2025itsc,
+  title        = {Modeling Electric Vehicle Car-Following Behavior: Classical vs Machine Learning Approach},
+  author       = {Uddin, Shihab and Shakib, Md Nazmus and Bhadani, Rahul},
+  booktitle    = {IEEE Intelligent Transportation Systems Conference (ITSC)},
+  year         = {2025},
+  note         = {Accepted, to appear},
+  abstract     = {The increasing adoption of electric vehicles (EVs) necessitates understanding their driving behavior to enhance traffic safety and develop smart driving systems. This study compares classical and machine learning models for EV car-following behavior. Classical models include the Intelligent Driver Model (IDM), Optimum Velocity Model (OVM), Optimal Velocity Relative Velocity (OVRV), and a simplified CACC model, while the machine learning approach employs a Random Forest Regressor. Using a real-world dataset of an EV following an internal combustion engine (ICE) vehicle under varied driving conditions, we calibrated classical model parameters by minimizing the RMSE between predictions and real data. The Random Forest model predicts acceleration using spacing, speed, and gap type as inputs. Results demonstrate the Random Forest’s superior accuracy, achieving RMSEs of 0.0046 (medium gap), 0.0016 (long gap), and 0.0025 (extra-long gap). Among physics-based models, CACC performed best, with an RMSE of 2.67 for long gaps. These findings highlight the machine learning model’s outperformance across all scenarios. Such models are valuable for simulating EV behavior and analyzing mixed-autonomy traffic dynamics in EV-integrated environments.},
+  bibtex_show  = {true},
+  abbr         = {ITSC},
+  html         = {https://2025.ieee-itsc.org/}
+}
+
+%submitted only
+@unpublished{shakib2025trb,
+  title        = {String Stability Assessment of Followerstopper as a Wave-Dampening Controller for Mixed-Autonomy},
+  author       = {Shakib, Md Nazmus and Uddin, Shihab and Bhadani, Rahul},
+  year         = {2025},
+  note         = {Submitted to TRB Annual Meeting 2025},
+  abstract     = {This study evaluates the string stability of the Followerstopper controller, a known wave-dampening adaptive cruise control algorithm, in an eight-vehicle platoon scenario. An eight-vehicle platoon (one human-driven leader and seven automated followers) is simulated using a real-world leader speed profile, implemented in both a microscopic traffic simulator SUMO and a high-fidelity physics-engine simulator CARLA. We employ a time-domain evaluation framework with metrics such as head-to-tail velocity amplification, L2-norm disturbance attenuation, relative speed differences, and spacing error. Results show that the Followerstopper controller nearly eliminates disturbance amplification: the head-to-tail amplification factor is approximately $0.994$ in both SUMO and CARLA, indicating slight attenuation of the leader’s perturbations. The disturbance "energy" (quantified via the L2 norm of speed errors) decreases downstream, and once the Followerstopper is activated, large relative speed oscillations and spacing deviations are rapidly damped. These improvements are consistent across both simulators, which demonstrates robust performance of Followerstopper under realistic vehicle dynamics. The proposed time-domain-based string stability assessment in realistic mixed-autonomy settings indicates that Followerstopper effectively stabilizes traffic flow by dissipating disturbances in platoon formation.},
+  bibtex_show  = {true},
+  abbr         = {TRB},
+  html         = {https://www.trb.org/}
+}
+
+@inproceedings{shakib2025informs,
+  title        = {Learning-Based CPU Burst Prediction for Efficient Scheduling in Operating Systems},
+  author       = {Shakib, Md Nazmus and Bhadani, Rahul},
+  booktitle    = {INFORMS Annual Meeting},
+  year         = {2025},
+  note         = {Poster accepted},
+  abstract     = {In high-performance computing environments, scheduling decisions rely heavily on estimating how long a process will occupy the CPU. Conventional estimation techniques often fall short under varying workloads, limiting their effectiveness in modern, multi-user systems. This work introduces a data-driven framework that uses machine learning to predict process burst times using only features known at submission time. We evaluate several machine learning models, including decision trees, random forests, and multi-layer perceptrons, using real-world scheduling traces. Among them, the decision tree model offers the best trade-off between accuracy and speed. It achieves a mean absolute error (MAE) of 3514.09 and relative absolute error (RAE) of 12.64\%, which is significantly lower than the exponential averaging baseline (MAE: 14833 ms, RAE: 53.34\%), while keeping inference time per sample around 0.0033 milliseconds, making it suitable for real-time scheduling. Compared to exponential averaging, the learning-based models provide improved accuracy across a variety of workload conditions. The early availability of accurate predictions allows schedulers to make better decisions without introducing significant delay. This helps reduce wait times and improves overall CPU utilization. The study also includes model tuning and performance validation using 95\% confidence intervals to ensure the results are consistent and reliable. By introducing a fast and accurate prediction method, this work supports efficient CPU scheduling strategies that respond well to real-world system demands.},
+  bibtex_show  = {true},
+  abbr         = {INFORMS},
+  html         = {https://meetings.informs.org/wordpress/annual2025/},
+  preview      = {informs_placeholder.jpg}
+}
+
+

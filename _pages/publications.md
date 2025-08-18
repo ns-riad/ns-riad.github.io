@@ -1,8 +1,8 @@
 ---
 layout: page
-permalink: /publications/
-title: Publications
-description: Publications are ordered in reversed chronological order.
+permalink: /research/
+title: Research
+description: Research overview and publications. Publications are ordered in reversed chronological order.
 nav: true
 nav_order: 1
 ---

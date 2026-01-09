@@ -16,7 +16,7 @@ social: false # includes social icons at the bottom of the page
 ---
 
 <p align="justify">
-I am Md. Nazmus Shakib, a Ph.D. student in Electrical and Computer Engineering at the <i>University of Alabama in Huntsville (UAH)</i>, where I also serve as a Graduate Teaching Assistant from 2025. I completed my achelor of Science in Computer Science and Engineering from <i>Khulna University of Engineering & Technology (KUET)</i>, Bangladesh in 2022. After that, I worked as a Lecturer in the Department of Computer Science and Engineering at the <i>Green University of Bangladesh (GUB)</i>, teaching undergraduate core courses and supervising student research projects.
+I am Md. Nazmus Shakib, a Ph.D. student in Electrical and Computer Engineering at the <i>University of Alabama in Huntsville (UAH)</i>, where I also serve as a Graduate Teaching Assistant from 2025. I completed my bachelor of Science in Computer Science and Engineering from <i>Khulna University of Engineering & Technology (KUET)</i>, Bangladesh in 2022. After that, I worked as a Lecturer in the Department of Computer Science and Engineering at the <i>Green University of Bangladesh (GUB)</i>, teaching undergraduate core courses and supervising student research projects.
 </p>
 
 <p align="justify">

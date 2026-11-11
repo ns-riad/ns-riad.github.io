@@ -1,0 +1,141 @@
+{% comment %}
+  Photography "desk": prints scattered on a table, slightly rotated.
+  Hover straightens + lifts a print (and tilts it toward the cursor); click opens the photo page.
+  Photos come from assets/photography/ via _plugins/media_library.rb (site.data.photo_list).
+  Without JavaScript the prints simply sit in a wrapped row.
+{% endcomment %}
+{% assign photos = site.data.photo_list %}
+{% if photos and photos.size > 0 %}
+  {% assign albums = photos | map: 'album' | compact | uniq %}
+  {% if albums.size > 1 %}
+    <div class="filter-chips" role="group" aria-label="Filter photos">
+      <button class="chip chip-btn is-active" type="button" data-filter="all">All</button>
+      {% for al in albums %}<button class="chip chip-btn" type="button" data-filter="{{ al }}">{{ al | capitalize }}</button>{% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="desk" data-desk>
+    <div class="desk-light" aria-hidden="true"></div>
+    <div class="desk-stage">
+      {% for p in photos %}
+        <a
+          class="print print-{{ p.orientation }}"
+          href="{{ p.url | relative_url }}"
+          style="--i: {{ forloop.index0 }}"
+          data-album="{{ p.album }}"
+          data-ratio="{% if p.width and p.height %}{{ p.height | times: 1.0 | divided_by: p.width }}{% else %}0.75{% endif %}"
+        >
+          <span class="print-paper">
+            <span class="print-img">
+              <img
+                src="{{ p.thumb | relative_url }}"
+                {% if p.width %}width="{{ p.width }}" height="{{ p.height }}"{% endif %}
+                alt="{{ p.title | escape }}"
+                loading="{% if forloop.index <= 6 %}eager{% else %}lazy{% endif %}"
+                decoding="async"
+                draggable="false"
+              >
+            </span>
+            <span class="print-cap">
+              <span class="print-title">{{ p.title }}</span>
+              {% if p.place or p.date != '' %}
+                <span class="print-meta">{{ p.place }}{% if p.place and p.date != '' %} · {% endif %}{% if p.date != '' %}{{ p.date | date: '%b %Y' }}{% endif %}</span>
+              {% endif %}
+              {% if p.story %}<span class="print-story"><i class="fa-solid fa-book-open"></i> story</span>{% endif %}
+            </span>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+  <p class="desk-hint muted small center">Hover to pick a print up · click to open it</p>
+
+  <script>
+    (function () {
+      var desk = document.querySelector("[data-desk]");
+      if (!desk) return;
+      var stage = desk.querySelector(".desk-stage");
+      var prints = Array.prototype.slice.call(desk.querySelectorAll(".print"));
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // deterministic "random" so the layout is the same on every visit
+      function rand(i, salt) {
+        var x = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
+        return x - Math.floor(x);
+      }
+
+      function layout() {
+        var W = stage.clientWidth;
+        var cols = W >= 820 ? 4 : W >= 560 ? 3 : 2;
+        var colW = W / cols;
+        var narrow = W < 560;
+        var cardW = colW * (narrow ? 0.92 : 0.88);
+        var heights = new Array(cols).fill(narrow ? 6 : 18);
+        var visible = prints.filter(function (p) { return !p.hidden; });
+        visible.forEach(function (p, n) {
+          var i = parseInt(p.style.getPropertyValue("--i"), 10) || n;
+          var c = heights.indexOf(Math.min.apply(null, heights));
+          var ratio = parseFloat(p.dataset.ratio) || 0.75;
+          var w = cardW * (p.classList.contains("print-portrait") ? 0.86 : 1);
+          var jitterX = (rand(i, 1) - 0.5) * (colW - w) * 0.9;
+          var x = c * colW + (colW - w) / 2 + jitterX;
+          var y = heights[c] + rand(i, 2) * (narrow ? 8 : 26);
+          var r = (rand(i, 3) - 0.5) * (narrow ? 5 : 9);
+          p.style.width = w + "px";
+          p.style.left = x + "px";
+          p.style.top = y + "px";
+          p.style.setProperty("--r", r.toFixed(2) + "deg");
+          p.style.zIndex = 1 + Math.round(rand(i, 4) * 5);
+          // real height (images carry width/height attributes, so this is known before load)
+          var h = p.offsetHeight || w * ratio + 60;
+          heights[c] = y + h - (narrow ? 0 : 10); // slight overlap, like prints on a table
+        });
+        stage.style.height = Math.max.apply(null, heights) + 30 + "px";
+        desk.dataset.layout = narrow ? "narrow" : "wide";
+      }
+
+      desk.classList.add("is-js");
+      layout();
+      var t;
+      window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(layout, 120); });
+      requestAnimationFrame(function () {
+        desk.classList.add("is-ready");
+        setTimeout(function () { desk.classList.add("is-settled"); }, 900 + prints.length * 80);
+      });
+
+      // tilt toward the cursor
+      if (!reduce && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        prints.forEach(function (p) {
+          var paper = p.querySelector(".print-paper");
+          p.addEventListener("pointermove", function (e) {
+            var b = p.getBoundingClientRect();
+            var px = (e.clientX - b.left) / b.width - 0.5;
+            var py = (e.clientY - b.top) / b.height - 0.5;
+            paper.style.setProperty("--tx", (px * 8).toFixed(2) + "deg");
+            paper.style.setProperty("--ty", (-py * 8).toFixed(2) + "deg");
+            paper.style.setProperty("--mx", ((px + 0.5) * 100).toFixed(1) + "%");
+            paper.style.setProperty("--my", ((py + 0.5) * 100).toFixed(1) + "%");
+          });
+          p.addEventListener("pointerleave", function () {
+            paper.style.setProperty("--tx", "0deg");
+            paper.style.setProperty("--ty", "0deg");
+          });
+        });
+      }
+
+      // album filter
+      var chips = document.querySelectorAll(".filter-chips .chip-btn");
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          chips.forEach(function (c) { c.classList.remove("is-active"); });
+          chip.classList.add("is-active");
+          var f = chip.dataset.filter;
+          prints.forEach(function (p) { p.hidden = !(f === "all" || p.dataset.album === f); });
+          layout();
+        });
+      });
+    })();
+  </script>
+{% else %}
+  <p class="empty-state"><i class="fa-solid fa-camera-retro"></i><br>Photographs are on their way.</p>
+{% endif %}

@@ -1,0 +1,178 @@
+{% assign t = site.data.teaching %}
+<div class="timeline">
+  {% for r in t.roles %}
+    <section class="tl-item reveal">
+      <div class="tl-dot" aria-hidden="true"></div>
+      <div class="card-soft">
+        <div class="tl-head">
+          <div>
+            <h3 class="tl-title">{{ r.title }}</h3>
+            <p class="tl-org">
+              {% if r.org_url %}<a href="{{ r.org_url }}">{{ r.org }}</a>{% else %}{{ r.org }}{% endif %}
+              {% if r.dept %}<span class="muted"> · {{ r.dept }}</span>{% endif %}
+            </p>
+          </div>
+          <div class="tl-meta">
+            <span class="pill">{{ r.period }}</span>
+            {% if r.location %}<span class="muted small">{{ r.location }}</span>{% endif %}
+          </div>
+        </div>
+
+        {% if r.summary %}<p class="tl-summary">{{ r.summary }}</p>{% endif %}
+        {% if r.highlights %}
+          <ul class="tl-list">
+            {% for h in r.highlights %}<li>{{ h | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if r.courses %}
+          <ul class="crs-list crs-list-flat">
+            {% for c in r.courses %}{% include site/course.liquid course=c %}{% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if r.terms %}
+          {% comment %} ---- semester timeline + tabs. "All courses" = one row per distinct course ---- {% endcomment %}
+          {% capture rid %}{{ r.org | slugify }}{% endcapture %}
+          {% assign names = '' %}
+          {% for term in r.terms %}{% for c in term.courses %}{% assign n = c.name | default: c %}{% assign names = names | append: n | append: '||' %}{% endfor %}{% endfor %}
+          {% assign unique = names | split: '||' | uniq %}
+
+          <div class="terms-head">
+            <h4 class="terms-title">Courses taught</h4>
+            <button type="button" class="link-btn sem-collapse" aria-expanded="true">Collapse <i class="fa-solid fa-chevron-up"></i></button>
+          </div>
+          <div class="sem-nav" role="tablist" aria-label="Courses by semester">
+            <button type="button" role="tab" class="sem-all is-active" aria-selected="true" data-panel="{{ rid }}-all">
+              All courses <span class="sem-count">{{ unique.size }}</span>
+            </button>
+            <div class="sem-line">
+              {% for term in r.terms %}
+                <button type="button" role="tab" class="sem-dot" aria-selected="false" data-panel="{{ rid }}-{{ term.term | slugify }}">
+                  <span class="dot" aria-hidden="true"></span>
+                  <span class="sem-label">{{ term.term }}</span>
+                  <span class="sem-sub">{{ term.courses.size }} course{% if term.courses.size != 1 %}s{% endif %}</span>
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="sem-panels">
+            <div class="sem-panel is-active" role="tabpanel" id="{{ rid }}-all">
+              <ul class="crs-list course-cols">
+                {% for name in unique %}
+                  {% assign parts = '' %}{% assign notes = '' %}{% assign code = nil %}{% assign links = nil %}
+                  {% capture chips %}
+                    {%- for term in r.terms -%}
+                      {%- for c in term.courses -%}
+                        {%- assign n = c.name | default: c -%}
+                        {%- if n == name -%}
+                          {%- for pt in c.parts %}{% assign parts = parts | append: pt | append: '||' %}{% endfor -%}
+                          {%- if c.note %}{% assign notes = notes | append: c.note | append: ' (' | append: term.term | append: ')||' %}{% endif -%}
+                          {%- if c.code %}{% assign code = c.code %}{% endif -%}
+                          {%- if c.links %}{% assign links = c.links %}{% endif -%}
+                          <span class="sem-chip{% if c.note %} is-note{% endif %}" title="{{ c.parts | join: ' + ' }}">{{ term.term }}</span>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endfor -%}
+                  {% endcapture %}
+                  {% assign parts = parts | split: '||' | uniq | sort | reverse %}
+                  <li class="course">
+                    <div class="course-main">
+                      <span class="course-name">{% if code %}<span class="course-code">{{ code }}</span> {% endif %}{{ name }}</span>
+                      {% if parts.size > 0 %}<span class="course-parts">{% for pt in parts %}<span class="part part-{{ pt | slugify }}">{{ pt }}</span>{% endfor %}</span>{% endif %}
+                    </div>
+                    <div class="sem-chips">{{ chips }}</div>
+                    {% if notes != '' %}<div class="course-note">{{ notes | split: '||' | join: ', ' }}</div>{% endif %}
+                    {% if links %}
+                      <div class="course-links">
+                        {% for l in links %}<a href="{{ l.url | relative_url }}"><i class="{{ l.icon | default: 'fa-solid fa-link' }}"></i> {{ l.label }}</a>{% endfor %}
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% for term in r.terms %}
+              <div class="sem-panel" role="tabpanel" id="{{ rid }}-{{ term.term | slugify }}" hidden>
+                <ul class="crs-list course-cols">
+                  {% for c in term.courses %}{% include site/course.liquid course=c %}{% endfor %}
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  {% endfor %}
+</div>
+
+{% if t.supervision and t.supervision.size > 0 %}
+  <h2 class="section-title">Student supervision</h2>
+  <ul class="supervision">
+    {% for s in t.supervision %}
+      <li>
+        <strong>{{ s.name }}</strong> <span class="muted">· {{ s.level }}, {{ s.year }}</span><br>
+        {% if s.url %}<a href="{{ s.url }}">{{ s.topic }}</a>{% else %}{{ s.topic }}{% endif %}
+        {% if s.outcome %}<span class="pill">{{ s.outcome }}</span>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<script>
+  // Semester tabs: click a tab to show it, click the open tab again (or "Collapse") to fold it away.
+  (function () {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function animate(box, change) {
+      var h0 = box.offsetHeight;
+      change();
+      if (reduce) return;
+      var h1 = box.offsetHeight;
+      box.style.height = h0 + "px";
+      box.offsetHeight; // reflow
+      box.style.height = h1 + "px";
+      box.addEventListener("transitionend", function done() {
+        box.style.height = "";
+        box.removeEventListener("transitionend", done);
+      });
+    }
+
+    document.querySelectorAll(".sem-nav").forEach(function (nav) {
+      var box = nav.nextElementSibling;
+      var tabs = nav.querySelectorAll("[role=tab]");
+      var collapseBtn = nav.previousElementSibling.querySelector(".sem-collapse");
+
+      function show(tab) {
+        var open = box.querySelector(".sem-panel.is-active");
+        var next = tab ? document.getElementById(tab.dataset.panel) : null;
+        animate(box, function () {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.classList.toggle("is-active", on);
+            t.setAttribute("aria-selected", on);
+          });
+          if (open) { open.classList.remove("is-active"); open.hidden = true; }
+          if (next) { next.hidden = false; next.classList.add("is-active"); }
+          box.classList.toggle("is-collapsed", !next);
+        });
+        collapseBtn.hidden = !next;
+        collapseBtn.setAttribute("aria-expanded", !!next);
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          show(tab.classList.contains("is-active") ? null : tab);
+        });
+      });
+      collapseBtn.addEventListener("click", function () { show(null); });
+
+      // open a semester from the URL, e.g. /teaching/#green-university-of-bangladesh-fall-2023
+      if (location.hash) {
+        var t = nav.querySelector('[data-panel="' + location.hash.slice(1) + '"]');
+        if (t) show(t);
+      }
+    });
+  })();
+</script>

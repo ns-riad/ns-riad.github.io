@@ -1,0 +1,98 @@
+---
+layout: default
+---
+{% comment %}
+  Home page layout (site-owned, not from the theme).
+  Driven by front matter in _pages/about.md: hero, interests, announcements, selected_papers, latest_posts.
+{% endcomment %}
+<div class="post home">
+  <section class="hero reveal">
+    <div class="hero-text">
+      {% if page.hero.eyebrow %}<p class="hero-eyebrow">{{ page.hero.eyebrow }}</p>{% endif %}
+      <h1 class="hero-name">
+        {{ site.first_name }} <span class="hero-name-last">{{ site.last_name }}</span>
+      </h1>
+      {% if page.hero.tagline %}<p class="hero-tagline">{{ page.hero.tagline }}</p>{% endif %}
+      {% if page.hero.affiliation %}<p class="hero-affiliation">{{ page.hero.affiliation }}</p>{% endif %}
+
+      {% if page.hero.buttons %}
+        <div class="hero-actions">
+          {% for b in page.hero.buttons %}
+            <a
+              class="hero-btn{% if forloop.first %} hero-btn-primary{% endif %}"
+              href="{% if b.url contains '://' or b.url contains 'mailto:' %}{{ b.url }}{% else %}{{ b.url | relative_url }}{% endif %}"
+            >
+              {%- if b.icon %}<i class="{{ b.icon }}"></i> {% endif %}{{ b.label -}}
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if page.interests %}
+        <div class="hero-interests" aria-label="Research interests">
+          <p>{% for i in page.interests %}<span>{{ i }}</span>{% endfor %}</p>
+        </div>
+      {% endif %}
+
+      <div class="hero-social">{% social_links %}</div>
+    </div>
+
+    {% if page.hero.image %}
+      <div class="hero-photo">
+        {% assign img_path = page.hero.image | prepend: 'assets/img/' %}
+        {%
+          include figure.liquid loading="eager" path=img_path class="hero-img" sizes="(min-width: 768px) 280px, 60vw" alt=site.first_name
+          cache_bust=true
+        %}
+      </div>
+    {% endif %}
+  </section>
+
+  <hr class="hero-rule" aria-hidden="true">
+
+  <article class="home-bio reveal">{{ content }}</article>
+
+  {% if page.announcements and page.announcements.enabled and site.sections.news != false %}
+    <section class="home-section reveal">
+      <h2 class="section-title"><a href="{{ '/news/' | relative_url }}">News</a></h2>
+      {% include news.liquid limit=true %}
+    </section>
+  {% endif %}
+
+  {% if page.selected_papers %}
+    <section class="home-section reveal">
+      <h2 class="section-title"><a href="{{ '/research/' | relative_url }}">Selected publications</a></h2>
+      {% include selected_papers.liquid %}
+    </section>
+  {% endif %}
+
+  {% if page.latest_posts and page.latest_posts.enabled and site.sections.blog != false and site.posts.size > 0 %}
+    <section class="home-section reveal">
+      <h2 class="section-title"><a href="{{ '/blog/' | relative_url }}">Latest writing</a></h2>
+      {% include latest_posts.liquid %}
+    </section>
+  {% endif %}
+
+  {% if site.contact_note %}
+    <section class="home-contact reveal">
+      <p>{{ site.contact_note }}</p>
+    </section>
+  {% endif %}
+</div>
+
+<script>
+  // Gentle fade-in as sections scroll into view; skipped for reduced-motion users.
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      els.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>

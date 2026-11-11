@@ -2,10 +2,10 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Research and coursework projects, from traffic dynamics to processors.
 nav: true
-nav_order: 2
-display_categories: [work, fun]
+nav_order: 3
+display_categories: [research, coursework]
 horizontal: false
 ---
 

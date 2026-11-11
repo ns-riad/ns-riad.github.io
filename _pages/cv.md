@@ -1,12 +1,13 @@
 ---
-layout: cv
+layout: page
 permalink: /cv/
 title: CV
-robots: noindex
-sitemap: false
 nav: true
-cv_pdf: example_pdf.pdf
-description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
-toc:
-  sidebar: left
+nav_order: 5
+description: Curriculum vitae
+# Drop your PDF at this path and a "PDF" download button appears automatically.
+cv_pdf: /assets/pdf/Md_Nazmus_Shakib_CV.pdf
 ---
+
+{% comment %} Content lives in _data/cv.yml {% endcomment %}
+{% include site/cv.liquid %}

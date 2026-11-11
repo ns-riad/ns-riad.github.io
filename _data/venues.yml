@@ -1,15 +1,26 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
-
-"PhysRev":
-  url: https://journals.aps.org/
-
-"Vision":
-  color: "#009f36"
-
+# Colors for the venue badge (bib `abbr` field) on the Research page.
 "IEEE":
-  url: https://ieeexplore.ieee.org/Xplore/home.jsp
-
-"Md Nazmus Shakib":
-  url: https://ns-riad.github.io/
+  color: "#00629B"
+"ITSC":
+  url: https://ieee-itss.org/conf/itsc/
+  color: "#00629B"
+"IV":
+  color: "#00629B"
+"TRB":
+  url: https://www.trb.org/AnnualMeeting/AnnualMeeting.aspx
+  color: "#9E1B32"
+"INFORMS":
+  url: https://www.informs.org/
+  color: "#1F4E79"
+"SoutheastCon":
+  url: https://ieeesoutheastcon.org/
+  color: "#00629B"
+"ICCPS":
+  url: https://iccps.acm.org/
+  color: "#2E5E4E"
+"Sci. Rep.":
+  url: https://www.nature.com/srep/
+  color: "#C8102E"
+"Inf. Fusion":
+  url: https://www.sciencedirect.com/journal/information-fusion
+  color: "#E9711C"

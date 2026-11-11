@@ -1,0 +1,104 @@
+{% comment %}
+  Web CV rendered from _data/cv.yml (RenderCV format). Layout mirrors the PDF:
+  title + organisation on the left, dates + place on the right, bullets aligned under the text.
+{% endcomment %}
+{% assign cv = site.data.cv.cv %}
+{% assign pdf = site.static_files | where: 'path', page.cv_pdf | first %}
+
+<div class="cvx">
+  <header class="cvx-head">
+    <div>
+      <h2 class="cvx-name">{{ cv.name }}</h2>
+      <p class="cvx-label">{{ cv.label }}{% if cv.affiliation %}<br><span class="muted">{{ cv.affiliation }}</span>{% endif %}</p>
+    </div>
+    <div class="cvx-contact">
+      <div class="cvx-icons">
+        <a href="mailto:{{ cv.email }}" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        {% for s in cv.social_networks %}
+          {% case s.network %}
+            {% when 'LinkedIn' %}<a href="https://www.linkedin.com/in/{{ s.username }}" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            {% when 'GitHub' %}<a href="https://github.com/{{ s.username }}" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            {% when 'Google Scholar' %}<a href="https://scholar.google.com/citations?user={{ s.username }}" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            {% when 'ORCID' %}<a href="https://orcid.org/{{ s.username }}" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <a class="small" href="mailto:{{ cv.email }}">{{ cv.email }}</a>
+      {% if pdf %}
+        <a class="hero-btn hero-btn-primary cvx-pdf" href="{{ page.cv_pdf | relative_url }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-down"></i> PDF</a>
+      {% endif %}
+    </div>
+  </header>
+
+  {% for sec in cv.sections %}
+    {% assign title = sec[0] %}
+    {% assign entries = sec[1] %}
+    <section class="cvx-section" id="{{ title | slugify }}">
+      <h3 class="cvx-title">{{ title }}</h3>
+
+      {% assign first = entries | first %}
+      {% if first.label %}
+        {% comment %} one-line entries -> two-column table {% endcomment %}
+        <dl class="cvx-oneline">
+          {% for e in entries %}<dt>{{ e.label }}</dt><dd>{{ e.details | markdownify | remove: '<p>' | remove: '</p>' }}</dd>{% endfor %}
+        </dl>
+
+      {% elsif first.authors %}
+        <ol class="cvx-pubs">
+          {% for e in entries %}
+            <li>
+              {{ e.authors | join: ', ' | markdownify | remove: '<p>' | remove: '</p>' | strip }},
+              “{% if e.url %}<a href="{{ e.url }}">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %},”
+              <em>{{ e.journal }}</em>, {{ e.date }}{% if e.note %} <span class="cvx-tag">{{ e.note }}</span>{% endif %}.
+            </li>
+          {% endfor %}
+        </ol>
+        <p class="small muted cvx-more">Abstracts, BibTeX and links on the <a href="{{ '/research/' | relative_url }}">Research</a> page.</p>
+
+      {% elsif first.institution or first.company or first.position or first.name %}
+        {% for e in entries %}
+          {% capture when %}
+            {%- if e.date -%}{{ e.date }}
+            {%- elsif e.start_date -%}
+              {{ e.start_date | split: '-' | first }} – {% if e.end_date == 'present' or e.end_date == nil %}Present{% else %}{{ e.end_date | split: '-' | first }}{% endif %}
+            {%- endif -%}
+          {% endcapture %}
+          <div class="cvx-entry">
+            <div class="cvx-main">
+              {% if e.institution %}
+                <div class="cvx-what">{{ e.degree }} in {{ e.area }}</div>
+                <div class="cvx-where">{% if e.url %}<a href="{{ e.url }}">{{ e.institution }}</a>{% else %}{{ e.institution }}{% endif %}{% if e.location %}, {{ e.location }}{% endif %}</div>
+              {% elsif e.company or e.position %}
+                <div class="cvx-what">{{ e.position }}</div>
+                <div class="cvx-where">{{ e.company }}</div>
+              {% else %}
+                <div class="cvx-what">
+                  {% if e.url %}<a href="{{ e.url }}">{{ e.name }}</a>{% else %}{{ e.name | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
+                </div>
+              {% endif %}
+              {% if e.summary %}<div class="cvx-summary">{{ e.summary | markdownify | remove: '<p>' | remove: '</p>' }}</div>{% endif %}
+              {% if e.highlights %}
+                <ul class="cvx-bullets">
+                  {% for h in e.highlights %}<li>{{ h | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+            <div class="cvx-side">
+              {% if when != '' %}<div class="cvx-date">{{ when | strip }}</div>{% endif %}
+              {% if e.gpa %}<div class="cvx-loc">CGPA: {{ e.gpa }}</div>
+              {% elsif e.tags %}<div class="cvx-loc"><em>{{ e.tags }}</em></div>
+              {% elsif e.location and e.institution == nil %}<div class="cvx-loc">{{ e.location }}</div>{% endif %}
+            </div>
+          </div>
+        {% endfor %}
+
+      {% else %}
+        {% for e in entries %}<p class="cvx-text">{{ e | markdownify | remove: '<p>' | remove: '</p>' }}</p>{% endfor %}
+      {% endif %}
+
+      {% if title contains 'Certification' %}
+        <p class="small cvx-more"><a href="{{ '/awards/' | relative_url }}">Full list of certificates →</a></p>
+      {% endif %}
+    </section>
+  {% endfor %}
+</div>

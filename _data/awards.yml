@@ -1,0 +1,37 @@
+# Honors & awards — the list at the top of /awards/.
+# (Certificates are separate: see _data/certificates.yml and assets/certificates/.)
+#
+# Fields: title, issuer, year, description (all optional except title)
+#   certificate — file name (no extension) of a file in assets/certificates/…, adds a "View certificate" button
+#   extra       — more certificates for the same award: [{label, certificate}]
+
+honors:
+  - title: Travel Grant
+    issuer: IEEE Intelligent Vehicles Symposium (IV) 2026
+    year: Jun 2026
+    description: Awarded to attend and present our string-stability research at IEEE IV 2026.
+
+  - title: Best Paper Award — 1st Prize
+    issuer: ICEEICT 2021, Military Institute of Science and Technology (IEEE co-sponsored)
+    year: Jan 2022
+    description: First prize in the Best Paper category among 103 accepted papers, for "An Adaptive System for Detecting Driving Abnormality of Individual Drivers Using Gaussian Mixture Model".
+    certificate: iceeict_best_paper
+
+  - title: Dean's Award
+    issuer: Faculty of Electrical and Electronic Engineering, KUET
+    year: 2018 – 2020
+    description: Received in the 2nd, 3rd and 4th years of undergraduate study for outstanding academic results.
+    certificate: Deans_Award_4th_year
+    extra:
+      - label: 2018–19
+        certificate: Deans_Award_3rd_year
+
+  - title: Education Board Scholarship
+    issuer: Rajshahi Education Board, Bangladesh
+    year: 2008 · 2014 · 2016
+    description: Awarded for exceptional results at the Primary, Secondary and Higher Secondary levels.
+
+  - title: Intra-district Chess Champion
+    issuer: District Sports Office, Bogura, Bangladesh
+    description: First place in the intra-district chess championship.
+    certificate: Chess_certificate

@@ -1,0 +1,80 @@
+# Teaching experience — rendered by _includes/site/teaching.liquid on /teaching/.
+# Newest role first.
+#
+# A course (in `courses:` or inside a term) can be a plain string, or an object:
+#   - name: Algorithms
+#     code: CSE 205              # optional
+#     parts: [Theory, Lab]       # optional, shown as small tags
+#     note: Course coordinator   # optional, highlighted
+#     links:                     # optional — slides, syllabus, materials, course site …
+#       - label: Slides
+#         url: /assets/pdf/teaching/algorithms-slides.pdf
+#         icon: fa-solid fa-file-powerpoint   # optional Font Awesome class
+
+roles:
+  - title: Graduate Teaching Assistant
+    org: University of Alabama in Huntsville
+    org_url: https://www.uah.edu/
+    dept: Department of Electrical & Computer Engineering
+    period: 2025 – present
+    location: Huntsville, AL, USA
+    summary: Lab instruction and course grading for undergraduate ECE courses.
+    highlights:
+      - Lead lab sections of **EE 203 — Digital Logic Design Lab**, guiding students through combinational and sequential circuit design.
+      - Grade assignments, lab reports and exams for undergraduate ECE courses.
+    courses:
+      - name: Digital Logic Design Lab
+        code: EE 203
+        parts: [Lab]
+        note: Lab instructor
+
+  - title: Lecturer
+    org: Green University of Bangladesh
+    org_url: https://green.edu.bd/
+    dept: Department of Computer Science & Engineering
+    period: Jun 2022 – 2024
+    location: Dhaka, Bangladesh
+    summary: Taught theory and lab courses across the undergraduate CSE core and supervised capstone projects.
+    highlights:
+      - Gave lectures and tutorials and assessed student performance in theory and lab courses.
+      - "Course coordinator: Object-Oriented Programming (Spring 2023) and Data Mining (Fall 2023)."
+      - Supervised several undergraduate capstone projects, a number of which led to IEEE conference papers.
+    terms:
+      - term: Spring 2024
+        courses:
+          - { name: Algorithms, parts: [Theory, Lab] }
+          - { name: Database Systems, parts: [Theory, Lab] }
+      - term: Fall 2023
+        courses:
+          - { name: Computational Thinking and Problem Solving, parts: [Lab] }
+          - { name: Object-Oriented Programming, parts: [Theory, Lab] }
+          - { name: Database Systems, parts: [Lab] }
+          - { name: Data Mining, parts: [Theory], note: Course coordinator }
+          - { name: Artificial Intelligence, parts: [Lab] }
+      - term: Spring 2023
+        courses:
+          - { name: Object-Oriented Programming, parts: [Theory, Lab], note: Course coordinator }
+          - { name: Digital Logic Design, parts: [Theory] }
+          - { name: Artificial Intelligence, parts: [Lab] }
+      - term: Fall 2022
+        courses:
+          - { name: Object-Oriented Programming, parts: [Theory] }
+          - { name: Digital Logic Design, parts: [Lab] }
+          - { name: Computer Networks, parts: [Theory] }
+          - { name: Artificial Intelligence, parts: [Theory, Lab] }
+      - term: Summer 2022
+        courses:
+          - { name: Digital Logic Design, parts: [Lab] }
+          - { name: Microprocessors and Microcontrollers, parts: [Lab] }
+          - { name: Data Communication, parts: [Lab] }
+          - { name: Information System and Design, parts: [Lab] }
+          - { name: Data Mining, parts: [Theory] }
+
+# Students / projects you supervised. Leave empty to hide the section.
+supervision: []
+#  - name: Student Name
+#    level: B.Sc. capstone
+#    year: 2023
+#    topic: Project title
+#    outcome: Published at XYZ 2024   # optional
+#    url:                             # optional

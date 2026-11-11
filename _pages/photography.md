@@ -1,8 +1,9 @@
 ---
 layout: page
-title: "Photography"
 permalink: /photography/
-nav: false
+title: Photography
+description: Light, places, and people I've met along the way.
+section: photography
 ---
 
-Content coming soon.
+{% include site/gallery.liquid %}

@@ -1,9 +1,8 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
 @inproceedings{shakib2021adaptive,
+  selected     = {true},
   title={An adaptive system for detecting driving abnormality of individual drivers using Gaussian mixture model},
   author={Shakib, Md Nazmus and Shamim, Md and Shawon, Md Nazirul Hasan and Isha, Most Kaniz Fatema and Hashem, MMA and Kamal, MAS},
   booktitle={2021 5th International Conference on Electrical Engineering and Information Communication Technology (ICEEICT)},
@@ -14,7 +13,7 @@
 	abstract = {Abnormal driving of a driver often leads to some undesirable situations. To avoid such circumstances, this paper proposes a driver-adaptive system that can detect abnormality within one’s own driving style. To achieve such a feat, firstly, a soft clustering approach is proposed to determine the driving style in three categories - aggressive, moderate, and protective. Then, it proposes an algorithm to analyze the driving profile and detect the variation of abnormality of the driver. Statistics of different vehicle kinetic characteristics, i.e., velocity, space and time headway, acceleration, jerk factor, etc., are considered for the clustering process. Maximal Information Coefficient (MIC) is used to select the important features. Analyzing the results of different clustering algorithms such as Gaussian Mixture Model (GMM), FCM, and K-means, we used GMM in the proposed system for determining real-time driving style. The actual driving style is determined using the long-term driving history of the subject vehicle. Using GMM’s soft clustering properties, the current deviation is measured by comparing the real-time driving style to the actual style. A learning factor is accommodated to update the actual style in every cycle so that the proposed system can adapt to the driver’s skill-changing state. Real-life driving depends on real-time human decisions. Therefore, we have used the reconstructed NGSIM I-80 real-life traffic data to build and validate the proposed system.},
 	bibtex_show={true},
 	html = {https://ieeexplore.ieee.org/document/9667850},
-	award={This paper receveid the `1st prize award` in the `Best Paper Category` out of the 103 accepted papers.},
+	award={This paper received the `1st prize award` in the `Best Paper Category` out of the 103 accepted papers.},
 	award_name={Best Paper},
 	dimensions={true},
 	preview={driving_abnormality.png},
@@ -85,7 +84,7 @@ abstract = {Error detection and correction are crucial for data transmission and
   url={https://ieeexplore.ieee.org/abstract/document/10950893},
   abstract = {Aggressive driving behavior is a critical issue with significant implications for road safety and traffic management. Researchers have extensively studied methods to predict such behaviors, utilizing various data sources and machine learning techniques. This research focuses on predicting aggressive driving behavior using GPS data from the Green University Bus Route Dataset. We developed a novel preprocessing algorithm, along with label encoding and standardization techniques, to prepare the dataset for analysis. Seven machine-learning algorithms were used to guess how often aggressive driving would happen. These were Decision Tree classifiers (DTC), AdaBoost classifiers (ABC), Gradient Boosting classifiers (GBC), Extra Tree classifiers (ETC), Support Vector classifiers (SVC), Gaussian Naive Bayes (GNB), and Random Forest classifiers (RFC). Our results indicate that the GBC, ETC, SVC, and RFC outperform other models, with each one achieving the highest accuracy of 99.445%. This study demonstrates the potential of GPS data to effectively predict aggressive driving behavior, offering valuable insights for improving road safety measures.},
   bibtex_show={true},
-  html = {https://ieeexplore.ieee.org/document/10465152},
+  html = {https://ieeexplore.ieee.org/document/10950893},
   dimensions={true},
   abbr = {IEEE}
 }
@@ -93,28 +92,79 @@ abstract = {Error detection and correction are crucial for data transmission and
 %2025
 
 @inproceedings{shakib2025itsc,
+  selected     = {true},
   title        = {Modeling Electric Vehicle Car-Following Behavior: Classical vs Machine Learning Approach},
   author       = {Uddin, Shihab and Shakib, Md Nazmus and Bhadani, Rahul},
-  booktitle    = {IEEE Intelligent Transportation Systems Conference (ITSC)},
+  booktitle    = {Proceedings of the IEEE Intelligent Transportation Systems Conference (ITSC)},
   year         = {2025},
-  note         = {Accepted, to appear},
   abstract     = {The increasing adoption of electric vehicles (EVs) necessitates understanding their driving behavior to enhance traffic safety and develop smart driving systems. This study compares classical and machine learning models for EV car-following behavior. Classical models include the Intelligent Driver Model (IDM), Optimum Velocity Model (OVM), Optimal Velocity Relative Velocity (OVRV), and a simplified CACC model, while the machine learning approach employs a Random Forest Regressor. Using a real-world dataset of an EV following an internal combustion engine (ICE) vehicle under varied driving conditions, we calibrated classical model parameters by minimizing the RMSE between predictions and real data. The Random Forest model predicts acceleration using spacing, speed, and gap type as inputs. Results demonstrate the Random Forest’s superior accuracy, achieving RMSEs of 0.0046 (medium gap), 0.0016 (long gap), and 0.0025 (extra-long gap). Among physics-based models, CACC performed best, with an RMSE of 2.67 for long gaps. These findings highlight the machine learning model’s outperformance across all scenarios. Such models are valuable for simulating EV behavior and analyzing mixed-autonomy traffic dynamics in EV-integrated environments.},
   bibtex_show  = {true},
   abbr         = {ITSC},
   html         = {https://2025.ieee-itsc.org/}
 }
 
-%submitted only
-@unpublished{shakib2025trb,
-  title        = {String Stability Assessment of Followerstopper as a Wave-Dampening Controller for Mixed-Autonomy},
+% ---------- 2026 ----------
+
+@inproceedings{shakib2026iv,
+  selected     = {true},
+  title        = {String Stability Analysis of Followerstopper for Mixed-Autonomy Vehicle Platoons},
   author       = {Shakib, Md Nazmus and Uddin, Shihab and Bhadani, Rahul},
-  year         = {2025},
-  note         = {Submitted to TRB Annual Meeting 2025},
+  booktitle    = {2026 IEEE Intelligent Vehicles Symposium (IV)},
+  year         = {2026},
+  organization = {IEEE},
   abstract     = {This study evaluates the string stability of the Followerstopper controller, a known wave-dampening adaptive cruise control algorithm, in an eight-vehicle platoon scenario. An eight-vehicle platoon (one human-driven leader and seven automated followers) is simulated using a real-world leader speed profile, implemented in both a microscopic traffic simulator SUMO and a high-fidelity physics-engine simulator CARLA. We employ a time-domain evaluation framework with metrics such as head-to-tail velocity amplification, L2-norm disturbance attenuation, relative speed differences, and spacing error. Results show that the Followerstopper controller nearly eliminates disturbance amplification: the head-to-tail amplification factor is approximately $0.994$ in both SUMO and CARLA, indicating slight attenuation of the leader’s perturbations. The disturbance "energy" (quantified via the L2 norm of speed errors) decreases downstream, and once the Followerstopper is activated, large relative speed oscillations and spacing deviations are rapidly damped. These improvements are consistent across both simulators, which demonstrates robust performance of Followerstopper under realistic vehicle dynamics. The proposed time-domain-based string stability assessment in realistic mixed-autonomy settings indicates that Followerstopper effectively stabilizes traffic flow by dissipating disturbances in platoon formation.},
   bibtex_show  = {true},
-  abbr         = {TRB},
-  html         = {https://www.trb.org/}
+  abbr         = {IV},
 }
+% TODO(shakib2026iv): add  preview = {string_stability.png}  (image in assets/img/publication_preview/)
+%                     and  html = {https://ieeexplore.ieee.org/document/...}  once it is on IEEE Xplore.
+
+@inproceedings{shakib2026southeastcon,
+  selected     = {true},
+  title        = {Efficient CPU Burst Forecasting with Low-Latency Machine Learning Models},
+  author       = {Shakib, Md Nazmus and Ifty, M. A. H. and Uddin, Shihab and Bhadani, Rahul},
+  booktitle    = {IEEE SoutheastCon 2026},
+  year         = {2026},
+  organization = {IEEE},
+  bibtex_show  = {true},
+  abbr         = {SoutheastCon},
+  html         = {https://github.com/nsriad/Burst-Time-Prediction-Using-Machine-Learning},
+}
+
+@article{alom2026stroke,
+  title        = {Towards Trustworthy Brain Stroke Diagnosis Using a Lightweight Explainable Deep Learning Framework for CT Imaging},
+  author       = {Alom, Md. Romzan and Rahaman, Muhammad Aminur and Hossain, Md. Parvez and Mondal, C. and Shakib, Md Nazmus and Habib, M. A. and Hasan, M. K. and Ali, A.},
+  journal      = {Scientific Reports},
+  year         = {2026},
+  bibtex_show  = {true},
+  abbr         = {Sci. Rep.},
+}
+
+% ---------- submitted / under review ----------
+
+@inproceedings{shakib2026iccps,
+  selected     = {true},
+  title        = {Degradation-Aware Lightweight Multimodal Fusion for Resilient Headway Estimation},
+  author       = {Shakib, Md Nazmus and Bhadani, Rahul},
+  booktitle    = {27th International Conference on Cyber-Physical Systems (ICCPS)},
+  year         = {2026},
+  note         = {Submitted},
+  bibtex_show  = {true},
+  abbr         = {ICCPS},
+  html         = {https://github.com/nsriad/carla_ros2_simulation},
+}
+
+@article{shakib2026fusion,
+  title        = {Towards a Unified Perspective on Multimodal Fusion in Intelligent Transportation Systems},
+  author       = {Shakib, Md Nazmus and Bhadani, Rahul},
+  journal      = {Information Fusion},
+  year         = {2026},
+  note         = {Submitted},
+  bibtex_show  = {true},
+  abbr         = {Inf. Fusion},
+}
+
+% ---------- 2025 poster ----------
 
 @inproceedings{shakib2025informs,
   title        = {Learning-Based CPU Burst Prediction for Efficient Scheduling in Operating Systems},

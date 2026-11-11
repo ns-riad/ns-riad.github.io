@@ -1,0 +1,64 @@
+# Certificates — shown in the gallery on /awards/.
+#
+# HOW IT WORKS
+#   Drop a PDF or image into  assets/certificates/<category>/  and it appears automatically.
+#   The sub-folder decides the filter tab, e.g.
+#       assets/certificates/ml-ai/deep-learning-specialization.pdf
+#   A preview image is generated from the PDF's first page at build time.
+#   Without any entry below, the title is the file name ("deep-learning-specialization" → "Deep learning specialization").
+#
+# OPTIONAL DETAILS
+#   Add an entry under `items:` using the file name WITHOUT extension as the key.
+#   An entry whose file doesn't exist yet is listed as text under "Also completed",
+#   and moves into the gallery as soon as you add the file.
+
+# Tab labels and order (folder name: label). Folders not listed here still work.
+categories:
+  ml-ai: ML & AI
+  research: Research
+  teaching: Teaching
+  programming: Programming
+  honors: Honors
+
+items:
+  # ---- honors (files already in assets/certificates/honors/) ----
+  iceeict_best_paper:
+    title: Best Paper Award — ICEEICT 2021
+    issuer: Military Institute of Science and Technology
+    date: 2022-01
+  Deans_Award_4th_year:
+    title: Dean's Award (2019–20)
+    issuer: Faculty of EEE, KUET
+    date: "2020"
+  Deans_Award_3rd_year:
+    title: Dean's Award (2018–19)
+    issuer: Faculty of EEE, KUET
+    date: "2019"
+  Chess_certificate:
+    title: Intra-district Chess Champion
+    issuer: District Sports Office, Bogura
+
+  # ---- add the files with these names to move them into the gallery ----
+  ctl-certificate:                    # → assets/certificates/teaching/ctl-certificate.pdf
+    title: Certificate in Teaching and Learning (CTL)
+    issuer: CETL, Green University of Bangladesh
+    date: 2022-10
+  citi-certificate:                   # → assets/certificates/research/citi-certificate.pdf
+    title: CITI Program — Research Ethics & Compliance
+    issuer: CITI Program
+  ferpa-training:                     # → assets/certificates/teaching/ferpa-training.pdf
+    title: FERPA Training
+    issuer: University of Alabama in Huntsville
+  learning-how-to-learn:              # → assets/certificates/ml-ai/learning-how-to-learn.pdf
+    title: Learning How to Learn
+    issuer: Coursera
+    date: 2020-10
+  ibm-data-science:                   # → assets/certificates/ml-ai/ibm-data-science.pdf
+    title: IBM Data Science Professional Certificate
+    issuer: Coursera · IBM
+    date: 2020-06
+  deep-learning-specialization:       # → assets/certificates/ml-ai/deep-learning-specialization.pdf
+    title: Deep Learning Specialization
+    issuer: Coursera · DeepLearning.AI
+    date: 2020-05
+#   verify: https://coursera.org/verify/specialization/XXXX   # optional "Verify" link

@@ -1,97 +1,176 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+# CV data: the single source for the /cv/ web page (rendered by _includes/site/cv.liquid).
+# Also valid RenderCV input (https://docs.rendercv.com), so .github/workflows/render-cv.yml can build a PDF from it.
+# Prefer your own LaTeX PDF? Put it at assets/pdf/Md_Nazmus_Shakib_CV.pdf and the page shows a "PDF" button.
+#
+# Entry kinds the web page understands (same as RenderCV):
+#   text           - a plain string
+#   education      - institution, area, degree, start_date, end_date, location, gpa (custom), highlights
+#   experience     - company, position, start_date / end_date OR date, location, highlights
+#   publication    - title, authors, journal, date, note (custom), url
+#   normal         - name, date / start_date+end_date, location, summary, highlights, tags (custom)
+#   one-line       - label, details
+# Dates: "2025", "2025-08", "present", or any text such as "Summer 2026" / "Jun 2026".
 
-- title: Education
-  type: time_table
-  contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+cv:
+  name: Md. Nazmus Shakib
+  label: Ph.D. Student, Computer Engineering
+  affiliation: University of Alabama in Huntsville
+  location: Huntsville, AL, USA
+  email: nazmus.shakib@uah.edu
+  website: https://ns-riad.github.io
+  social_networks:
+    - network: LinkedIn
+      username: nazmus-shakib-riad
+    - network: Google Scholar
+      username: 0ulwrwEAAAAJ
+    - network: GitHub
+      username: nsriad
+    - network: ORCID
+      username: 0000-0002-5209-9597
 
-- title: Experience
-  type: time_table
-  contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+  sections:
+    Research Interests:
+      - Multimodal Data Fusion; Machine Intelligence; Cyber-Physical Systems; Autonomous Vehicles.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
+    Education:
+      - institution: University of Alabama in Huntsville
+        location: Huntsville, AL, USA
+        url: https://www.uah.edu/
+        degree: Ph.D.
+        area: Computer Engineering
+        start_date: 2025
+        end_date: present
+        gpa: 3.778/4.00
 
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
+      - institution: Khulna University of Engineering & Technology (KUET)
+        location: Khulna, Bangladesh
+        url: https://www.kuet.ac.bd/
+        degree: B.Sc.
+        area: Computer Science & Engineering
+        start_date: 2017
+        end_date: 2022
+        gpa: 3.75/4.00
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    Experience:
+      - position: Graduate Student Researcher
+        company: AARC Lab, University of Alabama in Huntsville
+        location: Huntsville, AL
+        date: Summer 2026
 
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+      - position: Graduate Teaching Assistant
+        company: Dept. of Electrical & Computer Engineering, University of Alabama in Huntsville
+        location: Huntsville, AL
+        start_date: 2025
+        end_date: present
+        highlights:
+          - Lab instructor for EE 203, Digital Logic Design Lab; grading for undergraduate ECE courses.
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+      - position: Lecturer
+        company: Dept. of Computer Science & Engineering, Green University of Bangladesh
+        location: Dhaka, Bangladesh
+        start_date: 2022
+        end_date: 2024
+        highlights:
+          - Taught 15+ theory and lab courses (Algorithms, Database Systems, OOP, AI, Data Mining, Computer Networks).
+          - Course coordinator for Object-Oriented Programming and Data Mining; supervised undergraduate capstone projects.
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+    Publications:
+      - title: Degradation-aware lightweight multimodal fusion for resilient headway estimation
+        authors: ["**M. N. Shakib**", "R. Bhadani"]
+        journal: 27th International Conference on Cyber-Physical Systems (ICCPS)
+        date: "2026"
+        note: Submitted
+      - title: Towards a unified perspective on multimodal fusion in intelligent transportation systems
+        authors: ["**M. N. Shakib**", "R. Bhadani"]
+        journal: Information Fusion
+        date: "2026"
+        note: Submitted
+      - title: String stability analysis of Followerstopper for mixed-autonomy vehicle platoons
+        authors: ["**M. N. Shakib**", "M. S. Uddin", "R. Bhadani"]
+        journal: 2026 IEEE Intelligent Vehicles Symposium (IV)
+        date: "2026"
+      - title: Efficient CPU burst forecasting with low-latency machine learning models
+        authors: ["**M. N. Shakib**", "M. A. H. Ifty", "M. S. Uddin", "R. Bhadani"]
+        journal: IEEE SoutheastCon 2026
+        date: "2026"
+      - title: Towards trustworthy brain stroke diagnosis using a lightweight explainable deep learning framework for CT imaging
+        authors: ["M. R. Alom", "M. A. Rahaman", "M. P. Hossain", "C. Mondal", "**M. N. Shakib**", "M. A. Habib", "M. K. Hasan", "A. Ali"]
+        journal: Scientific Reports
+        date: "2026"
+      - title: "Modeling electric vehicle car-following behavior: Classical vs machine learning approach"
+        authors: ["M. S. Uddin", "**M. N. Shakib**", "R. Bhadani"]
+        journal: Proceedings of the IEEE Intelligent Transportation Systems Conference (ITSC)
+        date: "2025"
+      - title: An adaptive system for detecting driving abnormality of individual drivers using Gaussian mixture model
+        authors: ["**M. N. Shakib**", "M. Shamim", "M. N. H. Shawon", "M. K. F. Isha", "M. Hashem", "M. Kamal"]
+        journal: 2021 5th International Conference on Electrical Engineering and Information Communication Technology (ICEEICT), IEEE, pp. 1–6
+        date: "2021"
+        url: https://ieeexplore.ieee.org/document/9667850
+      - title: A DNN based driving scheme for anticipatory car following using road-speed profile
+        authors: ["M. K. F. Isha", "M. N. H. Shawon", "M. Shamim", "**M. N. Shakib**", "M. Hashem", "M. A. S. Kamal"]
+        journal: 2021 IEEE Intelligent Vehicles Symposium (IV), IEEE, pp. 496–501
+        date: "2021"
+        url: https://ieeexplore.ieee.org/document/9575314
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    Selected Projects:
+      - name: CARLA and ROS 2 Multimodal Simulation Pipeline
+        tags: Python, ROS 2, CARLA
+        url: https://github.com/nsriad/carla_ros2_simulation
+        summary: Developed a multimodal simulation pipeline bridging ROS 2 Humble and CARLA 0.9.16 to extract and synchronize camera–LiDAR data.
+      - name: Platoon String Stability Framework
+        tags: SUMO, Python
+        url: https://github.com/nsriad/FollowerStopper-String-Stability
+        summary: Designed a SUMO simulation framework for mixed-autonomy traffic, featuring platoon string-stability metrics and wave-dampening controllers.
+      - name: Parallel Bee Colony Optimization (BCO) for PID Tuning
+        tags: C++, OpenMP
+        url: https://github.com/nsriad/BCO_PID_Project
+        summary: Implemented an OpenMP-parallelized C++ Bee Colony Optimization meta-heuristic for PID tuning, analyzing execution speedup and scaling behavior against a MATLAB baseline.
+      - name: Cruise Control System with LQR and PID
+        tags: MATLAB, Simulink
+        url: https://github.com/nsriad/cruise-control-lqr-pid
+        summary: Modeled a cruise control system using PID and LQR controllers in MATLAB/Simulink.
+
+    Technical Skills:
+      - label: Programming
+        details: Python, C/C++, Java, MATLAB, Verilog
+      - label: Frameworks & Systems
+        details: ROS 2, CARLA, SUMO, PyTorch, Simulink
+      - label: Parallel & HPC
+        details: OpenMP, MPI, Alabama Supercomputing Cluster
+      - label: Architecture & VLSI
+        details: Intel PIN, gem5, Design Compiler, IC Compiler, PrimeTime
+      - label: Tools
+        details: Git, LaTeX, Quartus Prime, ModelSim
+
+    Awards & Achievements:
+      - name: Travel Grant, IEEE Intelligent Vehicles Symposium (IV)
+        date: Jun 2026
+        summary: Awarded to attend and present research at IEEE IV 2026.
+      - name: Best Paper Award, 5th Int. Conf. on Electrical Engineering and Information & Communication Technology (ICEEICT 2021)
+        date: Jan 2022
+        summary: First prize in the Best Paper category among 103 accepted papers.
+      - name: Dean's Award, Faculty of Electrical and Electronic Engineering, KUET
+        start_date: 2018
+        end_date: 2020
+        summary: Received in the 2nd, 3rd and 4th years of undergraduate study.
+
+    Professional Service:
+      - name: Peer Reviewer, IEEE ITSC, IEEE CDC, and IEEE SoutheastCon
+        start_date: 2025
+        end_date: present
+      - name: Student Member, IEEE; IEEE Intelligent Transportation Systems Society (ITSS)
+        start_date: 2024
+        end_date: present
+      - name: Course Coordinator, Object-Oriented Programming and Data Mining, GUB
+        start_date: 2023
+        end_date: 2024
+
+    Selected Certifications:
+      - name: Certificate in Teaching and Learning (CTL), CETL, Green University of Bangladesh
+        date: Oct 2022
+      - name: Learning How to Learn, Coursera
+        date: Oct 2020
+      - name: IBM Data Science Professional Certificate, Coursera
+        date: Jun 2020
+      - name: Deep Learning Specialization, Coursera
+        date: May 2020

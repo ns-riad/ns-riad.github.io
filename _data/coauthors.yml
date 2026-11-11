@@ -1,11 +1,8 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+# Co-author links on the Research page. Key = last name in lowercase.
+"uddin":
+  - firstname: ["Shihab"]
+    url: https://shihabict.github.io/ShihabUddin/
 
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
-
-"riad":
-  - firstname: ["Md Nazmus", "Shakib", "Md Nazmus Shakib", "MN Shakib", "M N Shakib"]
-    url: https://ns-riad.github.io/
+# "bhadani":
+#   - firstname: ["Rahul"]
+#     url: https://...

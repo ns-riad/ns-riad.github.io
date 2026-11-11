@@ -1,0 +1,12 @@
+# Social / academic profile links, shown as icons in the hero and footer.
+# Order here = display order. Keys follow the jekyll-socials plugin:
+# https://github.com/george-gca/jekyll-socials
+email: mdnazmus.shakib.cse@gmail.com
+scholar_userid: 0ulwrwEAAAAJ
+orcid_id: 0000-0002-5209-9597
+research_gate_profile: Md-Nazmus-Shakib-4
+github_username: nsriad
+linkedin_username: nazmus-shakib-riad
+# youtube_id: # your channel handle (youtube.com/@<id>) — fill in when the vlog goes live
+# cv_pdf: /assets/pdf/cv.pdf  # enable once your PDF CV is in place
+# rss_icon: true  # shows an RSS feed icon (only useful once you blog regularly)

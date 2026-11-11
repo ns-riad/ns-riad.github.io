@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{% comment %} Centered verse layout. Line breaks in the source are preserved. {% endcomment %}
+<div class="post poem" {% if page.lang %}lang="{{ page.lang }}"{% endif %}>
+  <header class="post-header poem-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">{{ page.date | date: '%B %Y' }}{% if page.place %} · {{ page.place }}{% endif %}</p>
+  </header>
+  <article class="poem-body">{{ content }}</article>
+  <p class="center"><a href="{{ '/writing/' | relative_url }}">&larr; All writing</a></p>
+  {% if site.plugins contains 'al_comments' %}
+    {% include plugins/al_comments.liquid %}
+  {% endif %}
+</div>

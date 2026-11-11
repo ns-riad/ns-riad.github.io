@@ -1,0 +1,39 @@
+{% assign v = site.data.videos %}
+{% if v.videos and v.videos.size > 0 %}
+  {% assign vids = v.videos | sort: 'date' | reverse %}
+  <div class="video-grid">
+    {% for vid in vids %}
+      <article class="video-card reveal">
+        <div class="video-frame">
+          {% comment %} Lite embed: thumbnail first, the iframe loads only on click (faster pages). {% endcomment %}
+          <button class="yt-lite" type="button" data-yt="{{ vid.id }}" aria-label="Play {{ vid.title | escape }}">
+            <img src="https://i.ytimg.com/vi/{{ vid.id }}/hqdefault.jpg" alt="" loading="lazy">
+            <span class="yt-play"><i class="fa-solid fa-play"></i></span>
+          </button>
+        </div>
+        <div class="video-meta">
+          <h3>{{ vid.title }}</h3>
+          <p class="muted small">{{ vid.date | date: '%b %Y' }}{% if vid.series %} · {{ vid.series }}{% endif %}</p>
+          {% if vid.description %}<p>{{ vid.description }}</p>{% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <script>
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest(".yt-lite");
+      if (!b) return;
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + b.dataset.yt + "?autoplay=1&rel=0";
+      f.title = b.getAttribute("aria-label");
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      f.allowFullscreen = true;
+      b.replaceWith(f);
+    });
+  </script>
+{% else %}
+  <p class="empty-state"><i class="fa-solid fa-video"></i><br>The first episode is in the edit bay.</p>
+{% endif %}
+{% if v.channel %}
+  <p class="center"><a class="hero-btn hero-btn-primary" href="https://www.youtube.com/@{{ v.channel }}"><i class="fa-brands fa-youtube"></i> Visit channel</a></p>
+{% endif %}

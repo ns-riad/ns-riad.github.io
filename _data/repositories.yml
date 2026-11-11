@@ -1,16 +1,5 @@
+# Used by the (optional) repositories include. Not linked in the navbar.
 github_users:
   - nsriad
-  - ns-riad
-
 repo_description_lines_max: 2
-
-github_repos:
-  - nsriad/Heart-Rate-Monitoring-System
-  - nsriad/Graphics-final-project
-  - nsriad/COVID-19-Self-Assessment-System
-  - nsriad/Online-Quiz-Contest-Application-ASP.NET
-  - nsriad/Compiler-project
-  - nsriad/OOP_Project
-  - nsriad/Android_Project_2-2
-  - nsriad/Structured-programming-project
-  - nsriad/Python_snake-game
+github_repos: []

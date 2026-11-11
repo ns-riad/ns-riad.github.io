@@ -1,0 +1,8 @@
+# Vlog — rendered on /vlog/. Only the YouTube video id is required (the part after `v=`).
+#   - id: dQw4w9WgXcQ
+#     title: A day in the life of a PhD student
+#     date: 2025-10-01
+#     description: Optional one-liner.
+#     series: phd-life        # optional grouping
+channel: # your YouTube handle without @, e.g. nsriad — shows a "Visit channel" button
+videos: []

@@ -1,0 +1,32 @@
+# Photography — OPTIONAL details for the photos in assets/photography/.
+#
+# You don't need to touch this file: any image you drop into assets/photography/ shows up on
+# /photography/ automatically (title = file name), with its own page at /photography/<file-name>/.
+# Camera/lens/exposure are read from the photo itself; GPS and other metadata are stripped from
+# what gets published.
+#
+# Big files? Run  scripts/optimize_photos.sh  before committing (keeps the repo small).
+#
+# To add details, use the file name WITHOUT extension as the key:
+#
+#   items:
+#     smoky-mountains:
+#       title: Above the clouds
+#       place: Great Smoky Mountains, TN
+#       date: 2026-07-04
+#       caption: A short line shown on the photo page.
+#       story: /blog/2026/smoky-mountains/   # optional: link to a blog post / essay about it
+#       story_label: Read the story           # optional (default "Read the story")
+#       order: 1                              # optional: lower = earlier on the canvas
+#       hidden: true                          # optional: keep the file but don't show it
+
+items:
+  # Placeholder titles. Rename the files to something meaningful and edit freely.
+  image copy:
+    title: Ridges under a summer sky
+  image:
+    title: Forest stream.
+  image copy 2:
+    title: The long bridge
+  sony_headphones-wallpaper-2560x1440:
+    title: Autumn, unplugged

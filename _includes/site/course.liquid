@@ -1,0 +1,22 @@
+{% comment %} One course row. Accepts a plain string or an object (see _data/teaching.yml). {% endcomment %}
+{% assign c = include.course %}
+<li class="course">
+  {% if c.name %}
+    <div class="course-main">
+      <span class="course-name">{% if c.code %}<span class="course-code">{{ c.code }}</span> {% endif %}{{ c.name }}</span>
+      {% if c.parts %}
+        <span class="course-parts">{% for p in c.parts %}<span class="part part-{{ p | slugify }}">{{ p }}</span>{% endfor %}</span>
+      {% endif %}
+    </div>
+    {% if c.note %}<div class="course-note">{{ c.note }}</div>{% endif %}
+    {% if c.links %}
+      <div class="course-links">
+        {% for l in c.links %}
+          <a href="{{ l.url | relative_url }}"><i class="{{ l.icon | default: 'fa-solid fa-link' }}"></i> {{ l.label }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="course-main"><span class="course-name">{{ c }}</span></div>
+  {% endif %}
+</li>

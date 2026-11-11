@@ -1,0 +1,125 @@
+{% assign a = site.data.awards %}
+{% assign files = site.data.certificate_files %}
+
+{% comment %} ---------- Honors: compact list ---------- {% endcomment %}
+<h2 class="section-title">Honors &amp; awards</h2>
+<ul class="award-list">
+  {% for h in a.honors %}
+    <li class="award-row reveal">
+      <div class="award-year">{{ h.year }}</div>
+      <div class="award-body">
+        <h3>{{ h.title }}</h3>
+        <p class="muted">{{ h.issuer }}</p>
+        {% if h.description %}<p class="award-desc">{{ h.description }}</p>{% endif %}
+        {% assign cf = files | where: 'key', h.certificate | first %}
+        {% if cf %}
+          <div class="award-actions">
+            <button
+              class="link-btn"
+              type="button"
+              data-cert-img="{{ cf.thumb | default: cf.file | relative_url }}"
+              {% if cf.pdf %}data-cert-pdf="{{ cf.file | relative_url }}"{% endif %}
+              data-cert-title="{{ h.title | escape }}"
+            >
+              <i class="fa-regular fa-image"></i> View certificate
+            </button>
+            {% for x in h.extra %}
+              {% assign xf = files | where: 'key', x.certificate | first %}
+              {% if xf %}
+                <button
+                  class="link-btn"
+                  type="button"
+                  data-cert-img="{{ xf.thumb | default: xf.file | relative_url }}"
+                  {% if xf.pdf %}data-cert-pdf="{{ xf.file | relative_url }}"{% endif %}
+                  data-cert-title="{{ h.title | escape }} ({{ x.label }})"
+                >
+                  {{ x.label }}
+                </button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+{% comment %} ---------- Certificate gallery (auto-discovered from assets/certificates/) ---------- {% endcomment %}
+{% if files.size > 0 %}
+  <h2 class="section-title">Certificates</h2>
+  {% assign cats = site.data.certificate_categories %}
+  {% if cats.size > 1 %}
+    <div class="filter-chips" role="group" aria-label="Filter certificates">
+      <button class="chip chip-btn is-active" type="button" data-filter="all">All <span class="chip-count">{{ files.size }}</span></button>
+      {% for c in cats %}
+        {% assign n = files | where: 'category', c.key | size %}
+        <button class="chip chip-btn" type="button" data-filter="{{ c.key }}">{{ c.label }} <span class="chip-count">{{ n }}</span></button>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="cert-grid">
+    {% for c in files %}
+      <figure class="cert-card reveal" data-tag="{{ c.category }}">
+        <button
+          type="button"
+          class="cert-thumb"
+          data-cert-img="{{ c.thumb | default: c.file | relative_url }}"
+          {% if c.pdf %}data-cert-pdf="{{ c.file | relative_url }}"{% endif %}
+          data-cert-title="{{ c.title | escape }}"
+          aria-label="View {{ c.title | escape }}"
+        >
+          {% if c.thumb or c.pdf == false %}
+            <img src="{{ c.thumb | default: c.file | relative_url }}" alt="{{ c.title | escape }}" loading="lazy">
+          {% else %}
+            <span class="cert-placeholder"><i class="fa-regular fa-file-pdf"></i></span>
+          {% endif %}
+        </button>
+        <figcaption>
+          <strong>{{ c.title }}</strong>
+          <span class="muted small">
+            {{- c.issuer -}}
+            {%- if c.issuer and c.date_label %} · {% endif -%}
+            {{- c.date_label -}}
+          </span>
+          {% if c.verify %}<a class="small" href="{{ c.verify }}">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% endif %}
+        </figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% comment %} ---------- Listed in _data/certificates.yml but no file yet ---------- {% endcomment %}
+{% assign text_only = site.data.certificate_text_only %}
+{% if text_only.size > 0 %}
+  <h2 class="section-title">Also completed</h2>
+  <ul class="cert-text-list">
+    {% for c in text_only %}
+      <li>
+        <span><strong>{{ c.title }}</strong>{% if c.issuer %} <span class="muted">· {{ c.issuer }}</span>{% endif %}</span>
+        <span class="muted small">
+          {{- c.date_label -}}
+          {%- if c.verify %} <a href="{{ c.verify }}">verify</a>{% endif -%}
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% include site/lightbox.liquid %}
+
+<script>
+  // Filter chips for the certificate grid
+  (function () {
+    var chips = document.querySelectorAll(".filter-chips .chip-btn");
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        chips.forEach(function (c) { c.classList.remove("is-active"); });
+        chip.classList.add("is-active");
+        var f = chip.dataset.filter;
+        document.querySelectorAll(".cert-card").forEach(function (card) {
+          card.hidden = !(f === "all" || card.dataset.tag === f);
+        });
+      });
+    });
+  })();
+</script>

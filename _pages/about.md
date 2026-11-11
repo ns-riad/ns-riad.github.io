@@ -33,8 +33,9 @@ announcements:
 
 selected_papers: true # papers marked `selected={true}` in _bibliography/papers.bib
 
+# Home page blocks: set `enabled: false` (or selected_papers: false) to hide a block.
 latest_posts:
-  enabled: true
+  enabled: false # "Latest writing": blog posts
   scrollable: false
   limit: 3
 ---

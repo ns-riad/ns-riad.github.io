@@ -82,6 +82,17 @@ selected_papers: true                                  # papers with selected={t
 latest_posts: { enabled: true, limit: 3 }              # only shown when the blog has posts
 ```
 
+**Which blocks appear on the home page** (all in `_pages/about.md` front matter):
+
+| Block                    | Switch                                          | Notes                                              |
+| ------------------------ | ----------------------------------------------- | -------------------------------------------------- |
+| News                     | `announcements: enabled: true/false`            | `limit:` = how many items                          |
+| Selected publications    | `selected_papers: true/false`                   | which papers: `selected = {true}` in `papers.bib`  |
+| Latest writing (blog)    | `latest_posts: enabled: true/false`             | currently **off**; `limit:` = how many posts       |
+
+Hiding a block here only affects the home page; the pages themselves (`/news/`, `/blog/`) stay available
+unless you also switch the section off in `_config.yml` → `sections:`.
+
 - Your **name** comes from `first_name` / `last_name` in `_config.yml` (the last name is shown bold).
 - The **social icons** under the interests come from `_data/socials.yml`.
 - The text **below** the front matter is the bio (Markdown).
@@ -386,6 +397,7 @@ _includes/header.liquid  OVERRIDE of the theme navbar (section toggles + magnify
 _sass/_custom.scss       OUR styles (color, font, every component), loaded last
 assets/css/main.scss     OVERRIDE of the theme entry: identical + one line that loads _custom.scss
 _plugins/section_toggles.rb  drops pages/posts of disabled sections at build time
+_plugins/css_cache_bust.rb   new main.css version tag whenever _sass/ changes (no stale styles after deploy)
 _plugins/media_library.rb    finds certificates + photos, makes web-sized copies (ImageMagick/Ghostscript)
 assets/certificates/<category>/  certificate PDFs/images (folder = filter tab)
 assets/photography/      photos (only resized copies are published; _originals/ is git-ignored)
@@ -427,7 +439,7 @@ bin/                     helper scripts from upstream (Scholar citation updater)
 | `Could not find gem …` / wrong Ruby                        | Use `bundle exec`; run `bundle install`; `ruby -v` should be 3.x                        |
 | A `_config.yml` change has no effect                       | Restart the server (config isn't live-reloaded)                                        |
 | New certificate/photo has no preview                       | `brew install imagemagick ghostscript`, then rebuild                                   |
-| Page looks unstyled/old after deploying                    | Hard refresh (Cmd + Shift + R); browsers cache CSS                                     |
+| Page looks unstyled/old after deploying                    | Should not happen any more: `_plugins/css_cache_bust.rb` gives main.css a new `?v=` whenever our styles change. If it still does, wait ~10 min (GitHub's cache) and hard refresh (Cmd + Shift + R) |
 | Build error mentioning `papers.bib`                        | A `%` comment or a missing `,`/`}` inside a BibTeX entry                                |
 
 ---

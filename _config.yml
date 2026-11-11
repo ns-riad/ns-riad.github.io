@@ -6,8 +6,8 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Md Nazmus
 middle_name:
 last_name: Shakib
-contact_note: >
-  Email is the best way to reach me.
+# contact_note: >
+#   Email is the best way to reach me.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Md Nazmus Shakib — Ph.D. student in Electrical & Computer Engineering at the University of Alabama in Huntsville,
   working on machine learning for intelligent transportation and cyber-physical systems.

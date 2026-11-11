@@ -384,31 +384,87 @@ If you hide a section, also check the bio in `_pages/about.md` doesn't mention i
 
 ## Folder map
 
+```text
+ns-riad.github.io/
+├── _config.yml ....................... site settings, section toggles, fonts URL, plugins
+├── SITE_GUIDE.md ..................... this guide
+│
+├── _pages/ ........................... one file per page (menu order = nav_order)
+│   ├── about.md ...................... HOME: intro, interests, bio, home-page blocks
+│   ├── research.md · teaching.md · projects.md · awards.md · cv.md
+│   ├── more.md ....................... the "More ▾" dropdown menu
+│   └── blog.md · news.md · photography.md · writing.md · vlog.md · 404.md
+│
+├── _bibliography/
+│   └── papers.bib .................... all publications
+│
+├── _news/ ............................ one file per news item
+├── _projects/ ........................ one file per project
+├── _posts/ ........................... blog posts (YYYY-MM-DD-title.md)
+├── _poems/ ........................... poems
+├── _essays/ .......................... essays (Bangla: lang: bn)
+│
+├── _data/ ............................ structured content (YAML)
+│   ├── teaching.yml .................. roles, semesters, courses, supervision
+│   ├── awards.yml .................... honors list
+│   ├── certificates.yml .............. optional certificate details + tab labels
+│   ├── cv.yml ........................ the CV
+│   ├── photos.yml .................... optional photo titles / places / stories
+│   ├── videos.yml .................... vlog (YouTube ids)
+│   ├── socials.yml ................... social icons
+│   ├── venues.yml .................... venue badge colors (Research)
+│   ├── coauthors.yml ................. co-author homepage links
+│   └── citations.yml · repositories.yml   (used by upstream helpers)
+│
+├── _layouts/ ......................... OUR page layouts
+│   ├── home.liquid ................... landing page
+│   ├── photo.liquid .................. single photo page
+│   └── poem.liquid ................... poem page
+│
+├── _includes/
+│   ├── header.liquid ................. OVERRIDE of the theme navbar
+│   └── site/ ......................... OUR components
+│       ├── teaching.liquid ........... roles + semester timeline
+│       ├── course.liquid ............. one course row
+│       ├── awards.liquid ............. honors + certificate gallery
+│       ├── cv.liquid ................. web CV
+│       ├── project_card.liquid ....... project cards
+│       ├── gallery.liquid ............ photography "desk"
+│       ├── lightbox.liquid ........... image viewer
+│       └── videos.liquid ............. vlog grid
+│
+├── _sass/
+│   └── _custom.scss .................. OUR styles: COLOR + FONT at the top
+│
+├── _plugins/ ......................... OUR build plugins (Ruby)
+│   ├── section_toggles.rb ............ drops sections switched off in _config.yml
+│   ├── media_library.rb .............. auto-finds certificates + photos, makes previews
+│   └── css_cache_bust.rb ............. new main.css version whenever styles change
+│
+├── assets/
+│   ├── certificates/<category>/ ...... drop certificate PDFs/images here (folder = tab)
+│   ├── photography/ .................. drop photos here (_originals/ is git-ignored)
+│   ├── img/ .......................... profile.jpg, projects/, publication_preview/
+│   ├── pdf/ .......................... CV PDF (Md_Nazmus_Shakib_CV.pdf), course files
+│   ├── fonts/ ........................ Latin Modern + New Computer Modern
+│   ├── css/main.scss ................. OVERRIDE of the theme entry (loads _custom.scss)
+│   └── rendercv/ ..................... RenderCV design/settings for the PDF CV
+│
+├── scripts/
+│   └── optimize_photos.sh ............ shrink big photos before committing
+├── bin/ .............................. upstream helper scripts
+│
+├── .github/workflows/
+│   ├── deploy.yml .................... build + publish on every push to master
+│   ├── render-cv.yml ................. build the CV PDF from cv.yml
+│   └── update-citations.yml .......... Scholar citation counts (run manually)
+│
+├── .al-folio-overrides.yml ........... which theme files we override (upgrade checks)
+├── Gemfile · Gemfile.lock ............ Ruby gems (theme version lives here)
+└── purgecss.config.js ................ CSS clean-up rules used at deploy
 ```
-_config.yml              site settings, section toggles, fonts URL, plugins (read the comments)
-_pages/                  one file per page (about, research, teaching, projects, awards, cv, more, …)
-_posts/ _poems/ _essays/ _news/ _projects/     content collections
-_bibliography/papers.bib all publications
-_data/                   structured content: teaching, awards, certificates, cv, photos, videos,
-                         socials, coauthors, venues
-_layouts/                OUR layouts: home (landing page), poem, photo (one photo)
-_includes/site/          OUR components: teaching, course, awards, cv, gallery (photo desk), videos, lightbox
-_includes/header.liquid  OVERRIDE of the theme navbar (section toggles + magnifying-glass-only search)
-_sass/_custom.scss       OUR styles (color, font, every component), loaded last
-assets/css/main.scss     OVERRIDE of the theme entry: identical + one line that loads _custom.scss
-_plugins/section_toggles.rb  drops pages/posts of disabled sections at build time
-_plugins/css_cache_bust.rb   new main.css version tag whenever _sass/ changes (no stale styles after deploy)
-_plugins/media_library.rb    finds certificates + photos, makes web-sized copies (ImageMagick/Ghostscript)
-assets/certificates/<category>/  certificate PDFs/images (folder = filter tab)
-assets/photography/      photos (only resized copies are published; _originals/ is git-ignored)
-assets/fonts/            self-hosted Latin Modern + New Computer Modern (licenses inside)
-assets/img/              profile photo, project thumbnails, publication previews
-assets/pdf/              CV PDF and other documents
-scripts/optimize_photos.sh   shrink new photos before committing
-bin/                     helper scripts from upstream (Scholar citation updater)
-.github/workflows/       deploy.yml (build + publish), render-cv.yml, update-citations.yml (manual)
-.al-folio-overrides.yml  records which theme files we override (for upgrade checks)
-```
+
+Files not listed (layouts, includes and styles of the theme itself) live inside the `al_folio_*` gems; you never need to edit them.
 
 ---
 

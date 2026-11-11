@@ -50,7 +50,7 @@ jobs:
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5"
+          ruby-version: "3.4" # latest 3.4.x, same series as local development
           bundler-cache: true
       - name: Setup Python 🐍
         uses: actions/setup-python@v7

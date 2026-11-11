@@ -6,6 +6,7 @@ img: assets/img/publication_preview/informs_placeholder.jpg
 importance: 4
 category: research
 related_publications: true
+github: https://github.com/nsriad/Burst-Time-Prediction-Using-Machine-Learning
 ---
 
 Schedulers like Shortest-Job-First depend on knowing a job's burst time in advance. The classic exponential-averaging estimate breaks down under mixed, multi-user workloads.

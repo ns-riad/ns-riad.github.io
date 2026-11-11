@@ -1,0 +1,32 @@
+{% comment %}
+  Project card (replaces the theme's projects.liquid on /projects/).
+  The whole card opens the project page (stretched link). The "Code" button is a separate
+  link layered above it, so there are no nested <a> tags.
+  Front matter used: title, description, img, github, redirect, links (optional extra buttons).
+{% endcomment %}
+{% assign p = include.project %}
+{% if p.redirect %}{% assign href = p.redirect %}{% else %}{% assign href = p.url | relative_url %}{% endif %}
+<div class="col">
+  <article class="pcard h-100">
+    {% if p.img %}
+      <div class="pcard-img">
+        {% include figure.liquid loading="lazy" path=p.img sizes="(min-width: 768px) 320px, 100vw" alt=p.title %}
+      </div>
+    {% endif %}
+    <div class="pcard-body">
+      <h3 class="pcard-title"><a class="pcard-link" href="{{ href }}">{{ p.title }}</a></h3>
+      <p class="pcard-text">{{ p.description }}</p>
+      <div class="pcard-foot">
+        <span class="pcard-more">Details <i class="fa-solid fa-arrow-right"></i></span>
+        <span class="pcard-actions">
+          {% for l in p.links %}
+            <a class="pcard-btn" href="{{ l.url }}"><i class="{{ l.icon | default: 'fa-solid fa-link' }}"></i> {{ l.label }}</a>
+          {% endfor %}
+          {% if p.github %}
+            <a class="pcard-btn" href="{{ p.github }}" aria-label="Code repository on GitHub"><i class="fa-brands fa-github"></i> Code</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  </article>
+</div>

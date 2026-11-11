@@ -203,11 +203,14 @@ description: One-line summary shown on the card.
 img: assets/img/projects/thumb.jpg     # optional card image (16:10 crop, top-aligned)
 importance: 1                          # order within its category (1 = first)
 category: research                     # must be listed in display_categories in _pages/projects.md
-github: https://github.com/…           # optional GitHub icon on the card
+github: https://github.com/…           # optional "Code" button on the card
+links:                                 # optional extra buttons on the card, e.g. a paper or demo
+  - { label: Paper, url: https://…, icon: fa-solid fa-file-pdf }
 related_publications: true             # lists papers you {% cite key %} in the text
 ---
 ```
 
+The whole card opens the project page; the buttons open their own links. Card design: `_includes/site/project_card.liquid`.
 The body supports Markdown, `$$math$$`, images and `{% cite shakib2026iv %}`. Current categories: `research`, `coursework`.
 
 ### Awards & certificates (`_pages/awards.md`)

@@ -6,6 +6,7 @@ importance: 2
 category: research
 # img: assets/img/projects/string_stability.png   # add your thumbnail here
 related_publications: true
+github: https://github.com/nsriad/FollowerStopper-String-Stability
 ---
 
 **Question.** _Followerstopper_ is an adaptive-cruise-control law built to dampen stop-and-go waves. How does it behave in a realistic platoon where a human drives the lead car?

@@ -1,0 +1,8 @@
+Self-hosted web fonts (subset to Latin/Greek/math symbols and converted to WOFF2 for the web).
+
+latin-modern/          Latin Modern Roman 10, (c) GUST e-foundry. GUST Font License.
+                       Source: https://ctan.org/pkg/lm
+new-computer-modern/   New Computer Modern 10 (Book weights), (c) Antonis Tsolomitis. GUST Font License.
+                       Source: https://ctan.org/pkg/newcomputermodern
+
+The GUST Font License (https://www.gust.org.pl/projects/e-foundry/licenses) permits redistribution.

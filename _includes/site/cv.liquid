@@ -49,7 +49,7 @@
             <li>
               {{ e.authors | join: ', ' | markdownify | remove: '<p>' | remove: '</p>' | strip }},
               “{% if e.url %}<a href="{{ e.url }}">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %},”
-              <em>{{ e.journal }}</em>, {{ e.date }}{% if e.note %} <span class="cvx-tag">{{ e.note }}</span>{% endif %}.
+              <em>{{ e.journal }}</em>, {{ e.date }}.{% if e.note %} <span class="cvx-tag">{{ e.note }}</span>{% endif %}
             </li>
           {% endfor %}
         </ol>

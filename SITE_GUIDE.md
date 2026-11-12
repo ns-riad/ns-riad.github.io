@@ -362,6 +362,27 @@ Bangla text always uses Noto Serif Bengali; code always uses a monospace font.
 The moon/sun button cycles **System → Dark → Light**. *System* (half sun/moon icon) is the default and follows the
 visitor's device setting; the browser remembers their choice. `enable_darkmode: false` in `_config.yml` removes it.
 
+### Status tags ("Submitted", "Poster accepted")
+
+On the Research page, the `note = {...}` field of a bib entry is shown as a purple box next to the venue. In the CV, the
+same box comes from `note:` in `_data/cv.yml`. Change its color in `_sass/_custom.scss` → `$status-light` /
+`$status-dark`. Remove the `note` once a paper is accepted, and the box disappears.
+
+### Motion: scroll reveal and hover effects
+
+Content blocks fade up as they scroll into view, and blocks that appear together are staggered by 70 ms each.
+This is the same idea as the "AOS fade-up" effect, done in about 40 lines with no library.
+
+| What you want | Where |
+|---|---|
+| Speed or rise distance | `_sass/_custom.scss` → `$rv-duration` (0.6s), `$rv-distance` (18px) |
+| Which blocks animate | `_includes/header.liquid` → the `SEL` list (CSS selectors) |
+| Stop one block from animating | add the class `rv-off` to it, or to any parent |
+| Turn all scroll animation off | `motion: false` in `_config.yml` |
+| Hover effects (row tint, button fill, nav underline, photo lift) | `_sass/_custom.scss` → "MOTION: hover & smooth transitions" (delete a block to drop that effect) |
+
+Visitors whose device is set to "reduce motion" see no animation. Printing shows everything.
+
 ---
 
 ## Turn sections on/off

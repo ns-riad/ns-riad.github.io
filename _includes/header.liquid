@@ -153,4 +153,70 @@
       </div>
     </progress>
   {% endif %}
+  <script>
+    // Research/selected papers: show the bib `note` ("Submitted", …) as a tag next to the venue
+    // instead of on its own line. Style: _sass/_custom.scss → "status tag".
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".publications .periodical + .periodical").forEach(function (n) {
+        var t = n.textContent.trim();
+        n.classList.add("is-note-empty");
+        if (!t) return;
+        var tag = document.createElement("span");
+        tag.className = "pub-note";
+        tag.textContent = t;
+        n.previousElementSibling.appendChild(tag);
+      });
+    });
+  </script>
+  {% comment %}
+    Site motion (OUR addition): content blocks fade up as they scroll into view.
+    Which blocks: the selector list below. Speed/distance: _sass/_custom.scss → "MOTION".
+    Turn off everywhere: set `motion: false` in _config.yml.
+  {% endcomment %}
+  {% unless site.motion == false %}
+    <script>
+      (function () {
+        var d = document.documentElement;
+        if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        d.classList.add("motion");
+        setTimeout(function () { d.classList.add("motion-ready"); }, 900); // never keep the page hidden
+        var SEL = [
+          ".post-header", ".reveal", ".hero-rule",
+          ".publications h2.bibliography", "ol.bibliography > li",
+          ".projects h2.category", ".projects .row > .col",
+          ".tl-item", ".terms-head", ".sem-nav",
+          ".award-row", ".cert-card", ".cert-text", ".awards h2", ".awards h3",
+          ".cvx-head", ".cvx-title", ".cvx-entry", ".cvx-oneline", ".cvx-pubs > li", ".cvx-text",
+          ".news tr", ".post-list > li", ".video-card", ".poem-list > li",
+          ".post > article > h2", ".post > article > p", ".post > article > ul", ".post > article > figure",
+          ".post .post-content > *"
+        ].join(",");
+        var SKIP = ".desk, .sem-panels, .photo-page, .home .hero-interests, .rv-off";
+        document.addEventListener("DOMContentLoaded", function () {
+          var main = document.querySelector("[role=main]");
+          if (!main) return d.classList.add("motion-ready");
+          var els = [].filter.call(main.querySelectorAll(SEL), function (el) {
+            return !el.closest(SKIP) && !(el.parentElement && el.parentElement.closest(".rv"));
+          });
+          var io = new IntersectionObserver(function (entries) {
+            var n = 0; // stagger blocks that appear together
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              var el = e.target;
+              io.unobserve(el);
+              el.style.setProperty("--rv-delay", Math.min(n++ * 70, 350) + "ms");
+              el.classList.add("is-in");
+              el.addEventListener("animationend", function () {
+                el.classList.remove("rv", "is-in");
+                el.style.removeProperty("--rv-delay");
+              }, { once: true });
+            });
+          }, { threshold: 0.06, rootMargin: "0px 0px -6% 0px" });
+          els.forEach(function (el) { el.classList.add("rv"); io.observe(el); });
+          d.classList.add("motion-ready");
+          window.addEventListener("beforeprint", function () { d.classList.remove("motion"); });
+        });
+      })();
+    </script>
+  {% endunless %}
 </header>

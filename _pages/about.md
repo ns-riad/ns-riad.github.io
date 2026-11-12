@@ -28,7 +28,7 @@ interests:
 
 announcements:
   enabled: true
-  scrollable: true
+  scrollable: false
   limit: 5
 
 selected_papers: true # papers marked `selected={true}` in _bibliography/papers.bib

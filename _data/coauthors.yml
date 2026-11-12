@@ -1,7 +1,9 @@
 # Co-author links on the Research page. Key = last name in lowercase.
-"uddin":
-  - firstname: ["Shihab"]
-    url: https://shihabict.github.io/ShihabUddin/
+# Uncomment / add an entry to turn that co-author's name into a link.
+
+# "uddin":
+#   - firstname: ["Shihab"]
+#     url: https://shihabict.github.io/ShihabUddin/
 
 # "bhadani":
 #   - firstname: ["Rahul"]

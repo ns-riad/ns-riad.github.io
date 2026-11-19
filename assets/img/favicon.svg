@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Site icon: three inputs fusing into one output (multimodal fusion / a neuron), on burgundy.
+       Used as the browser-tab icon via `icon: favicon.svg` in _config.yml. -->
+  <rect width="64" height="64" rx="14" fill="#9c0027"/>
+  <path d="M17 15 L45 32 M17 32 L45 32 M17 49 L45 32" stroke="#fff" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <g fill="#fff">
+    <circle cx="17" cy="15" r="6.5"/>
+    <circle cx="17" cy="32" r="6.5"/>
+    <circle cx="17" cy="49" r="6.5"/>
+  </g>
+  <circle cx="45" cy="32" r="9.5" fill="#f6d9a0"/>
+</svg>

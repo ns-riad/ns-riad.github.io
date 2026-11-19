@@ -382,6 +382,13 @@ the PAPER block near the top of `_sass/_custom.scss`:
 | Dark mode: more or less golden | `$dark-glow`, from 0 (plain near-black) to 1 (golden brown, current). `$paper-dark` is the base color under the glow |
 | Footer color | `$footer-light` (light mode, `#7a5a24`) and `$footer-dark` (dark mode, `#a5823f`, with dark text) |
 
+### Browser-tab icon
+
+The tab icon is `assets/img/favicon.svg`: three inputs fusing into one output, like a neuron or multimodal fusion,
+on burgundy. It's set by `icon:` in `_config.yml`, which also accepts an emoji (e.g. `icon: 🧠`). iPhone home-screen
+bookmarks use `assets/img/apple-touch-icon.png` (180×180). If you redesign the SVG, replace that PNG too. Changes to
+`_config.yml` need a restart of `jekyll serve`.
+
 ### Font
 
 ```scss

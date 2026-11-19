@@ -2096,6 +2096,16 @@ $tl-num: 1.75rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: var(--global-text-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* thin solid line after the year */
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--global-divider-color);
+    }
     &:first-of-type {
       margin-top: 0.75rem;
     }
@@ -2146,11 +2156,17 @@ $tl-num: 1.75rem;
       background: var(--global-theme-color);
       transform: scale(1.08);
     }
-    /* use the full width: badge column + text column (theme leaves 1/6 empty on the right) */
-    > .row > .col-sm-8 {
-      flex: 1 1 0;
-      max-width: none;
-      min-width: 0; /* the hidden BibTeX block would otherwise force a line break */
+    /* desktop: text column runs to the right edge (theme leaves 1/6 empty) */
+    @media (min-width: 576px) {
+      > .row > .col-sm-8 {
+        flex: 1 1 0;
+        max-width: none;
+        min-width: 0; /* the hidden BibTeX block would otherwise force a line break */
+      }
+    }
+    /* long abstracts: never cut off (theme caps an open abstract at 1400px) */
+    .abstract.hidden.open {
+      max-height: none;
     }
   }
 }
@@ -2163,12 +2179,9 @@ $tl-num: 1.75rem;
     ol.bibliography > li[data-n]::before {
       left: calc(#{$tl-rail} - 2.6rem - #{$tl-num} / 2);
     }
-    /* badge fits its text instead of a full-width bar */
+    /* venue badge across the full width (as before), paper info right below it */
     .abbr abbr.badge {
-      max-width: max-content; /* the theme's w-100 is a layered !important, so cap the width instead */
-      min-width: 4.5rem;
-      padding-inline: 0.6rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.45rem;
     }
     .abbr {
       margin-bottom: 0 !important;

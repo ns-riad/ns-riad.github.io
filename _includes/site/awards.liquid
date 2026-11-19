@@ -49,12 +49,20 @@
   <h2 class="section-title">Certificates</h2>
   {% assign cats = site.data.certificate_categories %}
   {% if cats.size > 1 %}
-    <div class="filter-chips" role="group" aria-label="Filter certificates">
+    <div class="seg-wrap">
+    {% comment %} phones: this button opens the list of groups (a dropdown); desktop hides it {% endcomment %}
+    <button class="seg-toggle" type="button" aria-expanded="false" aria-controls="cert-tabs">
+      <span class="seg-toggle-label">All</span> <span class="chip-count seg-toggle-count">{{ files.size }}</span>
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <div class="filter-chips seg-tabs" id="cert-tabs" role="group" aria-label="Filter certificates">
+      <span class="seg-indicator" aria-hidden="true"></span>
       <button class="chip chip-btn is-active" type="button" data-filter="all">All <span class="chip-count">{{ files.size }}</span></button>
       {% for c in cats %}
         {% assign n = files | where: 'category', c.key | size %}
         <button class="chip chip-btn" type="button" data-filter="{{ c.key }}">{{ c.label }} <span class="chip-count">{{ n }}</span></button>
       {% endfor %}
+    </div>
     </div>
   {% endif %}
   <div class="cert-grid">
@@ -108,18 +116,75 @@
 {% include site/lightbox.liquid %}
 
 <script>
-  // Filter chips for the certificate grid
+  // Certificate groups. Desktop: a highlight slides to the chosen tab. Phones: the same tabs form a dropdown list.
+  // Switching: the current cards fade out, then the chosen group fades up one card after another.
   (function () {
-    var chips = document.querySelectorAll(".filter-chips .chip-btn");
-    chips.forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        chips.forEach(function (c) { c.classList.remove("is-active"); });
-        chip.classList.add("is-active");
-        var f = chip.dataset.filter;
-        document.querySelectorAll(".cert-card").forEach(function (card) {
-          card.hidden = !(f === "all" || card.dataset.tag === f);
-        });
+    var wrap = document.querySelector(".seg-wrap");
+    if (!wrap) return;
+    var bar = wrap.querySelector(".seg-tabs");
+    var tabs = bar.querySelectorAll(".chip-btn");
+    var ind = bar.querySelector(".seg-indicator");
+    var toggle = wrap.querySelector(".seg-toggle");
+    var cards = document.querySelectorAll(".cert-card");
+    var grid = document.querySelector(".cert-grid");
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var OUT = 200; // ms for the fade-out
+    var busy = null;
+
+    function place(tab, instant) {
+      if (!tab.offsetWidth) return; // hidden (phone dropdown closed)
+      if (instant) ind.style.transition = "none";
+      ind.style.width = tab.offsetWidth + "px";
+      ind.style.height = tab.offsetHeight + "px";
+      ind.style.transform = "translate(" + tab.offsetLeft + "px," + tab.offsetTop + "px)";
+      if (instant) { ind.offsetWidth; ind.style.transition = ""; }
+    }
+    function current() { return bar.querySelector(".chip-btn.is-active") || tabs[0]; }
+    function setOpen(open) {
+      wrap.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open);
+      if (open) requestAnimationFrame(function () { place(current(), true); });
+    }
+    function showGroup(f) {
+      var n = 0;
+      cards.forEach(function (card) {
+        card.classList.remove("cert-out", "cert-in");
+        var show = f === "all" || card.dataset.tag === f;
+        card.hidden = !show;
+        if (show && !reduce) {
+          card.style.setProperty("--d", Math.min(n++ * 45, 500) + "ms");
+          card.offsetWidth; // restart the animation
+          card.classList.add("cert-in");
+        }
+      });
+      grid.style.minHeight = "";
+    }
+    function filter(f) {
+      if (reduce) return showGroup(f);
+      clearTimeout(busy);
+      grid.style.minHeight = grid.offsetHeight + "px"; // no page jump while swapping
+      cards.forEach(function (card) { if (!card.hidden) { card.classList.remove("cert-in"); card.classList.add("cert-out"); } });
+      busy = setTimeout(function () { showGroup(f); }, OUT);
+    }
+
+    toggle.addEventListener("click", function () { setOpen(!wrap.classList.contains("is-open")); });
+    document.addEventListener("click", function (e) { if (!wrap.contains(e.target)) setOpen(false); });
+    tabs.forEach(function (tab) {
+      tab.setAttribute("aria-pressed", tab.classList.contains("is-active"));
+      tab.addEventListener("click", function () {
+        if (tab.classList.contains("is-active")) return setOpen(false);
+        tabs.forEach(function (t) { t.classList.remove("is-active"); t.setAttribute("aria-pressed", "false"); });
+        tab.classList.add("is-active");
+        tab.setAttribute("aria-pressed", "true");
+        place(tab);
+        toggle.querySelector(".seg-toggle-label").textContent = tab.firstChild.textContent.trim();
+        toggle.querySelector(".seg-toggle-count").textContent = tab.querySelector(".chip-count").textContent;
+        setTimeout(function () { setOpen(false); }, reduce ? 0 : 220); // let the highlight land first
+        filter(tab.dataset.filter);
       });
     });
+    place(current(), true);
+    addEventListener("resize", function () { place(current(), true); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { place(current(), true); });
   })();
 </script>

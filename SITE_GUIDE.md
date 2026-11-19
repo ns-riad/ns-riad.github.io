@@ -254,15 +254,18 @@ honors:
    |---|---|---|
    | `honors/` | Honors & Awards | award certificates (also linked from the Honors list above) |
    | `research/` | Research & Service | presentations, peer review, CITI |
-   | `teaching/` | Teaching | CTL, FERPA, … |
    | `ml-ai/` | ML & AI | deep learning, data science courses |
    | `programming/` | Programming | language and tool courses |
-   | `general/` | General | anything that fits nowhere else |
+   | `others/` | Others | CTL (pinned first), general courses, anything else |
    | `memberships/` | Memberships | IEEE, IEEE ITSS, … |
+
+   **Tabs:** on desktop, a segmented bar whose burgundy highlight slides to the chosen tab. On phones, a dropdown button
+   that unrolls the list of groups. Switching groups fades the current cards out, then fades the new ones in one after
+   another. Style: `_sass/_custom.scss` → "CERTIFICATE TABS".
 
    **Order = priority.** The tabs and the "All" gallery follow the order of `categories:` in `_data/certificates.yml`
    (newest first inside each group). Move a line there to change priority. Add `rank: 1` to an item to pin it first in
-   its group (used for the Best Paper Award). After changing the order or `rank`, restart `jekyll serve`; the live
+   its group (used for the Best Paper Award and the CTL certificate). After changing the order or `rank`, restart `jekyll serve`; the live
    site always uses the latest.
    A tab appears once its folder has a file, and the filter row appears once two folders do. "All" always comes first.
    A preview is made from the PDF's first page at build time.

@@ -20,18 +20,16 @@
 #   assets/certificates/
 #   ├── honors/ ........ Honors & Awards     also listed at the top of the page
 #   ├── research/ ...... Research & Service  presentations, peer review, CITI
-#   ├── teaching/ ...... Teaching            CTL, FERPA, …
 #   ├── ml-ai/ ......... ML & AI             deep learning, data science courses
 #   ├── programming/ ... Programming         languages, tools
-#   ├── general/ ....... General             anything that fits nowhere else
+#   ├── others/ ........ Others              CTL, general courses, anything else
 #   └── memberships/ ... Memberships         IEEE, IEEE ITSS, …
 categories:
   honors: Honors & Awards
   research: Research & Service
-  teaching: Teaching
   ml-ai: ML & AI
   programming: Programming
-  general: General
+  others: Others
   memberships: Memberships
 
 # Keys = file name without extension (quote names that contain spaces).
@@ -71,12 +69,6 @@ items:
     title: Responsible Conduct of Research
     issuer: CITI Program
     date: 2025-01-19
-
-  # ---- Teaching ----
-  "CTL Certificate latest":
-    title: Certificate in Teaching and Learning (CTL)
-    issuer: CETL, Green University of Bangladesh
-    date: 2022-10
 
   # ---- ML & AI (Coursera) ----
   "ML with Python":
@@ -179,7 +171,12 @@ items:
     issuer: DataCamp
     date: 2021-10-05
 
-  # ---- General ----
+  # ---- Others ----
+  "CTL Certificate latest":
+    title: Certificate in Teaching and Learning (CTL)
+    issuer: CETL, Green University of Bangladesh
+    date: 2022-10
+    rank: 1
   "Learning how to learn":
     title: Learning How to Learn
     issuer: Deep Teaching Solutions · Coursera
@@ -209,7 +206,7 @@ items:
     date: "2026"
 
   # ---- no file yet: listed as text under "Also completed" until you add the file ----
-  ferpa-training:                     # → assets/certificates/teaching/ferpa-training.pdf
+  ferpa-training:                     # → assets/certificates/others/ferpa-training.pdf
     title: FERPA Training
     issuer: University of Alabama in Huntsville
   ibm-data-science:                   # → assets/certificates/ml-ai/ibm-data-science.pdf

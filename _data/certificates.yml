@@ -12,20 +12,36 @@
 #   An entry whose file doesn't exist yet is listed as text under "Also completed",
 #   and moves into the gallery as soon as you add the file.
 
-# Tab labels and order (folder name: label). Folders not listed here still work.
+# Order = priority. Tabs and the gallery ("All") follow the order of `categories:` below,
+# newest first inside each group. Move a line up or down to change the priority.
+# `rank:` on an item (lower = earlier, default 50) pins it within its group.
+# A tab only appears once its folder has at least one file. "All" always comes first.
+#
+#   assets/certificates/
+#   ├── honors/ ........ Honors & Awards     also listed at the top of the page
+#   ├── research/ ...... Research & Service  presentations, peer review, CITI
+#   ├── teaching/ ...... Teaching            CTL, FERPA, …
+#   ├── ml-ai/ ......... ML & AI             deep learning, data science courses
+#   ├── programming/ ... Programming         languages, tools
+#   ├── general/ ....... General             anything that fits nowhere else
+#   └── memberships/ ... Memberships         IEEE, IEEE ITSS, …
 categories:
-  ml-ai: ML & AI
-  research: Research
+  honors: Honors & Awards
+  research: Research & Service
   teaching: Teaching
+  ml-ai: ML & AI
   programming: Programming
-  honors: Honors
+  general: General
+  memberships: Memberships
 
+# Keys = file name without extension (quote names that contain spaces).
 items:
-  # ---- honors (files already in assets/certificates/honors/) ----
+  # ---- Honors & Awards ----
   iceeict_best_paper:
-    title: Best Paper Award — ICEEICT 2021
+    title: Best Paper Award, ICEEICT 2021
     issuer: Military Institute of Science and Technology
     date: 2022-01
+    rank: 1
   Deans_Award_4th_year:
     title: Dean's Award (2019–20)
     issuer: Faculty of EEE, KUET
@@ -34,31 +50,173 @@ items:
     title: Dean's Award (2018–19)
     issuer: Faculty of EEE, KUET
     date: "2019"
+  "Vasha protijog certificate":
+    title: Bhasha Protijog 2013, Regional Round
+    issuer: HSBC · Prothom Alo
+    date: "2013"
   Chess_certificate:
     title: Intra-district Chess Champion
     issuer: District Sports Office, Bogura
 
-  # ---- add the files with these names to move them into the gallery ----
-  ctl-certificate:                    # → assets/certificates/teaching/ctl-certificate.pdf
+  # ---- Research & Service ----
+  southeastcon2026-certificate:
+    title: Technical Paper Reviewer, IEEE SoutheastCon 2026
+    issuer: IEEE SoutheastCon
+    date: 2026-03
+  "Certificate of Presentation 2025 INFORMS Annual Meeting":
+    title: Presenter, 2025 INFORMS Annual Meeting
+    issuer: INFORMS · Atlanta, GA
+    date: 2025-10
+  citiCompletionCertificate_14065263_67375953:
+    title: Responsible Conduct of Research
+    issuer: CITI Program
+    date: 2025-01-19
+
+  # ---- Teaching ----
+  "CTL Certificate latest":
     title: Certificate in Teaching and Learning (CTL)
     issuer: CETL, Green University of Bangladesh
     date: 2022-10
-  citi-certificate:                   # → assets/certificates/research/citi-certificate.pdf
-    title: CITI Program — Research Ethics & Compliance
-    issuer: CITI Program
+
+  # ---- ML & AI (Coursera) ----
+  "ML with Python":
+    title: Machine Learning with Python
+    issuer: IBM · Coursera
+    date: 2020-06-24
+    verify: https://coursera.org/verify/FRVLZBKNV6UN
+  "Support Vector Machine":
+    title: Support Vector Machine Classification in Python
+    issuer: Coursera Project
+    date: 2020-06-28
+    verify: https://coursera.org/verify/CGKGW2HEH5XV
+  "Data Visualization with Python":
+    title: Data Visualization with Python
+    issuer: IBM · Coursera
+    date: 2020-06-09
+    verify: https://coursera.org/verify/Z7947YWRD52C
+  "SQL for data science":
+    title: Databases and SQL for Data Science with Python
+    issuer: IBM · Coursera
+    date: 2020-06-02
+    verify: https://coursera.org/verify/NMSX5J3ASYM6
+  "Python for Data Science and AI":
+    title: Python for Data Science and AI
+    issuer: IBM · Coursera
+    date: 2020-05-17
+    verify: https://coursera.org/verify/RFAYAVQWJ55K
+  "Data Science Methodology":
+    title: Data Science Methodology
+    issuer: IBM · Coursera
+    date: 2020-05-14
+    verify: https://coursera.org/verify/7JXLUBATFD8Q
+  "Open Source Tools for Data Science":
+    title: Tools for Data Science
+    issuer: IBM · Coursera
+    date: 2020-05-11
+    verify: https://coursera.org/verify/MNTXW23E4TDU
+  "Image Classification with CNN using Keras":
+    title: Image Classification with CNNs using Keras
+    issuer: Coursera Project
+    date: 2020-05-09
+    verify: https://coursera.org/verify/ULTBVRL4N2AS
+  "Intro to Data Science":
+    title: Data Science Foundations
+    issuer: IBM · Coursera
+    date: 2020-05-08
+    verify: https://coursera.org/verify/75EFWGSU6WQH
+  "Convolutional Neural Network":
+    title: Convolutional Neural Networks
+    issuer: DeepLearning.AI · Coursera
+    date: 2020-05-07
+    verify: https://coursera.org/verify/QZZPCBQ6MHSA
+  "Data Analysis With Python":
+    title: Data Analysis with Python
+    issuer: IBM · Coursera
+    date: 2020-04-23
+    verify: https://coursera.org/verify/8LS5CJLRJPDU
+  "Sentiment Analysis with Python":
+    title: Sentiment Analysis with scikit-learn
+    issuer: Coursera Project
+    date: 2020-04-09
+    verify: https://coursera.org/verify/RRPQ8383KBHV
+  "Regression with Yellobrick":
+    title: Regression Analysis with Yellowbrick
+    issuer: Coursera Project
+    date: 2020-04-04
+    verify: https://coursera.org/verify/FYVGGMAVL78E
+  "Regression using TensorFlow":
+    title: Predicting House Prices with Regression using TensorFlow
+    issuer: Coursera Project
+    date: 2020-04-02
+    verify: https://coursera.org/verify/2RRUR32YERFC
+  "Structuring ML Projects":
+    title: Structuring Machine Learning Projects
+    issuer: DeepLearning.AI · Coursera
+    date: 2020-03-31
+    verify: https://coursera.org/verify/MQWJ4L86QDG6
+  "Hyperparameter Tuning":
+    title: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization"
+    issuer: DeepLearning.AI · Coursera
+    date: 2020-03-25
+    verify: https://coursera.org/verify/PPT3BYGSWRMT
+  "ML and Neural Network":
+    title: Neural Networks and Deep Learning
+    issuer: DeepLearning.AI · Coursera
+    date: 2020-02-15
+    verify: https://coursera.org/verify/ZUHBNH2MHKFJ
+
+  # ---- Programming (DataCamp) ----
+  certificate:
+    title: Intermediate Python
+    issuer: DataCamp
+    date: 2021-11-25
+  "cloud computing":
+    title: Understanding Cloud Computing
+    issuer: DataCamp
+    date: 2021-11-10
+  "intro to python":
+    title: Introduction to Python
+    issuer: DataCamp
+    date: 2021-10-05
+
+  # ---- General ----
+  "Learning how to learn":
+    title: Learning How to Learn
+    issuer: Deep Teaching Solutions · Coursera
+    date: 2020-10-24
+    verify: https://coursera.org/verify/NSN9GQC4LBMK
+  "Excel Skill for business":
+    title: "Excel Skills for Business: Essentials"
+    issuer: Macquarie University · Coursera
+    date: 2020-05-01
+  "BNCC certificate":
+    title: Cadetship Certificate, Bangladesh National Cadet Corps
+    issuer: BNCC · Bogra Zilla School
+    date: "2012"
+
+  # ---- Memberships ----
+  MEM_IEEE500:
+    title: IEEE Graduate Student Member
+    issuer: IEEE
+    date: "2026"
+  MEM_ITSS038:
+    title: IEEE Intelligent Transportation Systems Society Member
+    issuer: IEEE ITSS
+    date: "2026"
+  MEM_YP060:
+    title: IEEE Young Professionals Member
+    issuer: IEEE Young Professionals
+    date: "2026"
+
+  # ---- no file yet: listed as text under "Also completed" until you add the file ----
   ferpa-training:                     # → assets/certificates/teaching/ferpa-training.pdf
     title: FERPA Training
     issuer: University of Alabama in Huntsville
-  learning-how-to-learn:              # → assets/certificates/ml-ai/learning-how-to-learn.pdf
-    title: Learning How to Learn
-    issuer: Coursera
-    date: 2020-10
   ibm-data-science:                   # → assets/certificates/ml-ai/ibm-data-science.pdf
     title: IBM Data Science Professional Certificate
-    issuer: Coursera · IBM
+    issuer: IBM · Coursera
     date: 2020-06
   deep-learning-specialization:       # → assets/certificates/ml-ai/deep-learning-specialization.pdf
     title: Deep Learning Specialization
-    issuer: Coursera · DeepLearning.AI
+    issuer: DeepLearning.AI · Coursera
     date: 2020-05
-#   verify: https://coursera.org/verify/specialization/XXXX   # optional "Verify" link

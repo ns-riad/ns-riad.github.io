@@ -40,7 +40,7 @@ cv:
         area: Computer Engineering
         start_date: 2025
         end_date: present
-        gpa: 3.778/4.00
+        # gpa: 3.778/4.00
 
       - institution: Khulna University of Engineering & Technology (KUET)
         location: Khulna, Bangladesh
@@ -49,7 +49,7 @@ cv:
         area: Computer Science & Engineering
         start_date: 2017
         end_date: 2022
-        gpa: 3.75/4.00
+        # gpa: 3.75/4.00
 
     Experience:
       - position: Graduate Student Researcher

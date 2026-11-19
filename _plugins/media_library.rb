@@ -171,7 +171,14 @@ module MediaLibrary
           "thumb" => thumb_url,
         }
       end
-      items.sort_by! { |i| [i["date"].empty? ? "0" : i["date"], i["title"]] }.reverse!
+      # Order: category priority (the order of `categories:` in _data/certificates.yml),
+      # then optional `rank:` (lower first), then newest first, then title.
+      order = labels.keys
+      pos = ->(c) { order.index(c) || order.size }
+      ranks = items.to_h { |i| [i["key"], (meta.dig(i["key"], "rank") || 50).to_i] }
+      items = items.group_by { |i| [pos.(i["category"]), ranks[i["key"]]] }.sort_by(&:first).flat_map do |_, group|
+        group.sort_by { |i| [i["date"].empty? ? "0" : i["date"], i["title"]] }.reverse
+      end
 
       found = items.map { |i| i["key"] }
       listed_only = meta.reject { |k, _| found.include?(k) }.map do |k, m|

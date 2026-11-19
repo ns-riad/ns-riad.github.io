@@ -231,7 +231,7 @@ related_publications: true             # lists papers you {% cite key %} in the 
 The whole card opens the project page; the buttons open their own links. Card design: `_includes/site/project_card.liquid`.
 The body supports Markdown, `$$math$$`, images and `{% cite shakib2026iv %}`. Current categories: `research`, `coursework`.
 
-### Awards & certificates (`_pages/awards.md`)
+### Awards & certificates (`_pages/awards.html`)
 
 **Honors list:** `_data/awards.yml`
 
@@ -248,7 +248,23 @@ honors:
 **Certificate gallery: automatic.**
 
 1. Drop a PDF or image into `assets/certificates/<category>/`, e.g. `assets/certificates/ml-ai/deep-learning.pdf`.
-2. It appears on `/awards/`, and the **folder name is the filter tab** (`ml-ai`, `research`, `teaching`, `programming`, `honors`…).
+2. It appears on `/awards/`, and the **folder name is the filter tab**. The folders already exist:
+
+   | Folder | Tab | Put here |
+   |---|---|---|
+   | `honors/` | Honors & Awards | award certificates (also linked from the Honors list above) |
+   | `research/` | Research & Service | presentations, peer review, CITI |
+   | `teaching/` | Teaching | CTL, FERPA, … |
+   | `ml-ai/` | ML & AI | deep learning, data science courses |
+   | `programming/` | Programming | language and tool courses |
+   | `general/` | General | anything that fits nowhere else |
+   | `memberships/` | Memberships | IEEE, IEEE ITSS, … |
+
+   **Order = priority.** The tabs and the "All" gallery follow the order of `categories:` in `_data/certificates.yml`
+   (newest first inside each group). Move a line there to change priority. Add `rank: 1` to an item to pin it first in
+   its group (used for the Best Paper Award). After changing the order or `rank`, restart `jekyll serve`; the live
+   site always uses the latest.
+   A tab appears once its folder has a file, and the filter row appears once two folders do. "All" always comes first.
    A preview is made from the PDF's first page at build time.
 3. Optional details in `_data/certificates.yml`, keyed by the file name without extension:
 
@@ -361,7 +377,7 @@ the PAPER block near the top of `_sass/_custom.scss`:
 | A different paper tone | `$paper-light` (e.g. `#f3ecdc` for older, yellower paper; `#f8f5ee` for barely warm) |
 | Stronger or no grain | `$grain-opacity`, from 0 (none) to 1 (strongest, current). Values above 1 act like 1. The grain is colorless, so it never tints the page |
 | Dark mode: more or less golden | `$dark-glow`, from 0 (plain near-black) to 1 (golden brown, current). `$paper-dark` is the base color under the glow |
-| Footer color | `$footer-light` (light mode, `#7a5a24`) and `$footer-dark` (dark mode, `#2e2210`) |
+| Footer color | `$footer-light` (light mode, `#7a5a24`) and `$footer-dark` (dark mode, `#a5823f`, with dark text) |
 
 ### Font
 
@@ -440,7 +456,7 @@ ns-riad.github.io/
 │
 ├── _pages/ ........................... one file per page (menu order = nav_order)
 │   ├── about.md ...................... HOME: intro, interests, bio, home-page blocks
-│   ├── research.md · teaching.md · projects.md · awards.md · cv.md
+│   ├── research.md · teaching.md · projects.md · awards.html · cv.md
 │   ├── more.md ....................... the "More ▾" dropdown menu
 │   └── blog.md · news.md · photography.md · writing.md · vlog.md · 404.md
 │

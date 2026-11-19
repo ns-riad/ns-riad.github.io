@@ -43,7 +43,7 @@ $paper-dark: #1c1a17; /* base under the golden glow below */
 $paper-card-dark: #24211d;
 $grain-opacity: 1;
 $footer-light: #7a5a24; /* deep golden footer bar in light mode */
-$footer-dark: #2e2210; /* dark-mode footer: deep golden-dark (the golden glow lifts it a bit) */
+$footer-dark: #a5823f; /* dark-mode footer: antique gold, clearly lighter than the page */
 $dark-glow: 1; /* dark mode: golden-brown glow + grain, 0 to 1 (0 = plain dark) */
 @if $paper-enabled {
   :root {
@@ -63,8 +63,8 @@ $dark-glow: 1; /* dark mode: golden-brown glow + grain, 0 to 1 (0 = plain dark) 
     --global-newsletter-bg-color: #{$paper-card-dark};
     --global-divider-color: rgba(240, 225, 200, 0.12);
     --global-footer-bg-color: #{$footer-dark};
-    --global-footer-text-color: #e6d6b4;
-    --global-footer-link-color: #fff4dc;
+    --global-footer-text-color: #24190b; /* dark ink reads better on the lighter gold */
+    --global-footer-link-color: #1a1208;
   }
   /* grain: fine neutral specks over the page (never blocks clicks). The specks are colorless
      (dark in light mode, light in dark mode), so a higher $grain-opacity adds texture, not color. */
@@ -80,6 +80,10 @@ $dark-glow: 1; /* dark mode: golden-brown glow + grain, 0 to 1 (0 = plain dark) 
   }
   /* dark mode: a brown, mottled layer blended with "screen" lifts the near-black page to a
      deep golden brown (the look you liked); it also forms the grain */
+  /* dark mode: footer sits above the glow layer so its gold and text stay crisp */
+  html[data-theme="dark"] footer.fixed-bottom {
+    z-index: 2001;
+  }
   html[data-theme="dark"] body::after {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0 0.12 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 220px 220px;
@@ -1120,6 +1124,7 @@ html[data-theme="dark"] .desk {
 }
 .print-title {
   display: block;
+  color: var(--paper-ink); /* prints stay light paper in dark mode too, so always dark ink */
   font-family: $site-font;
   font-size: 0.92rem;
   font-weight: 500;
@@ -1196,7 +1201,7 @@ html[data-theme="dark"] .desk {
     transform: scale(1.04);
   }
   .print:hover .print-title {
-    color: var(--global-theme-color);
+    color: rgb(156, 0, 39); /* burgundy on the light print, in both modes */
   }
   .desk-stage:has(.print:hover) .print:not(:hover) {
     filter: var(--recede);

@@ -384,7 +384,7 @@ This is the same idea as the "AOS fade-up" effect, done in about 40 lines with n
 | Which blocks animate | `_includes/header.liquid` → the `SEL` list (CSS selectors) |
 | Stop one block from animating | add the class `rv-off` to it, or to any parent |
 | Turn all scroll animation off | `motion: false` in `_config.yml` |
-| Cursor glow on list items and cards | which items: `SPOT` list in `_includes/header.liquid`; size/colors: `_sass/_custom.scss` → "SPOTLIGHT" |
+| Cursor glow on list items and cards (faint silver, innermost item only) | which items: `SPOT` list in `_includes/header.liquid`; `$spot-enabled` (false = no glow), `$spot-size`, `$spot-strength` in `_sass/_custom.scss` → "SPOTLIGHT" |
 | Hover effects (accent bar, title color, button fill, nav underline, photo lift) | `_sass/_custom.scss` → "MOTION: hover & smooth transitions" (delete a block to drop that effect) |
 
 Visitors whose device is set to "reduce motion" see no animation. Printing shows everything.

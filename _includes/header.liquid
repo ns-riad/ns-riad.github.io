@@ -252,11 +252,17 @@
               tgt.style.setProperty("--my", py - r.top + "px");
             };
             document.addEventListener("pointermove", function (e) {
-              tgt = e.target.closest ? e.target.closest(".spot") : null;
+              var t = e.target.closest ? e.target.closest(".spot") : null; // innermost item only
+              if (t !== tgt) {
+                if (tgt) tgt.classList.remove("is-spot");
+                if (t) t.classList.add("is-spot");
+                tgt = t;
+              }
               if (!tgt) return;
               px = e.clientX; py = e.clientY;
               if (!raf) raf = requestAnimationFrame(paint);
             }, { passive: true });
+            document.addEventListener("pointerleave", function () { if (tgt) tgt.classList.remove("is-spot"); tgt = null; });
           }
           window.addEventListener("beforeprint", function () { d.classList.remove("motion"); });
         });

@@ -182,7 +182,7 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   transition:
     box-shadow 0.25s $ease,
     transform 0.25s $ease;
-  &:hover {
+  &:not(:has(.course:hover)):hover {
     box-shadow: 0 10px 30px -18px color-mix(in srgb, var(--global-theme-color) 60%, transparent);
   }
 }
@@ -1857,34 +1857,43 @@ a {
     transform 0.2s $ease;
 }
 
-/* ---------- SPOTLIGHT: glow that follows the cursor (mouse/trackpad only) ----------
-   JS in _includes/header.liquid adds .spot to list items and cards and keeps
-   --mx/--my at the cursor. Size: $spot-size. Colors: the two color-mix lines. */
-$spot-size: 380px;
-@property --spot-o {
-  syntax: "<number>";
-  inherits: false;
-  initial-value: 0;
-}
-.spot {
-  --mx: 50%;
-  --my: 50%;
-  background-image: radial-gradient(
-    $spot-size circle at var(--mx) var(--my),
-    color-mix(in srgb, var(--global-theme-color) calc(var(--spot-o) * 14%), transparent),
-    color-mix(in srgb, var(--tag-status) calc(var(--spot-o) * 7%), transparent) 45%,
-    transparent 72%
-  );
-  transition:
-    --spot-o 0.45s $ease,
-    box-shadow 0.3s $ease,
-    transform 0.25s $ease;
-  &:hover {
-    --spot-o: 1;
+/* ---------- SPOTLIGHT: faint silver glow that follows the cursor (mouse/trackpad only) ----------
+   JS in _includes/header.liquid gives .spot to list items/cards and marks ONLY the innermost
+   hovered one with .is-spot (so a course row glows, not also the card around it).
+   $spot-enabled: false  → no glow at all (accent bar + title color remain).
+   $spot-size            → radius of the glow.  $spot-strength → how visible (in %). */
+$spot-enabled: true;
+$spot-size: 150px;
+$spot-strength: 7%;
+@if $spot-enabled {
+  @property --spot-o {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
   }
-}
-html[data-theme="dark"] .spot:hover {
-  --spot-o: 1.6;
+  :root {
+    --spot-color: #8a929c; /* cool silver-gray */
+  }
+  html[data-theme="dark"] {
+    --spot-color: #c9d1db;
+  }
+  .spot {
+    --mx: 50%;
+    --my: 50%;
+    background-image: radial-gradient(
+      $spot-size circle at var(--mx) var(--my),
+      color-mix(in srgb, var(--spot-color) calc(var(--spot-o) * #{$spot-strength}), transparent),
+      transparent 100%
+    );
+    transition:
+      --spot-o 0.35s $ease,
+      box-shadow 0.3s $ease,
+      transform 0.25s $ease,
+      background-color 0.25s $ease;
+    &.is-spot {
+      --spot-o: 1;
+    }
+  }
 }
 
 /* list rows: room for the glow + an accent bar slides in on the left */
@@ -1903,7 +1912,11 @@ ol.bibliography > li.spot,
   }
 }
 .cvx-pubs > li.spot {
-  margin-inline: 0 -0.75rem; /* keep the [n] numbers in place */
+  margin-inline: -0.75rem 0;
+  padding-left: calc(2.3rem + 0.75rem); /* the [n] number column */
+  &::before {
+    left: 0.75rem;
+  }
 }
 .course.spot {
   margin-inline: -0.6rem;
@@ -1922,10 +1935,11 @@ ol.bibliography > li:hover .title,
 .cvx-entry:hover .cvx-what,
 .course:hover .course-name,
 .award-row:hover h3,
-.tl-item:hover .tl-title {
+.tl-item:not(:has(.course:hover)):hover .tl-title {
   color: var(--global-theme-color);
 }
-.tl-item > .card-soft:hover {
+/* the role card reacts only when the pointer is not on one of its courses */
+.tl-item > .card-soft:not(:has(.course:hover)):hover {
   transform: translateY(-2px);
 }
 .tl-dot {
@@ -1933,7 +1947,7 @@ ol.bibliography > li:hover .title,
     transform 0.3s $ease,
     box-shadow 0.3s $ease;
 }
-.tl-item:hover .tl-dot {
+.tl-item:not(:has(.course:hover)):hover .tl-dot {
   transform: scale(1.2);
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--global-theme-color) 18%, transparent);
 }

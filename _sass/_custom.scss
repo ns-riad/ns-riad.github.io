@@ -496,8 +496,10 @@ html.motion .rv.is-in {
   gap: 0.75rem;
 }
 .course-name {
-  font-size: 0.95rem;
+  font-size: 0.97rem;
+  font-weight: 500;
   line-height: 1.4;
+  color: var(--global-text-color);
 }
 .course-code {
   font-weight: 600;
@@ -509,24 +511,37 @@ html.motion .rv.is-in {
   gap: 0.25rem;
   flex-shrink: 0;
 }
+/* THEORY / LAB: quiet labels; only the small dot carries the color */
 .part {
-  font-size: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.66rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.1rem 0.45rem;
-  border-radius: 4px;
-  @include tag-box(var(--global-text-color-light));
+  color: var(--global-text-color-light);
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--global-text-color-light);
+  }
 }
-.part-theory {
-  @include tag-box(var(--tag-theory));
+.course-parts {
+  gap: 0.7rem !important;
 }
-.part-lab {
-  @include tag-box(var(--tag-lab));
+.part-theory::before {
+  background: var(--tag-theory);
+}
+.part-lab::before {
+  background: var(--tag-lab);
 }
 .course-note {
   font-size: 0.8rem;
-  color: var(--global-theme-color);
+  font-style: italic;
+  color: var(--global-text-color-light);
   margin-top: 0.15rem;
   i {
     font-size: 0.7rem;
@@ -746,7 +761,10 @@ html.motion .rv.is-in {
   line-height: 1.35;
   padding: 0.05rem 0.55rem;
   border-radius: 999px;
-  @include tag-box(var(--tag-status));
+  /* neutral: semesters are context, the course name is the focus */
+  color: var(--global-text-color-light);
+  border: 1px solid var(--global-divider-color);
+  background: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .sem-panels,

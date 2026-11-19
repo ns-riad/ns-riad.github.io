@@ -1,6 +1,7 @@
 {% comment %}
   SITE OVERRIDE of al_folio_core/_includes/header.liquid
-  Changes: (1) dropdown children honour `section:` toggles, (2) icon-only search button (magnifying glass only; the ⌘K / Ctrl+K shortcut still works).
+  Changes: (1) dropdown children honour `section:` toggles, (2) icon-only search button (magnifying glass only; the ⌘K / Ctrl+K shortcut still works),
+  (3) two-state theme button with circle reveal, (4) scroll reveal + cursor spotlight scripts at the bottom.
 {% endcomment %}
 <header>
   <!-- Nav Bar -->
@@ -154,6 +155,28 @@
     </progress>
   {% endif %}
   <script>
+    // THEME BUTTON: two states only (light ⇄ dark). The first visit follows the device;
+    // a click switches and the new theme spreads out in a circle from the button.
+    // Replaces the theme's 3-way cycle (al_folio_core/assets/js/theme.js → toggleThemeSetting).
+    if (typeof toggleThemeSetting !== "undefined") {
+      toggleThemeSetting = function () {
+        var d = document.documentElement;
+        var next = determineComputedTheme() === "dark" ? "light" : "dark";
+        var btn = document.getElementById("light-toggle");
+        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!document.startViewTransition || reduce || !btn) return setThemeSetting(next);
+        var r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+        d.style.setProperty("--vt-x", x + "px");
+        d.style.setProperty("--vt-y", y + "px");
+        d.style.setProperty("--vt-r", Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + "px");
+        d.classList.add("theme-vt");
+        var t = document.startViewTransition(function () { setThemeSetting(next); d.classList.remove("transition"); });
+        t.ready.catch(function () {});
+        t.finished.finally(function () { d.classList.remove("theme-vt"); });
+      };
+    }
+  </script>
+  <script>
     // Research/selected papers: show the bib `note` ("Submitted", …) as a tag next to the venue
     // instead of on its own line. Style: _sass/_custom.scss → "status tag".
     document.addEventListener("DOMContentLoaded", function () {
@@ -214,6 +237,27 @@
           }, { threshold: 0.06, rootMargin: "0px 0px -6% 0px" });
           els.forEach(function (el) { el.classList.add("rv"); io.observe(el); });
           d.classList.add("motion-ready");
+
+          // CURSOR SPOTLIGHT: a soft glow follows the mouse over list items and cards.
+          // Which items: the SPOT list. Look: _sass/_custom.scss → "SPOTLIGHT".
+          if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            var SPOT = "ol.bibliography > li, .cvx-entry, .cvx-pubs > li, .course, .tl-item > .card-soft, .award-row, .cert-card, .pcard, .news tr, .post-list > li, .video-card";
+            main.querySelectorAll(SPOT).forEach(function (el) { el.classList.add("spot"); });
+            var tgt = null, px = 0, py = 0, raf = 0;
+            var paint = function () {
+              raf = 0;
+              if (!tgt) return;
+              var r = tgt.getBoundingClientRect();
+              tgt.style.setProperty("--mx", px - r.left + "px");
+              tgt.style.setProperty("--my", py - r.top + "px");
+            };
+            document.addEventListener("pointermove", function (e) {
+              tgt = e.target.closest ? e.target.closest(".spot") : null;
+              if (!tgt) return;
+              px = e.clientX; py = e.clientY;
+              if (!raf) raf = requestAnimationFrame(paint);
+            }, { passive: true });
+          }
           window.addEventListener("beforeprint", function () { d.classList.remove("motion"); });
         });
       })();

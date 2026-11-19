@@ -1721,7 +1721,6 @@ html[data-theme="dark"] .desk {
 
 /* ---------- MOTION: hover & smooth transitions (all pages) ----------
    Small, quick effects (0.2–0.3s). Remove any block below to drop that effect. */
-$hover-tint: color-mix(in srgb, var(--global-theme-color) 5%, transparent);
 
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -1800,13 +1799,6 @@ a {
 
 /* publications: row tint, badge lift, buttons fill on hover */
 .publications ol.bibliography > li {
-  border-radius: $radius;
-  margin-inline: -0.75rem;
-  padding-inline: 0.75rem;
-  transition: background-color 0.25s $ease;
-  &:hover {
-    background: $hover-tint;
-  }
   .abbr abbr {
     display: inline-block;
     transition:
@@ -1838,39 +1830,134 @@ a {
   }
 }
 
-/* CV entries, news rows, post lists: soft tint on hover */
-.cvx-entry,
-.news tr,
-.post-list > li {
-  transition: background-color 0.25s $ease;
-}
-.cvx-entry {
-  border-radius: $radius;
-  margin-inline: -0.6rem;
-  padding-inline: 0.6rem;
-  &:hover {
-    background: $hover-tint;
-  }
-}
-.news tr:hover,
-.post-list > li:hover {
-  background: $hover-tint;
-}
-
 /* teaching: course rows and chips */
-.course {
-  transition: background-color 0.25s $ease;
-  border-radius: 6px;
-  margin-inline: -0.5rem;
-  padding-inline: 0.5rem;
-  &:hover {
-    background: $hover-tint;
-  }
-}
 .sem-chip,
 .pill {
   transition:
     background-color 0.2s $ease,
     color 0.2s $ease,
     transform 0.2s $ease;
+}
+
+/* ---------- SPOTLIGHT: glow that follows the cursor (mouse/trackpad only) ----------
+   JS in _includes/header.liquid adds .spot to list items and cards and keeps
+   --mx/--my at the cursor. Size: $spot-size. Colors: the two color-mix lines. */
+$spot-size: 380px;
+@property --spot-o {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+.spot {
+  --mx: 50%;
+  --my: 50%;
+  background-image: radial-gradient(
+    $spot-size circle at var(--mx) var(--my),
+    color-mix(in srgb, var(--global-theme-color) calc(var(--spot-o) * 14%), transparent),
+    color-mix(in srgb, var(--tag-status) calc(var(--spot-o) * 7%), transparent) 45%,
+    transparent 72%
+  );
+  transition:
+    --spot-o 0.45s $ease,
+    box-shadow 0.3s $ease,
+    transform 0.25s $ease;
+  &:hover {
+    --spot-o: 1;
+  }
+}
+html[data-theme="dark"] .spot:hover {
+  --spot-o: 1.6;
+}
+
+/* list rows: room for the glow + an accent bar slides in on the left */
+ol.bibliography > li.spot,
+.cvx-entry.spot,
+.cvx-pubs > li.spot,
+.course.spot,
+.award-row.spot,
+.post-list > li.spot {
+  border-radius: 10px;
+  margin-inline: -0.75rem;
+  padding-inline: 0.75rem;
+  box-shadow: inset 0 0 0 transparent;
+  &:hover {
+    box-shadow: inset 3px 0 0 var(--global-theme-color);
+  }
+}
+.cvx-pubs > li.spot {
+  margin-inline: 0 -0.75rem; /* keep the [n] numbers in place */
+}
+.course.spot {
+  margin-inline: -0.6rem;
+  padding-inline: 0.6rem;
+}
+/* titles pick up the accent color */
+ol.bibliography > li .title,
+.cvx-what,
+.course-name,
+.award-row h3,
+.post-list > li h3 a,
+.tl-title {
+  transition: color 0.25s $ease;
+}
+ol.bibliography > li:hover .title,
+.cvx-entry:hover .cvx-what,
+.course:hover .course-name,
+.award-row:hover h3,
+.tl-item:hover .tl-title {
+  color: var(--global-theme-color);
+}
+.tl-item > .card-soft:hover {
+  transform: translateY(-2px);
+}
+.tl-dot {
+  transition:
+    transform 0.3s $ease,
+    box-shadow 0.3s $ease;
+}
+.tl-item:hover .tl-dot {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--global-theme-color) 18%, transparent);
+}
+
+/* ---------- THEME BUTTON: light ⇄ dark only, circle reveal on click ----------
+   The icon shows where a click takes you (moon in light mode, sun in dark mode). */
+#light-toggle {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  &:hover {
+    transform: rotate(18deg);
+  }
+  &:active {
+    transform: rotate(-25deg) scale(0.88);
+  }
+}
+html #light-toggle #light-toggle-system,
+html #light-toggle #light-toggle-light,
+html #light-toggle #light-toggle-dark {
+  display: none !important;
+}
+html[data-theme="light"] #light-toggle #light-toggle-dark,
+html[data-theme="dark"] #light-toggle #light-toggle-light {
+  display: inline-block !important;
+}
+html.theme-vt *,
+html.theme-vt *::before,
+html.theme-vt *::after {
+  transition: none !important;
+}
+html.theme-vt::view-transition-old(root),
+html.theme-vt::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html.theme-vt::view-transition-new(root) {
+  animation: theme-reveal 0.75s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0));
+  }
+  to {
+    clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 100%) var(--vt-y, 0));
+  }
 }

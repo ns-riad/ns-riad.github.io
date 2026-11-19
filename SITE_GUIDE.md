@@ -359,8 +359,11 @@ Bangla text always uses Noto Serif Bengali; code always uses a monospace font.
 
 ### Light / dark mode button
 
-The moon/sun button cycles **System → Dark → Light**. *System* (half sun/moon icon) is the default and follows the
-visitor's device setting; the browser remembers their choice. `enable_darkmode: false` in `_config.yml` removes it.
+The button has just two states, **Light ⇄ Dark**. The icon shows where a click takes you: a moon in light mode, a sun
+in dark mode. On a first visit the site follows the visitor's device; after a click, the browser remembers their choice.
+Switching spreads the new theme out in a circle from the button. The script is in `_includes/header.liquid` ("THEME
+BUTTON") and the styles are in `_sass/_custom.scss` ("THEME BUTTON"). `enable_darkmode: false` in `_config.yml` removes
+the button.
 
 ### Status tags ("Submitted", "Poster accepted")
 
@@ -379,7 +382,8 @@ This is the same idea as the "AOS fade-up" effect, done in about 40 lines with n
 | Which blocks animate | `_includes/header.liquid` → the `SEL` list (CSS selectors) |
 | Stop one block from animating | add the class `rv-off` to it, or to any parent |
 | Turn all scroll animation off | `motion: false` in `_config.yml` |
-| Hover effects (row tint, button fill, nav underline, photo lift) | `_sass/_custom.scss` → "MOTION: hover & smooth transitions" (delete a block to drop that effect) |
+| Cursor glow on list items and cards | which items: `SPOT` list in `_includes/header.liquid`; size/colors: `_sass/_custom.scss` → "SPOTLIGHT" |
+| Hover effects (accent bar, title color, button fill, nav underline, photo lift) | `_sass/_custom.scss` → "MOTION: hover & smooth transitions" (delete a block to drop that effect) |
 
 Visitors whose device is set to "reduce motion" see no animation. Printing shows everything.
 

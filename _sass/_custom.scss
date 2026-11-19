@@ -10,8 +10,8 @@
  *   $accent-light : used on the light background
  *   $accent-dark  : used in dark mode (pick a lighter shade of the same hue)
  * Some ready-made pairs:
- *   Forest green  rgb(45, 134, 82)   /  rgb(110, 201, 148)    <- current
- *   Burgundy      rgb(128, 0, 32)    /  rgb(222, 120, 145)
+ *   Burgundy      rgb(156, 0, 39)    /  rgb(196, 0, 49)       <- current
+ *   Forest green  rgb(45, 134, 82)   /  rgb(110, 201, 148)
  *   Original      #b509ac (purple)   /  #2698ba (cyan)
  * ========================================================================== */
 $accent-dark: rgb(196, 0, 49);
@@ -25,6 +25,25 @@ $accent-light: rgb(156, 0, 39);
 html[data-theme="dark"] {
   --global-theme-color: #{$accent-dark};
   --global-hover-color: #{$accent-dark};
+}
+/* TAG COLORS: small boxed labels (light value / dark-mode value).
+ *   --tag-status : "Submitted" (Research, CV) and semester chips (Teaching)
+ *   --tag-theory : THEORY course tag
+ *   --tag-lab    : LAB course tag (the theme color)                         */
+:root {
+  --tag-status: #5b3fc4;
+  --tag-theory: #0e6e6b;
+  --tag-lab: var(--global-theme-color);
+}
+html[data-theme="dark"] {
+  --tag-status: #ad9bf0;
+  --tag-theory: #5ec4bd;
+}
+/* boxed tag: colored text + border on a light tint of the same color */
+@mixin tag-box($c) {
+  color: $c;
+  border: 1px solid color-mix(in srgb, #{$c} 60%, transparent);
+  background: color-mix(in srgb, #{$c} 9%, transparent);
 }
 /* =============================================================================
  * FONT: change $font-choice to switch the font of the whole site.
@@ -497,12 +516,13 @@ html.motion .rv.is-in {
   text-transform: uppercase;
   padding: 0.1rem 0.45rem;
   border-radius: 4px;
-  border: 1px solid var(--global-divider-color);
-  color: var(--global-text-color-light);
+  @include tag-box(var(--global-text-color-light));
+}
+.part-theory {
+  @include tag-box(var(--tag-theory));
 }
 .part-lab {
-  border-color: color-mix(in srgb, var(--global-theme-color) 45%, transparent);
-  color: var(--global-theme-color);
+  @include tag-box(var(--tag-lab));
 }
 .course-note {
   font-size: 0.8rem;
@@ -577,12 +597,6 @@ html.motion .rv.is-in {
   margin-left: 0.15rem;
   color: inherit !important;
 }
-@media (max-width: 640px) {
-  /* hint that the timeline scrolls sideways */
-  .sem-nav {
-    mask-image: linear-gradient(90deg, #000 85%, transparent);
-  }
-}
 .sem-line {
   position: relative;
   display: flex;
@@ -648,6 +662,45 @@ html.motion .rv.is-in {
     }
   }
 }
+/* phones: the semester timeline turns vertical (no sideways scrolling) */
+@media (max-width: 640px) {
+  .sem-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    overflow: visible;
+  }
+  .sem-all {
+    align-self: flex-start;
+  }
+  .sem-line {
+    flex-direction: column;
+    min-width: 0;
+    padding-left: 0.2rem;
+    &::before {
+      left: calc(0.2rem + 5px);
+      right: auto;
+      top: 0.9rem;
+      bottom: 0.9rem;
+      width: 2px;
+      height: auto;
+    }
+  }
+  .sem-dot {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.4rem 0;
+    text-align: left;
+    .dot {
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .sem-sub {
+      margin-left: auto;
+    }
+  }
+}
 .sem-panels {
   margin-top: 0.9rem;
   &.is-collapsed {
@@ -689,14 +742,11 @@ html.motion .rv.is-in {
 }
 .sem-chip {
   font-size: 0.72rem;
-  padding: 0.05rem 0.5rem;
+  font-weight: 500;
+  line-height: 1.35;
+  padding: 0.05rem 0.55rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--global-theme-color) 9%, transparent);
-  color: var(--global-text-color-light);
-  &.is-note {
-    background: color-mix(in srgb, var(--global-theme-color) 22%, transparent);
-    color: var(--global-text-color);
-  }
+  @include tag-box(var(--tag-status));
 }
 @media (prefers-reduced-motion: reduce) {
   .sem-panels,
@@ -1495,10 +1545,8 @@ html[data-theme="dark"] .desk {
     color: var(--global-theme-color);
   }
 }
-/* status tag ("Submitted", "Poster accepted") — CV and Research use the same box.
-   Change the color here: */
-$status-light: #6f42c1;
-$status-dark: #b69be8;
+/* status tag ("Submitted", "Poster accepted"), same box in CV and Research.
+   Color: --tag-status at the top of this file. */
 .cvx-tag,
 .pub-note {
   display: inline-block;
@@ -1510,15 +1558,7 @@ $status-dark: #b69be8;
   padding: 0.05rem 0.45rem;
   border-radius: 4px;
   vertical-align: 0.08em;
-  color: $status-light;
-  border: 1px solid color-mix(in srgb, #{$status-light} 55%, transparent);
-  background: color-mix(in srgb, #{$status-light} 9%, transparent);
-}
-html[data-theme="dark"] .cvx-tag,
-html[data-theme="dark"] .pub-note {
-  color: $status-dark;
-  border-color: color-mix(in srgb, #{$status-dark} 55%, transparent);
-  background: color-mix(in srgb, #{$status-dark} 12%, transparent);
+  @include tag-box(var(--tag-status));
 }
 /* Research: the theme prints the bib `note` on its own line; JS (header.liquid) moves it
    next to the venue as a .pub-note tag. */

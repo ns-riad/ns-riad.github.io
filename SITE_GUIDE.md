@@ -365,8 +365,8 @@ visitor's device setting; the browser remembers their choice. `enable_darkmode: 
 ### Status tags ("Submitted", "Poster accepted")
 
 On the Research page, the `note = {...}` field of a bib entry is shown as a purple box next to the venue. In the CV, the
-same box comes from `note:` in `_data/cv.yml`. Change its color in `_sass/_custom.scss` → `$status-light` /
-`$status-dark`. Remove the `note` once a paper is accepted, and the box disappears.
+same box comes from `note:` in `_data/cv.yml`. Change its color in `_sass/_custom.scss` → `--tag-status` (TAG COLORS block at the
+top). The same color is used for the semester chips on Teaching; THEORY/LAB tags use `--tag-theory` / `--tag-lab`. Remove the `note` once a paper is accepted, and the box disappears.
 
 ### Motion: scroll reveal and hover effects
 

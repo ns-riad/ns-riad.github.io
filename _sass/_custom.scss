@@ -2270,3 +2270,68 @@ html[data-theme="dark"] {
     color: inherit !important;
   }
 }
+
+/* ---------- MOBILE MENU: full-width tap rows on a solid panel ---------- */
+@media (max-width: 575.98px) {
+  #navbar {
+    opacity: 1; /* theme uses 0.95, which lets the page show through the open menu */
+  }
+  #navbar .navbar-collapse {
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+  #navbar .navbar-nav {
+    align-items: stretch;
+    width: 100%;
+    padding: 0.35rem 0 0.6rem;
+  }
+  #navbar .navbar-nav > .nav-item {
+    width: 100%;
+  }
+  #navbar .navbar-nav > .nav-item > .nav-link,
+  #navbar .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.7rem 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s $ease;
+    &:hover,
+    &:active {
+      background: color-mix(in srgb, var(--global-theme-color) 9%, transparent);
+    }
+  }
+  #navbar .navbar-nav > .nav-item + .nav-item {
+    border-top: 1px solid var(--global-divider-color);
+  }
+  /* current page: accent bar on the left instead of the desktop underline */
+  #navbar .navbar-nav > .nav-item > .nav-link::after {
+    display: none;
+  }
+  #navbar .navbar-nav > .nav-item.active > .nav-link {
+    box-shadow: inset 3px 0 0 var(--global-theme-color);
+  }
+  /* "More" submenu: indented rows inside the panel */
+  #navbar .dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0 0 0.4rem;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0 0 0 0.75rem;
+  }
+  #navbar .dropdown-item:hover {
+    padding-left: 0.75rem; /* no desktop nudge on touch */
+  }
+  /* search + theme buttons: a row of larger tap targets */
+  #navbar .navbar-nav > .nav-item:has(#search-toggle),
+  #navbar .navbar-nav > .toggle-container {
+    width: auto;
+    display: inline-flex;
+  }
+  #navbar #search-toggle,
+  #navbar #light-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

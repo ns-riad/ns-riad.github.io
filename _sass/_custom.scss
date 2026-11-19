@@ -14,7 +14,7 @@
  *   Forest green  rgb(45, 134, 82)   /  rgb(110, 201, 148)
  *   Original      #b509ac (purple)   /  #2698ba (cyan)
  * ========================================================================== */
-$accent-dark: rgb(196, 0, 49);
+$accent-dark: rgb(240, 128, 140); /* light rose: burgundy family, readable on the golden-brown dark page */
 $accent-light: rgb(156, 0, 39);
 
 :root {
@@ -26,6 +26,73 @@ html[data-theme="dark"] {
   --global-theme-color: #{$accent-dark};
   --global-hover-color: #{$accent-dark};
 }
+/* =============================================================================
+ * PAPER: warm ivory "book page" background with a very faint grain.
+ *   $paper-enabled: false  → back to the theme's plain white / gray-black.
+ *   $paper-light / $paper-dark      page color in light / dark mode
+ *   $paper-card-light / -dark       cards and boxes (a touch lighter than the page)
+ *   $grain-opacity                  light-mode grain, 0 to 1 (0 = none, 1 = strongest; color stays the same)
+ *   $dark-glow                      dark mode's golden-brown glow + grain, 0 to 1
+ *   $footer-light                   footer bar color in light mode
+ * Some light tones to try: #f6f1e6 (ivory, current) · #f3ecdc (aged paper) · #f8f5ee (hint of warm)
+ * ========================================================================== */
+$paper-enabled: true;
+$paper-light: #eee3c9;
+$paper-card-light: #fff4d9;
+$paper-dark: #1c1a17; /* base under the golden glow below */
+$paper-card-dark: #24211d;
+$grain-opacity: 1;
+$footer-light: #7a5a24; /* deep golden footer bar in light mode */
+$footer-dark: #2e2210; /* dark-mode footer: deep golden-dark (the golden glow lifts it a bit) */
+$dark-glow: 1; /* dark mode: golden-brown glow + grain, 0 to 1 (0 = plain dark) */
+@if $paper-enabled {
+  :root {
+    --global-bg-color: #{$paper-light};
+    --global-card-bg-color: #{$paper-card-light};
+    --global-newsletter-bg-color: #{$paper-card-light};
+    --global-divider-color: rgba(84, 60, 26, 0.14);
+    --global-text-color: #2a2521; /* warm near-black, softer on ivory */
+    --global-text-color-light: #7a7066;
+    --global-footer-bg-color: #{$footer-light};
+    --global-footer-text-color: #f3e6c8;
+    --global-footer-link-color: #fff8e6;
+  }
+  html[data-theme="dark"] {
+    --global-bg-color: #{$paper-dark};
+    --global-card-bg-color: #{$paper-card-dark};
+    --global-newsletter-bg-color: #{$paper-card-dark};
+    --global-divider-color: rgba(240, 225, 200, 0.12);
+    --global-footer-bg-color: #{$footer-dark};
+    --global-footer-text-color: #e6d6b4;
+    --global-footer-link-color: #fff4dc;
+  }
+  /* grain: fine neutral specks over the page (never blocks clicks). The specks are colorless
+     (dark in light mode, light in dark mode), so a higher $grain-opacity adds texture, not color. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+    opacity: $grain-opacity;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.12 0 0 0 0 0.12 0.7 0 0 0 -0.28'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+  }
+  /* dark mode: a brown, mottled layer blended with "screen" lifts the near-black page to a
+     deep golden brown (the look you liked); it also forms the grain */
+  html[data-theme="dark"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0 0.12 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    mix-blend-mode: screen;
+    opacity: $dark-glow;
+  }
+  @media print {
+    body::after {
+      display: none;
+    }
+  }
+}
+
 /* TAG COLORS: small boxed labels (light value / dark-mode value).
  *   --tag-status : "Submitted" (Research, CV) and semester chips (Teaching)
  *   --tag-theory : THEORY course tag
@@ -2186,5 +2253,20 @@ $tl-num: 1.75rem;
     .abbr {
       margin-bottom: 0 !important;
     }
+  }
+}
+
+/* dark mode: buttons/labels filled with the (light rose) accent get dark text for contrast */
+html[data-theme="dark"] {
+  .sem-all.is-active,
+  .chip-btn.is-active,
+  .hero-btn-primary,
+  .hero-btn-primary:hover,
+  .publications ol.bibliography > li .links a.btn:hover,
+  .publications.pub-tl ol.bibliography > li:hover::before {
+    color: #2a1d10 !important;
+  }
+  .sem-all.is-active .sem-count {
+    color: inherit !important;
   }
 }

@@ -20,8 +20,8 @@ roles:
     location: Huntsville, AL, USA
     summary: Lab instruction and course grading for undergraduate ECE courses.
     highlights:
-      - Lead lab sections of **EE 203 — Digital Logic Design Lab**, guiding students through combinational and sequential circuit design.
-      - Grade assignments, lab reports and exams for undergraduate ECE courses.
+      - Teaching lab sections of **EE 203 - Digital Logic Design Lab**, guiding students through combinational and sequential circuit design.
+      - Grading assignments, lab reports and exams for undergraduate ECE courses.
     courses:
       - name: Digital Logic Design Lab
         code: EE 203

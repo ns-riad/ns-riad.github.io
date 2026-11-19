@@ -350,6 +350,19 @@ Colors that are deliberately **not** tied to the theme:
 | Page background / text grays            | add `--global-bg-color` / `--global-text-color` to the same `:root { }` (light) and `html[data-theme="dark"] { }` (dark) blocks |
 | Photo prints (paper color)              | `.desk { --paper: … }` in `_sass/_custom.scss`                           |
 
+### Page background (paper look)
+
+Pages use a warm ivory "book page" color with a paper grain. Dark mode is a deep golden brown with a mottled grain. The footer bar is deep golden in light mode. All settings are in
+the PAPER block near the top of `_sass/_custom.scss`:
+
+| What you want | Change |
+|---|---|
+| Back to plain white | `$paper-enabled: false;` |
+| A different paper tone | `$paper-light` (e.g. `#f3ecdc` for older, yellower paper; `#f8f5ee` for barely warm) |
+| Stronger or no grain | `$grain-opacity`, from 0 (none) to 1 (strongest, current). Values above 1 act like 1. The grain is colorless, so it never tints the page |
+| Dark mode: more or less golden | `$dark-glow`, from 0 (plain near-black) to 1 (golden brown, current). `$paper-dark` is the base color under the glow |
+| Footer color | `$footer-light` (light mode, `#7a5a24`) and `$footer-dark` (dark mode, `#2e2210`) |
+
 ### Font
 
 ```scss

@@ -269,4 +269,26 @@
       })();
     </script>
   {% endunless %}
+  {% if site.top_button %}
+    {% comment %} Minimal "Top" button (OUR addition). Style: _sass/_custom.scss → "TOP BUTTON". {% endcomment %}
+    <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15" /></svg>
+      <span>Top</span>
+    </button>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var b = document.getElementById("to-top");
+        var f = document.querySelector("footer.fixed-bottom");
+        var fh = function () { document.documentElement.style.setProperty("--footer-h", (f ? f.offsetHeight : 0) + "px"); };
+        fh();
+        addEventListener("resize", fh);
+        var on = function () { b.classList.toggle("is-visible", scrollY > Math.min(600, innerHeight * 0.8)); };
+        addEventListener("scroll", on, { passive: true });
+        on();
+        b.addEventListener("click", function () {
+          scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        });
+      });
+    </script>
+  {% endif %}
 </header>

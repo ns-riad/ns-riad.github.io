@@ -11,8 +11,18 @@ nav_order: 1
 
 {% include bib_search.liquid %}
 
-<div class="publications">
+<!-- pub-tl = vertical timeline with years on the left (style: _sass/_custom.scss → "RESEARCH TIMELINE") -->
+<div class="publications pub-tl">
 
 {% bibliography %}
 
 </div>
+
+<script>
+  // Number papers newest = highest ([13] … [1]). Numbers belong to the paper,
+  // so they stay the same when the search box filters the list.
+  (function () {
+    var items = document.querySelectorAll(".pub-tl ol.bibliography > li");
+    items.forEach(function (li, i) { li.setAttribute("data-n", items.length - i); });
+  })();
+</script>

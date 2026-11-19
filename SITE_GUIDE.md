@@ -133,6 +133,13 @@ Every publication is one BibTeX entry. Useful extra fields:
 - Co-authors with a homepage get a link via `_data/coauthors.yml` (key = last name in lower case).
 - BibTeX doesn't allow `%` comments **inside** an entry; put notes above or below it.
 
+**Timeline and numbers (Research page only).** Years are burgundy dots on a vertical line on the left. Each paper's
+number sits in a small circle on the same line, and the circle fills burgundy on hover. Papers are numbered newest = highest (12 … 1),
+and a paper keeps its number when the search box filters the list. New papers are numbered automatically. The layout
+comes from the `pub-tl` class in `_pages/research.md`, and the numbering from the small script under it. Look and
+spacing: `_sass/_custom.scss` → "RESEARCH TIMELINE" (`$tl-num` = circle size, `$tl-gutter` = space left of the papers).
+Paper text uses the full width. Selected papers on Home are not numbered.
+
 ### Teaching (`_pages/teaching.md` + `_data/teaching.yml`)
 
 Each **role** (GTA, Lecturer, …) is a card on a vertical timeline, newest first:
@@ -384,6 +391,7 @@ This is the same idea as the "AOS fade-up" effect, done in about 40 lines with n
 | Which blocks animate | `_includes/header.liquid` → the `SEL` list (CSS selectors) |
 | Stop one block from animating | add the class `rv-off` to it, or to any parent |
 | Turn all scroll animation off | `motion: false` in `_config.yml` |
+| "↑ Top" floating button | on/off: `top_button` in `_config.yml`; look: `_sass/_custom.scss` → "TOP BUTTON" |
 | Cursor glow on list items and cards (faint silver, innermost item only) | which items: `SPOT` list in `_includes/header.liquid`; `$spot-enabled` (false = no glow), `$spot-size`, `$spot-strength` in `_sass/_custom.scss` → "SPOTLIGHT" |
 | Hover effects (accent bar, title color, button fill, nav underline, photo lift) | `_sass/_custom.scss` → "MOTION: hover & smooth transitions" (delete a block to drop that effect) |
 

@@ -1863,8 +1863,8 @@ a {
    $spot-enabled: false  → no glow at all (accent bar + title color remain).
    $spot-size            → radius of the glow.  $spot-strength → how visible (in %). */
 $spot-enabled: true;
-$spot-size: 150px;
-$spot-strength: 7%;
+$spot-size: 300px;
+$spot-strength: 45%;
 @if $spot-enabled {
   @property --spot-o {
     syntax: "<number>";
@@ -1872,7 +1872,7 @@ $spot-strength: 7%;
     initial-value: 0;
   }
   :root {
-    --spot-color: #8a929c; /* cool silver-gray */
+    --spot-color: #c9c9c9; /* cool silver-gray */
   }
   html[data-theme="dark"] {
     --spot-color: #c9d1db;
@@ -1991,5 +1991,187 @@ html.theme-vt::view-transition-new(root) {
   }
   to {
     clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 100%) var(--vt-y, 0));
+  }
+}
+
+/* ---------- TOP BUTTON: small floating "↑ Top" pill (bottom-right) ----------
+   Turn off: top_button: false in _config.yml. Appears after scrolling ~one screen. */
+.to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: calc(var(--footer-h, 0px) + 1rem); /* sits above the fixed footer bar */
+  z-index: 1040;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  height: 30px;
+  padding: 0 0.75rem 0 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--global-divider-color);
+  background: color-mix(in srgb, var(--global-bg-color) 78%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--global-text-color-light);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 16px -8px rgba(20, 24, 32, 0.28);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s $ease,
+    transform 0.3s $ease,
+    color 0.2s $ease,
+    border-color 0.2s $ease,
+    box-shadow 0.3s $ease;
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+  span {
+    color: inherit !important;
+  }
+  svg {
+    transition: transform 0.25s $ease;
+  }
+  &:hover {
+    color: var(--global-theme-color);
+    border-color: color-mix(in srgb, var(--global-theme-color) 45%, transparent);
+    box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--global-theme-color) 45%, transparent);
+    transform: translateY(-2px);
+    svg {
+      transform: translateY(-2px);
+    }
+  }
+  &:active {
+    transform: translateY(0) scale(0.96);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--global-theme-color);
+    outline-offset: 2px;
+  }
+}
+html[data-theme="dark"] .to-top {
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.6);
+}
+@media print {
+  .to-top {
+    display: none;
+  }
+}
+
+/* ---------- RESEARCH TIMELINE: years and numbered papers on one vertical line ----------
+   Used on /research/ (class pub-tl in _pages/research.md); selected papers on Home are untouched.
+   Each paper's number sits in a small circle on the line; years are bigger accent dots.
+   $tl-gutter = space left of the papers;  $tl-rail = where the line runs;  $tl-num = circle size. */
+$tl-gutter: 2.9rem;
+$tl-rail: 0.95rem;
+$tl-num: 1.75rem;
+.publications.pub-tl {
+  position: relative;
+  padding-left: $tl-gutter;
+  /* the line */
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(#{$tl-rail} - 1px);
+    top: 1.4rem;
+    bottom: 1rem;
+    width: 2px;
+    border-radius: 2px;
+    background: var(--global-divider-color);
+  }
+  /* year label, its dot on the line */
+  h2.bibliography {
+    position: relative;
+    text-align: left;
+    border-top: 0;
+    margin: 2rem 0 0.9rem;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--global-text-color);
+    &:first-of-type {
+      margin-top: 0.75rem;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: calc(#{$tl-rail} - #{$tl-gutter} - 7px);
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      margin-top: -7px;
+      border-radius: 50%;
+      background: var(--global-theme-color);
+      box-shadow: 0 0 0 4px var(--global-bg-color);
+    }
+  }
+  ol.bibliography > li {
+    position: relative;
+    margin-inline: 0 !important;
+    padding-inline: 0.6rem !important;
+    /* paper number in a small circle on the line */
+    &[data-n]::before {
+      content: attr(data-n);
+      position: absolute;
+      left: calc(#{$tl-rail} - #{$tl-gutter} - #{$tl-num} / 2);
+      top: 0.1rem;
+      width: $tl-num;
+      height: $tl-num;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1.5px solid var(--global-divider-color);
+      background: var(--global-bg-color);
+      color: var(--global-text-color-light);
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      transition:
+        color 0.25s $ease,
+        border-color 0.25s $ease,
+        background-color 0.25s $ease,
+        transform 0.25s $ease;
+    }
+    &:hover::before {
+      color: #fff;
+      border-color: var(--global-theme-color);
+      background: var(--global-theme-color);
+      transform: scale(1.08);
+    }
+    /* use the full width: badge column + text column (theme leaves 1/6 empty on the right) */
+    > .row > .col-sm-8 {
+      flex: 1 1 0;
+      max-width: none;
+      min-width: 0; /* the hidden BibTeX block would otherwise force a line break */
+    }
+  }
+}
+@media (max-width: 575px) {
+  .publications.pub-tl {
+    padding-left: 2.6rem;
+    h2.bibliography::before {
+      left: calc(#{$tl-rail} - 2.6rem - 7px);
+    }
+    ol.bibliography > li[data-n]::before {
+      left: calc(#{$tl-rail} - 2.6rem - #{$tl-num} / 2);
+    }
+    /* badge fits its text instead of a full-width bar */
+    .abbr abbr.badge {
+      max-width: max-content; /* the theme's w-100 is a layered !important, so cap the width instead */
+      min-width: 4.5rem;
+      padding-inline: 0.6rem;
+      margin-bottom: 0.3rem;
+    }
+    .abbr {
+      margin-bottom: 0 !important;
+    }
   }
 }

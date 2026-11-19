@@ -37,8 +37,8 @@ html[data-theme="dark"] {
  * Some light tones to try: #f6f1e6 (ivory, current) · #f3ecdc (aged paper) · #f8f5ee (hint of warm)
  * ========================================================================== */
 $paper-enabled: true;
-$paper-light: #f0e7d1;
-$paper-card-light: #fcf2db;
+$paper-light: #f8f2e3;
+$paper-card-light: #fcf7ea;
 $paper-dark: #1c1a17; /* base under the golden glow below */
 $paper-card-dark: #24211d;
 $grain-opacity: 1;
@@ -2333,5 +2333,43 @@ html[data-theme="dark"] {
   #navbar #light-toggle {
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+/* ---------- ROLL: panels and dropdowns unroll like paper (script in _includes/header.liquid) ---------- */
+/* the theme's own 0.15s snap is replaced by the script's height animation */
+.publications ol.bibliography li .hidden {
+  transition: border-color 0.35s $ease;
+}
+/* the "roll": a soft shaded edge at the bottom while the panel unrolls */
+.is-rolling:not(.dropdown-menu) {
+  position: relative; /* the dropdown is already positioned */
+}
+.is-rolling {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 16px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgba(70, 48, 18, 0.16));
+    border-radius: 0 0 6px 6px;
+  }
+}
+html[data-theme="dark"] .is-rolling::after {
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.35));
+}
+/* the content slides in slightly behind the edge, like text appearing on the unrolled sheet */
+.is-rolling:not(.is-closing) > * {
+  animation: roll-content 0.55s cubic-bezier(0.22, 0.8, 0.28, 1) both;
+}
+@keyframes roll-content {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: none;
   }
 }

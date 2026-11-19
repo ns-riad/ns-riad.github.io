@@ -177,6 +177,57 @@
     }
   </script>
   <script>
+    // ROLL: dropdowns and panels unroll like a paper scroll instead of snapping open.
+    // Covers: publication Abs / Bib / Award panels, the mobile menu, the "More" dropdown.
+    // Timing: ROLL_OPEN / ROLL_CLOSE below. Look: _sass/_custom.scss → "ROLL".
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.Element || !Element.prototype.animate || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var ROLL_OPEN = 520, ROLL_CLOSE = 360; // ms
+      var EASE_OPEN = "cubic-bezier(0.22, 0.8, 0.28, 1)", EASE_CLOSE = "cubic-bezier(0.4, 0, 0.6, 1)";
+      var targets = [
+        { sel: ".publications .abstract.hidden, .publications .bibtex.hidden, .publications .award.hidden", cls: "open" },
+        { sel: "#navbar .navbar-collapse", cls: "show" },
+        { sel: "#navbar .dropdown-menu", cls: "show" }
+      ];
+      function run(el, opening) {
+        if (el._roll) el._roll.cancel();
+        el.classList.add("is-rolling");
+        if (!opening) {
+          el.classList.add("is-closing");
+          if (getComputedStyle(el).display === "none") el.style.setProperty("display", "block", "important"); // theme hides it at once
+        }
+        el.style.maxHeight = "none";
+        el.style.overflow = "hidden";
+        var h = el.scrollHeight;
+        var dur = opening ? Math.min(ROLL_OPEN + h * 0.15, 760) : ROLL_CLOSE;
+        el._roll = el.animate(
+          opening
+            ? [{ height: "0px", opacity: 0.35 }, { height: h + "px", opacity: 1 }]
+            : [{ height: h + "px", opacity: 1 }, { height: "0px", opacity: 0.2 }],
+          { duration: dur, easing: opening ? EASE_OPEN : EASE_CLOSE }
+        );
+        el._roll.onfinish = el._roll.oncancel = function () {
+          el._roll = null;
+          el.classList.remove("is-rolling", "is-closing");
+          el.style.maxHeight = "";
+          el.style.overflow = "";
+          el.style.removeProperty("display");
+        };
+      }
+      targets.forEach(function (t) {
+        document.querySelectorAll(t.sel).forEach(function (el) {
+          new MutationObserver(function (muts) {
+            muts.forEach(function (m) {
+              var was = (m.oldValue || "").split(/\s+/).indexOf(t.cls) > -1;
+              var now = el.classList.contains(t.cls);
+              if (was !== now) run(el, now);
+            });
+          }).observe(el, { attributes: true, attributeFilter: ["class"], attributeOldValue: true });
+        });
+      });
+    });
+  </script>
+  <script>
     // Research/selected papers: show the bib `note` ("Submitted", …) as a tag next to the venue
     // instead of on its own line. Style: _sass/_custom.scss → "status tag".
     document.addEventListener("DOMContentLoaded", function () {

@@ -2591,3 +2591,25 @@ html[data-theme="dark"] .seg-tabs .chip-btn.is-active {
     transition: none;
   }
 }
+
+/* ---------- PUBLICATIONS: even spacing ----------
+   1. Citation-badge rows (Altmetric/Dimensions) stay blank for papers the services don't track,
+      leaving ~34px of dead space. Hide the row until a badge actually renders inside it.
+   2. Closed Abs/Bib/Award panels keep an invisible 1px border; drop it while closed. */
+.publications .badges:not(:has(a, img, iframe, svg, canvas)) {
+  display: none;
+}
+.publications ol.bibliography li .hidden:not(.open):not(.is-rolling) {
+  border-width: 0;
+}
+/* 3. Thumbnails: on desktop the badge + thumbnail column must not outgrow the paper's text */
+@media (min-width: 576px) {
+  .publications ol.bibliography > li .abbr {
+    margin-bottom: 0;
+  }
+  .publications ol.bibliography > li .preview {
+    max-height: 56px;
+    object-fit: cover;
+    object-position: top;
+  }
+}

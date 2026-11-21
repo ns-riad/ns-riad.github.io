@@ -1665,12 +1665,46 @@ html[data-theme="dark"] .desk {
   .cvx-entry {
     grid-template-columns: 1fr;
   }
+  /* phones: heading first, then organisation, then a small "date · place" line, then details */
+  .cvx-entry {
+    gap: 0.1rem;
+  }
+  .cvx-main {
+    display: contents; /* its parts join the entry's single column so they can be ordered */
+  }
+  .cvx-what {
+    order: 1;
+  }
+  .cvx-where {
+    order: 2;
+  }
   .cvx-side {
-    text-align: left;
-    order: -1;
+    order: 3;
     display: flex;
-    gap: 0.6rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.45rem;
+    text-align: left;
+    white-space: normal;
     font-size: 0.85rem;
+    color: var(--global-text-color-light);
+  }
+  .cvx-date {
+    font-weight: 500;
+  }
+  .cvx-loc {
+    font-size: inherit;
+    &::before {
+      content: "·";
+      margin-right: 0.45rem;
+    }
+  }
+  .cvx-side > .cvx-loc:first-child::before {
+    content: none;
+  }
+  .cvx-summary,
+  .cvx-bullets {
+    order: 4;
   }
   .cvx-oneline {
     grid-template-columns: 1fr;

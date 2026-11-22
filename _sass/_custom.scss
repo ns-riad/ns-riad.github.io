@@ -3691,3 +3691,73 @@ html[data-theme="dark"] .mn-tabs button.is-on {
   hyphens: auto;
   -webkit-hyphens: auto;
 }
+
+/* ---------- ALIGNED RIGHT COLUMNS ----------
+   CV: every entry in a section shares one grid (subgrid), so the right column (dates, places, tools)
+   is as wide as the widest one in that section and all descriptions end at the same edge.
+   Teaching: the date/place column and the THEORY/LAB tag column get one fixed width. */
+@media (min-width: 576px) {
+  .cvx-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1.5rem;
+    > * {
+      grid-column: 1 / -1;
+    }
+    > .cvx-entry {
+      grid-template-columns: subgrid;
+      column-gap: 1.5rem;
+    }
+  }
+  /* role card: everything about the role sits left of the date/place column;
+     the semester deck below uses the full width */
+  .tl-item > .card-soft {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 8.5rem;
+    column-gap: 1.5rem;
+    align-items: start;
+    > * {
+      grid-column: 1 / -1;
+    }
+    > .tl-head {
+      display: contents;
+      > :first-child {
+        grid-column: 1;
+      }
+      > .tl-meta {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+      }
+    }
+    > .tl-summary,
+    > .tl-list,
+    > .crs-list-flat {
+      grid-column: 1;
+    }
+  }
+}
+.course-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.6rem;
+  align-items: baseline;
+}
+/* THEORY always in the first slot, LAB in the second, so tags line up in columns */
+.course-main > .course-parts {
+  display: grid !important;
+  grid-template-columns: 3.9rem 2.2rem;
+  gap: 0.5rem !important;
+  justify-items: start;
+  .part-theory {
+    grid-column: 1;
+  }
+  .part-lab {
+    grid-column: 2;
+  }
+}
+.tl-dur {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--global-text-color-light);
+}

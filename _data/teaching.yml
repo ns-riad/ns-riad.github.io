@@ -17,6 +17,7 @@ roles:
     org_url: https://www.uah.edu/
     dept: Department of Electrical & Computer Engineering
     period: 2025 – present
+    duration: 2 years   # shown under the location; update as time passes
     location: Huntsville, AL, USA
     summary: Lab instruction and course grading for undergraduate ECE courses.
     highlights:
@@ -33,6 +34,7 @@ roles:
     org_url: https://green.edu.bd/
     dept: Department of Computer Science & Engineering
     period: Jun 2022 – 2024
+    duration: 2.5 years
     location: Dhaka, Bangladesh
     summary: Taught theory and lab courses across the undergraduate CSE core and supervised capstone projects.
     highlights:

@@ -2,7 +2,7 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-description: Three-plus years in the classroom and lab, as a Lecturer in Bangladesh and as a Graduate Teaching Assistant in the US.
+description: Five years in the classroom and lab, two and a half as a Lecturer in Bangladesh and two as a Graduate Teaching Assistant in the US.
 nav: true
 nav_order: 2
 ---

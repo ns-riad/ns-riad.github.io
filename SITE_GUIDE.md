@@ -231,6 +231,37 @@ related_publications: true             # lists papers you {% cite key %} in the 
 The whole card opens the project page; the buttons open their own links. Card design: `_includes/site/project_card.liquid`.
 The body supports Markdown, `$$math$$`, images and `{% cite shakib2026iv %}`. Current categories: `research`, `coursework`.
 
+### Detailed project pages (write-ups)
+
+Example: `_projects/8_cruise_control.md`. A write-up page has a facts box, equations, numbered figures and results tables.
+
+1. **Private sources** go in `assets/projects/<project>/`: the full report PDF and original figures. This folder is
+   **never published** (it's in `exclude:` in `_config.yml` and in `.gitignore`), so the report stays on your computer.
+2. **Web figures** go in `assets/img/projects/<slug>/` as `.webp`. To convert PDF figures:
+   `gs -sDEVICE=png16m -r300 -o fig.png fig.pdf`, then `magick fig.png -trim fig.png`, then `cwebp -q 90 fig.png -o fig.webp`.
+3. **Front matter:** `writeup: true` (adds a "Full write-up" label on the project card) and `facts:` (the box at the
+   top; `highlight: true` colors bold numbers). Don't put course or university names in project pages.
+4. **Building blocks in the page:**
+   - Facts box: `{% raw %}{% include site/project_parts/facts.liquid %}{% endraw %}`
+   - Section navigator, right after the facts box: `{% raw %}{% include site/project_parts/sectionnav.liquid %}{% endraw %}`.
+     It builds itself from the `##` headings. On wide screens it's a vertical timeline in the left margin, visible from
+     the start: one labelled dot per section, a line that fills as you read, and a ripple on the current dot. Phones get a floating button
+     (bottom-left) whose border fills as you read and opens the section list.
+   - `##` sections are numbered and centered automatically, and `###` subsections get a small marker.
+   - Figure: `{% raw %}{% include site/project_parts/figure.liquid src="/assets/img/projects/x/y.webp" n=1 caption="..." %}{% endraw %}`
+     (`small=true` for simple diagrams; wrap two in `<div class="pj-fig-row">` to place them side by side).
+   - Equations: `$$ ... $$` (on their own lines for display, inline inside a sentence). Display equations sit in a
+     soft block. Split long ones over several lines with `\begin{aligned} ... \\ ... \end{aligned}` so they fit on phones.
+   - Table: a normal Markdown table followed by `{: .pj-table}`. Bold a row to highlight it.
+   - Collapsible part: `<details class="pj-more" markdown="1"><summary>Title</summary> ... </details>`.
+   - Note box: `<p class="pj-note">...</p>`. The Reference section uses `<div class="pj-note pj-ref" markdown="1">` for the
+     reproduced paper, so there's no separate note at the top.
+   - End the page with `{% raw %}{% include site/lightbox.liquid %}{% endraw %}` so figures enlarge on click.
+5. **Projects without a write-up yet** use `redirect: <github url>`, so the card opens GitHub directly instead of a
+   near-empty page. Delete that line once the write-up exists.
+
+Styles: `_sass/_custom.scss` → "PROJECT PAGE".
+
 ### Awards & certificates (`_pages/awards.html`)
 
 **Honors list:** `_data/awards.yml`

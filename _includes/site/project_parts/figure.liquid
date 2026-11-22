@@ -1,0 +1,11 @@
+{% comment %}
+  Numbered figure for project pages; click opens it full size (lightbox).
+  {% include site/project_parts/figure.liquid src="/assets/img/projects/x/y.webp" n=1 caption="..." alt="..." %}
+  Optional: wide=true (full text width), small=true (narrower, for simple diagrams).
+{% endcomment %}
+<figure class="pj-fig{% if include.small %} is-small{% endif %}">
+  <button type="button" class="pj-fig-btn" data-cert-img="{{ include.src | relative_url }}" data-cert-title="Fig. {{ include.n }}. {{ include.caption | strip_html | escape }}" aria-label="Enlarge figure {{ include.n }}">
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt | default: include.caption | strip_html | escape }}" loading="lazy">
+  </button>
+  <figcaption><span class="pj-fig-n">Fig. {{ include.n }}</span> {{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip }}</figcaption>
+</figure>

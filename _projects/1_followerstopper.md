@@ -4,7 +4,7 @@ title: String Stability of Followerstopper
 description: Does a wave-dampening controller actually stop phantom traffic jams in a mixed-autonomy platoon?
 importance: 2
 category: research
-# img: assets/img/projects/string_stability.png   # add your thumbnail here
+img: assets/img/projects/fs_block.jpg   # add your thumbnail here
 related_publications: true
 github: https://github.com/nsriad/FollowerStopper-String-Stability
 ---

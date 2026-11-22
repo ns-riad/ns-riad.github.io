@@ -233,6 +233,7 @@ kramdown:
 # Includes & excludes
 include: ["_pages"]
 exclude:
+  - assets/projects/ # private project sources (full reports, original figures): never published
   - SITE_GUIDE.md
   - requirements.txt
   - scripts/

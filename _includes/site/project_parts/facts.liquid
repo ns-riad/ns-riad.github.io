@@ -1,0 +1,22 @@
+{% comment %}
+  "At a glance" strip for a detailed project page. Reads page.facts:
+    facts:
+      - { label: Course, value: "EE 586" }
+      - { label: Result, value: "...", highlight: true }
+  plus page.github for the Code button.
+{% endcomment %}
+<div class="pj-facts">
+  <dl>
+    {% for f in page.facts %}
+      <div class="pj-fact{% if f.highlight %} is-key{% endif %}">
+        <dt>{{ f.label }}</dt>
+        <dd>{{ f.value | markdownify | remove: '<p>' | remove: '</p>' | strip }}</dd>
+      </div>
+    {% endfor %}
+  </dl>
+  {% if page.github %}
+    <div class="pj-actions">
+      <a class="pcard-btn" href="{{ page.github }}"><i class="fa-brands fa-github"></i> Code &amp; Simulink models</a>
+    </div>
+  {% endif %}
+</div>

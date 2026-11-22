@@ -24,3 +24,6 @@ assets/photography/_originals/
 # Private project sources (full reports + original figures). Only the processed figures in
 # assets/img/projects/ are published; the reports themselves stay on this computer.
 assets/projects/
+
+# Personal maintenance guide: kept on this computer only (back it up with the private zip)
+SITE_GUIDE.md

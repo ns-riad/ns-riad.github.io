@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta http-equiv="refresh" content="3; url=https://github.com/nsriad/MNIST-Flask-App"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> MNIST Digit Classifier Web App | Md Nazmus Shakib </title> <meta name="author" content="Md Nazmus Shakib"> <meta name="description" content="A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction."> <meta name="keywords" content="Md Nazmus Shakib, machine learning, intelligent transportation systems, cyber-physical systems, mixed autonomy, UAH"> <meta property="og:site_name" content="Md Nazmus Shakib"> <meta property="og:type" content="website"> <meta property="og:title" content="Md Nazmus Shakib | MNIST Digit Classifier Web App"> <meta property="og:url" content="https://ns-riad.github.io/projects/10_mnist_flask/"> <meta property="og:description" content="A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction."> <meta property="og:image" content="https://ns-riad.github.ioassets/img/profile.jpg"> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="MNIST Digit Classifier Web App"> <meta name="twitter:description" content="A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction."> <meta name="twitter:image" content="https://ns-riad.github.ioassets/img/profile.jpg"> <script type="application/ld+json">
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> MNIST Digit Classifier Web App | Md Nazmus Shakib </title> <meta name="author" content="Md Nazmus Shakib"> <meta name="description" content="A convolutional neural network for handwritten digits, exported to ONNX and deployed two ways, as a Flask web service and right here in your browser. Draw a digit and try it."> <meta name="keywords" content="Md Nazmus Shakib, machine learning, intelligent transportation systems, cyber-physical systems, mixed autonomy, UAH"> <meta property="og:site_name" content="Md Nazmus Shakib"> <meta property="og:type" content="website"> <meta property="og:title" content="Md Nazmus Shakib | MNIST Digit Classifier Web App"> <meta property="og:url" content="https://ns-riad.github.io/projects/10_mnist_flask/"> <meta property="og:description" content="A convolutional neural network for handwritten digits, exported to ONNX and deployed two ways, as a Flask web service and right here in your browser. Draw a digit and try it."> <meta property="og:image" content="https://ns-riad.github.ioassets/img/profile.jpg"> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="MNIST Digit Classifier Web App"> <meta name="twitter:description" content="A convolutional neural network for handwritten digits, exported to ONNX and deployed two ways, as a Flask web service and right here in your browser. Draw a digit and try it."> <meta name="twitter:image" content="https://ns-riad.github.ioassets/img/profile.jpg"> <script type="application/ld+json">
     {
         "author":
         {
@@ -7,7 +7,7 @@
         },
         "url": "https://ns-riad.github.io/projects/10_mnist_flask/",
         "@type": "WebSite",
-        "description": "A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction.",
+        "description": "A convolutional neural network for handwritten digits, exported to ONNX and deployed two ways, as a Flask web service and right here in your browser. Draw a digit and try it.",
         "headline": "MNIST Digit Classifier Web App",
         
         "sameAs": ["https://scholar.google.com/citations?user=0ulwrwEAAAAJ","https://orcid.org/0000-0002-5209-9597","https://www.researchgate.net/profile/Md-Nazmus-Shakib-4/","https://github.com/nsriad","https://www.linkedin.com/in/nazmus-shakib-riad"],
@@ -19,7 +19,7 @@
   :root {
     --max-content-width: 930px;
   }
-</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lora:400,400i,500,600,700,700i|Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons|Noto+Serif+Bengali:400,600|Hind+Siliguri:400,500&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/favicon.svg?v=0c9a7f674106cbc1156dcc4b7f301171"> <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=27723bea6b370dddf4d449d8748c81e3"> <link rel="stylesheet" href="/assets/css/main.css?v=7068a43a34fbcff66c20104a7d48aefa"> <link rel="canonical" href="https://ns-riad.github.io/projects/10_mnist_flask/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lora:400,400i,500,600,700,700i|Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons|Noto+Serif+Bengali:400,600|Hind+Siliguri:400,500&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/favicon.svg?v=0c9a7f674106cbc1156dcc4b7f301171"> <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=27723bea6b370dddf4d449d8748c81e3"> <link rel="stylesheet" href="/assets/css/main.css?v=a0ce6723bd35bcf8bbf0aa0a36032f5b"> <link rel="canonical" href="https://ns-riad.github.io/projects/10_mnist_flask/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
     initTheme();
   </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Md Nazmus</span> Shakib </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/research/">Research </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">Teaching </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">Projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/awards/">Awards </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">More </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/blog/">Blog</a> <a class="dropdown-item " href="/photography/">Photography</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/news/">News</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> <script>
     // THEME BUTTON: two states only (light ⇄ dark). The first visit follows the device;
@@ -190,7 +190,379 @@
           scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
         });
       });
-    </script> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">MNIST Digit Classifier Web App</h1> <p class="post-description">A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction.</p> </header> <article> <p>An end-to-end deployment exercise. I trained a CNN on MNIST, exported it to <strong>ONNX</strong>, and served it with a small <strong>Flask</strong> backend and an upload page that returns the predicted digit (0–9).</p> <p>Code: <a href="https://github.com/nsriad/MNIST-Flask-App" rel="external nofollow noopener" target="_blank">nsriad/MNIST-Flask-App</a></p> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Md Nazmus Shakib. Last updated: November 22, 2026. </div> </footer> <script>
+    </script> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">MNIST Digit Classifier Web App</h1> <p class="post-description">A convolutional neural network for handwritten digits, exported to ONNX and deployed two ways, as a Flask web service and right here in your browser. Draw a digit and try it.</p> </header> <article> <div class="pj-facts"> <dl> <div class="pj-fact"> <dt>Tools</dt> <dd>PyTorch · ONNX · Flask · ONNX Runtime Web</dd> </div> <div class="pj-fact"> <dt>Model</dt> <dd>2-layer CNN, 0.9 MB</dd> </div> <div class="pj-fact"> <dt>Data</dt> <dd>MNIST, 28 × 28 grayscale digits</dd> </div> <div class="pj-fact is-key"> <dt>Accuracy</dt> <dd> <strong>99.21%</strong> on held-out data</dd> </div> <div class="pj-fact is-key"> <dt>Live demo</dt> <dd> <strong>Runs in your browser</strong>, below</dd> </div> </dl> <div class="pj-actions"> <a class="pcard-btn" href="https://github.com/nsriad/MNIST-Flask-App" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-github"></i> Code (PyTorch · ONNX · Flask)</a> </div> </div> <nav class="pjnav" aria-label="On this page" hidden=""> <div class="pjtl"> <div class="pjtl-inner"> <div class="pjtl-track"><span class="pjtl-fill"></span></div> <ol class="pjtl-list"></ol> </div> </div> <button class="pjnav-fab" type="button" aria-expanded="false" aria-label="Sections"> <svg class="pjnav-ring" viewbox="0 0 50 50" aria-hidden="true"> <rect class="bg" x="1.5" y="1.5" width="47" height="47" rx="11" pathlength="100"></rect> <rect class="fg" x="1.5" y="1.5" width="47" height="47" rx="11" pathlength="100"></rect> </svg> <span class="pjnav-fab-num">01</span> <i class="fa-solid fa-list-ul" aria-hidden="true"></i> </button> <div class="pjnav-sheet" role="dialog" aria-label="Sections"> <div class="pjnav-head">On this page</div> <ol class="pjnav-list"></ol> </div> </nav> <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var nav = document.querySelector(".pjnav");
+    if (!nav) return;
+    var heads = [].slice.call(document.querySelectorAll(".post article > h2"));
+    if (!heads.length) return nav.remove();
+    document.body.appendChild(nav); // fixed to the window, outside the theme's scrolling wrapper
+    nav.hidden = false;
+    nav.style.setProperty("--pjtl-n", heads.length);
+    var fab = nav.querySelector(".pjnav-fab"), tlFill = nav.querySelector(".pjtl-fill"),
+      ring = nav.querySelector(".pjnav-ring .fg"), num = nav.querySelector(".pjnav-fab-num");
+    var groups = [].map.call(nav.querySelectorAll(".pjnav-list"), function (ol) {
+      return heads.map(function (h, i) {
+        if (!h.id) h.id = "s-" + (i + 1);
+        var li = document.createElement("li"), a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.style.setProperty("--i", i);
+        a.innerHTML = '<span class="n">' + String(i + 1).padStart(2, "0") + '</span><span class="t">' + h.textContent.trim() + "</span>";
+        a.addEventListener("click", function () { setOpen(false); });
+        li.appendChild(a);
+        ol.appendChild(li);
+        return a;
+      });
+    });
+    // desktop timeline: dots spaced evenly, each at the centre of its slot
+    var n = heads.length, pos = heads.map(function (_, i) { return ((i + 0.5) / n) * 100; });
+    var dots = heads.map(function (h, i) {
+      var li = document.createElement("li"), a = document.createElement("a");
+      li.style.top = pos[i] + "%";
+      a.href = "#" + h.id;
+      a.title = h.textContent.trim();
+      a.innerHTML = '<span class="dot"></span><span class="lbl"><span class="n">' + String(i + 1).padStart(2, "0") + "</span>" + h.textContent.trim() + "</span>";
+      li.appendChild(a);
+      nav.querySelector(".pjtl-list").appendChild(li);
+      return li;
+    });
+    var navbar = document.getElementById("navbar");
+
+    // section links scroll to an exact spot just below the fixed bars (no stacked offsets)
+    function offsetTop() {
+      return (navbar ? navbar.getBoundingClientRect().bottom : 0) + 24;
+    }
+    function goTo(h, tries) {
+      tries = tries || 0;
+      var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      scrollTo({ top: h.getBoundingClientRect().top + scrollY - offsetTop(), behavior: reduce || tries ? "auto" : "smooth" });
+      if (!tries) history.replaceState(null, "", "#" + h.id);
+      // figures above may finish loading during the scroll and push the section down: re-check once settled
+      if (tries < 4) setTimeout(function () {
+        if (Math.abs(h.getBoundingClientRect().top - offsetTop()) > 4) goTo(h, tries + 1);
+      }, tries ? 250 : 700);
+    }
+    nav.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var h = document.getElementById(a.getAttribute("href").slice(1));
+      if (!h) return;
+      e.preventDefault();
+      goTo(h);
+    });
+
+    function setOpen(o) { nav.classList.toggle("is-open", o); fab.setAttribute("aria-expanded", o); }
+    fab.addEventListener("click", function (e) { e.stopPropagation(); setOpen(!nav.classList.contains("is-open")); });
+    document.addEventListener("click", function (e) { if (!nav.contains(e.target)) setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    var article = document.querySelector(".post article"), active = -2;
+    function docTop(el) { return el.getBoundingClientRect().top + scrollY; }
+    function update() {
+      var line = scrollY + innerHeight * 0.3; // the reading line
+      var start = docTop(article), end = start + article.offsetHeight - innerHeight * 0.6;
+      var tops = heads.map(docTop), i = -1;
+      tops.forEach(function (t, k) { if (t <= line) i = k; });
+      var atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+      if (atEnd) i = n - 1; // the last section may never reach the reading line
+      // timeline fill: interpolate between the dots of the current and next section
+      var f;
+      if (atEnd) f = 100;
+      else if (i < 0) f = pos[0] * Math.max(0, (line - start) / (tops[0] - start));
+      else {
+        var a = tops[i], b = i + 1 < n ? tops[i + 1] : Math.max(end, a + 1), to = i + 1 < n ? pos[i + 1] : 100;
+        f = pos[i] + (to - pos[i]) * Math.min(1, Math.max(0, (line - a) / (b - a)));
+      }
+      tlFill.style.transform = "scaleY(" + Math.min(f, 100) / 100 + ")";
+      var p = Math.min(1, Math.max(0, (line - start) / (end - start)));
+      ring.style.strokeDashoffset = 100 - p * 100;
+      nav.classList.toggle("is-shown", scrollY > 280);
+      if (i === active) return;
+      active = i;
+      dots.forEach(function (d, k) { d.classList.toggle("is-active", k === i); d.classList.toggle("is-read", k < i); });
+      groups.forEach(function (g) { g.forEach(function (a, k) { a.classList.toggle("is-active", k === i); a.classList.toggle("is-read", k < i); }); });
+      num.textContent = String(Math.max(i, 0) + 1).padStart(2, "0");
+    }
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  });
+</script> <p>A model is only useful once someone can use it. This project trains a small convolutional neural network to read handwritten digits, exports it to the portable <strong>ONNX</strong> format, and serves it through a <strong>Flask</strong> web app where you upload an image and get a prediction. The same ONNX file also powers the live demo below, running directly in your browser.</p> <h2 id="try-it">Try it</h2> <p>Draw a digit with your mouse, finger or pen, upload a photo of one, or pick an MNIST sample. The prediction updates as you draw.</p> <div class="mn-demo" data-model="/assets/demos/mnist/mnist_cnn.onnx"> <div class="mn-panel mn-input"> <div class="mn-tabs" role="tablist"> <button type="button" class="is-on" data-mode="draw" role="tab"><i class="fa-solid fa-pen"></i> Draw</button> <button type="button" data-mode="upload" role="tab"><i class="fa-solid fa-upload"></i> Upload</button> </div> <div class="mn-stage"> <canvas class="mn-canvas" width="280" height="280" aria-label="Drawing area: draw a digit"></canvas> <span class="mn-hint">Draw a digit (0–9)</span> <label class="mn-drop" hidden=""> <input type="file" accept="image/*" hidden=""> <i class="fa-solid fa-image"></i> <span>Choose or drop an image</span> <small>a single digit; any background</small> </label> </div> <div class="mn-row"> <button type="button" class="mn-btn mn-clear"><i class="fa-solid fa-eraser"></i> Clear</button> <span class="mn-status">Loading model…</span> </div> <div class="mn-samples"> <span class="mn-label">Or try an MNIST sample</span> <div class="mn-sample-row"> <button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/0.png" aria-label="Sample digit 0"><img src="/assets/demos/mnist/samples/0.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/1.png" aria-label="Sample digit 1"><img src="/assets/demos/mnist/samples/1.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/2.png" aria-label="Sample digit 2"><img src="/assets/demos/mnist/samples/2.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/3.png" aria-label="Sample digit 3"><img src="/assets/demos/mnist/samples/3.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/4.png" aria-label="Sample digit 4"><img src="/assets/demos/mnist/samples/4.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/5.png" aria-label="Sample digit 5"><img src="/assets/demos/mnist/samples/5.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/6.png" aria-label="Sample digit 6"><img src="/assets/demos/mnist/samples/6.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/7.png" aria-label="Sample digit 7"><img src="/assets/demos/mnist/samples/7.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/8.png" aria-label="Sample digit 8"><img src="/assets/demos/mnist/samples/8.png" alt="" width="28" height="28"></button><button type="button" class="mn-sample" data-src="/assets/demos/mnist/samples/9.png" aria-label="Sample digit 9"><img src="/assets/demos/mnist/samples/9.png" alt="" width="28" height="28"></button> </div> </div> </div> <div class="mn-panel mn-output" aria-live="polite"> <div class="mn-top"> <div> <span class="mn-label">Prediction</span> <div class="mn-digit">–</div> <div class="mn-conf"> </div> </div> <div class="mn-seen"> <span class="mn-label">Model input</span> <canvas class="mn-mini" width="28" height="28"></canvas> <small>28 × 28</small> </div> </div> <div class="mn-bars"> <div class="mn-bar" data-k="0"> <span class="mn-k">0</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="1"> <span class="mn-k">1</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="2"> <span class="mn-k">2</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="3"> <span class="mn-k">3</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="4"> <span class="mn-k">4</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="5"> <span class="mn-k">5</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="6"> <span class="mn-k">6</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="7"> <span class="mn-k">7</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="8"> <span class="mn-k">8</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> <div class="mn-bar" data-k="9"> <span class="mn-k">9</span> <span class="mn-track"><span class="mn-fill"></span></span> <span class="mn-pct">0%</span> </div> </div> <p class="mn-foot"><i class="fa-solid fa-lock"></i> Runs entirely in your browser from the project's ONNX file. Nothing is uploaded.</p> </div> </div> <script>
+(function () {
+  var root = document.querySelector(".mn-demo");
+  if (!root) return;
+  var cv = root.querySelector(".mn-canvas"), ctx = cv.getContext("2d");
+  var mini = root.querySelector(".mn-mini"), mctx = mini.getContext("2d");
+  var hint = root.querySelector(".mn-hint"), drop = root.querySelector(".mn-drop"), file = drop.querySelector("input");
+  var status = root.querySelector(".mn-status"), out = root.querySelector(".mn-digit"), conf = root.querySelector(".mn-conf");
+  var bars = [].slice.call(root.querySelectorAll(".mn-bar"));
+  var session = null, loading = null, timer = null;
+
+  function blank() { ctx.fillStyle = "#000"; ctx.fillRect(0, 0, 280, 280); }
+  blank();
+
+  // ---- read the ONNX file: a tiny protobuf reader for the graph's ops and weight tensors ----
+  function readONNX(buf) {
+    var u = new Uint8Array(buf);
+    function fields(s, e, cb) {
+      var i = s;
+      while (i < e) {
+        var key = 0, sh = 0, c;
+        do { c = u[i++]; key += (c & 127) * Math.pow(2, sh); sh += 7; } while (c > 127);
+        var f = Math.floor(key / 8), t = key % 8, v = 0;
+        if (t === 0) { sh = 0; do { c = u[i++]; v += (c & 127) * Math.pow(2, sh); sh += 7; } while (c > 127); cb(f, t, v); }
+        else if (t === 2) { var n = 0; sh = 0; do { c = u[i++]; n += (c & 127) * Math.pow(2, sh); sh += 7; } while (c > 127); cb(f, t, i, i + n); i += n; }
+        else if (t === 5) { i += 4; } else if (t === 1) { i += 8; } else throw new Error("bad wire type");
+      }
+    }
+    var txt = new TextDecoder(), ops = [], W = {};
+    fields(0, u.length, function (f, t, s, e) {
+      if (f !== 7 || t !== 2) return; // ModelProto.graph
+      fields(s, e, function (g, t2, s2, e2) {
+        if (t2 !== 2) return;
+        if (g === 1) fields(s2, e2, function (h, t3, a, b) { if (h === 4 && t3 === 2) ops.push(txt.decode(u.subarray(a, b))); }); // NodeProto.op_type
+        if (g === 5) { // TensorProto (initializer)
+          var name = "", raw = null;
+          fields(s2, e2, function (h, t3, a, b) {
+            if (h === 8 && t3 === 2) name = txt.decode(u.subarray(a, b));
+            if (h === 9 && t3 === 2) raw = buf.slice(a, b);
+          });
+          if (raw) W[name] = new Float32Array(raw);
+        }
+      });
+    });
+    var want = "Conv,Relu,MaxPool,Conv,Relu,MaxPool,Flatten,Gemm,Relu,Gemm";
+    if (ops.join() !== want) throw new Error("unexpected graph: " + ops.join());
+    return W;
+  }
+
+  // ---- forward pass (NCHW, same maths as the ONNX graph) ----
+  function conv(x, C, H, w, b, K) { // 3×3, stride 1, no padding, + ReLU
+    var Ho = H - 2, o = new Float32Array(K * Ho * Ho);
+    for (var k = 0; k < K; k++) for (var i = 0; i < Ho; i++) for (var j = 0; j < Ho; j++) {
+      var s = b[k];
+      for (var c = 0; c < C; c++) {
+        var wo = (k * C + c) * 9, xo = c * H * H + i * H + j;
+        s += w[wo] * x[xo] + w[wo + 1] * x[xo + 1] + w[wo + 2] * x[xo + 2]
+           + w[wo + 3] * x[xo + H] + w[wo + 4] * x[xo + H + 1] + w[wo + 5] * x[xo + H + 2]
+           + w[wo + 6] * x[xo + 2 * H] + w[wo + 7] * x[xo + 2 * H + 1] + w[wo + 8] * x[xo + 2 * H + 2];
+      }
+      o[k * Ho * Ho + i * Ho + j] = s > 0 ? s : 0;
+    }
+    return o;
+  }
+  function pool(x, C, H) { // 2×2 max, stride 2 (floor)
+    var Ho = Math.floor(H / 2), o = new Float32Array(C * Ho * Ho);
+    for (var c = 0; c < C; c++) for (var i = 0; i < Ho; i++) for (var j = 0; j < Ho; j++) {
+      var p = c * H * H + 2 * i * H + 2 * j;
+      o[c * Ho * Ho + i * Ho + j] = Math.max(x[p], x[p + 1], x[p + H], x[p + H + 1]);
+    }
+    return o;
+  }
+  function dense(x, w, b, relu) { // Gemm with transB = 1: y = x·Wᵀ + b
+    var n = b.length, m = x.length, o = new Float32Array(n);
+    for (var k = 0; k < n; k++) { var s = b[k], r = k * m; for (var i = 0; i < m; i++) s += w[r + i] * x[i]; o[k] = relu && s < 0 ? 0 : s; }
+    return o;
+  }
+  function forward(W, x) {
+    var a = pool(conv(x, 1, 28, W["conv1.weight"], W["conv1.bias"], 32), 32, 26);   // 32×13×13
+    a = pool(conv(a, 32, 13, W["conv2.weight"], W["conv2.bias"], 64), 64, 11);      // 64×5×5
+    a = dense(a, W["fc1.weight"], W["fc1.bias"], true);                              // 128
+    return dense(a, W["fc2.weight"], W["fc2.bias"], false);                          // 10 logits
+  }
+
+  function load() {
+    if (loading) return loading;
+    loading = fetch(root.dataset.model)
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      .then(function (buf) {
+        session = readONNX(buf);
+        status.textContent = "Model ready";
+        root.classList.add("is-ready");
+      })
+      .catch(function (e) { status.textContent = "Couldn't load the model"; console.error(e); });
+    return loading;
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: "300px" });
+    io.observe(root);
+  } else load();
+
+  // ---- MNIST-style preprocessing: any source → white-on-black 28×28 Float32 ----
+  function toTensor(src, sw, sh, isDrawing, inner) {
+    var W = 140, H = 140, k = Math.min(W / sw, H / sh);
+    var w = Math.max(1, Math.round(sw * k)), h = Math.max(1, Math.round(sh * k));
+    var a = document.createElement("canvas"); a.width = w; a.height = h;
+    var ac = a.getContext("2d"); ac.drawImage(src, 0, 0, w, h);
+    var px = ac.getImageData(0, 0, w, h), d = px.data, g = new Float32Array(w * h), i, x, y;
+    for (i = 0; i < w * h; i++) {
+      var al = d[i * 4 + 3] / 255; // transparent pixels count as background
+      var lum = (0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2]) / 255;
+      g[i] = isDrawing ? lum : lum * al + (1 - al);
+    }
+    if (!isDrawing) {
+      // light background (border mostly bright) → invert so the digit is white on black, like MNIST
+      var sum = 0, cnt = 0;
+      for (x = 0; x < w; x++) { sum += g[x] + g[(h - 1) * w + x]; cnt += 2; }
+      for (y = 0; y < h; y++) { sum += g[y * w] + g[y * w + w - 1]; cnt += 2; }
+      if (sum / cnt > 0.5) for (i = 0; i < g.length; i++) g[i] = 1 - g[i];
+      // stretch contrast: darkest → 0, brightest → 1
+      var lo = 1, hi = 0;
+      for (i = 0; i < g.length; i++) { if (g[i] < lo) lo = g[i]; if (g[i] > hi) hi = g[i]; }
+      for (i = 0; i < g.length; i++) g[i] = hi > lo ? Math.max(0, (g[i] - lo) / (hi - lo) - 0.15) / 0.85 : 0;
+    }
+    // a framed picture (e.g. a plot of an MNIST digit: dark square on a white page) shows up as a huge
+    // block of "ink"; find the rows/columns that are mostly ink and look inside that frame instead
+    if (!isDrawing && !inner) {
+      var ink = 0;
+      for (i = 0; i < g.length; i++) if (g[i] > 0.5) ink++;
+      if (ink / g.length > 0.3) {
+        var r0 = -1, r1 = -1, c0 = -1, c1 = -1, n;
+        for (y = 0; y < h; y++) { n = 0; for (x = 0; x < w; x++) if (g[y * w + x] > 0.5) n++; if (n > 0.45 * w) { if (r0 < 0) r0 = y; r1 = y; } }
+        for (x = 0; x < w; x++) { n = 0; for (y = 0; y < h; y++) if (g[y * w + x] > 0.5) n++; if (n > 0.45 * h) { if (c0 < 0) c0 = x; c1 = x; } }
+        if (r0 >= 0 && c0 >= 0 && r1 - r0 > 10 && c1 - c0 > 10) {
+          var fx = Math.floor((c0 + 2) / k), fy = Math.floor((r0 + 2) / k), fw = Math.floor((c1 - c0 - 4) / k), fh = Math.floor((r1 - r0 - 4) / k);
+          var f = document.createElement("canvas"); f.width = fw; f.height = fh;
+          f.getContext("2d").drawImage(src, fx, fy, fw, fh, 0, 0, fw, fh);
+          var t2 = toTensor(f, fw, fh, false, true);
+          if (t2) return t2;
+        }
+      }
+    }
+    // bounding box of the ink
+    var x0 = w, y0 = h, x1 = -1, y1 = -1;
+    for (y = 0; y < h; y++) for (x = 0; x < w; x++) if (g[y * w + x] > 0.2) {
+      if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+    }
+    if (x1 < 0) return null;
+    for (i = 0; i < g.length; i++) { var v = Math.round(g[i] * 255); d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = v; d[i * 4 + 3] = 255; }
+    ac.putImageData(px, 0, 0);
+    // fit the digit into a 20×20 box, then centre it by mass in 28×28
+    var bw = x1 - x0 + 1, bh = y1 - y0 + 1, s = 20 / Math.max(bw, bh);
+    var dw = bw * s, dh = bh * s;
+    function render(ox, oy) {
+      mctx.fillStyle = "#000"; mctx.fillRect(0, 0, 28, 28);
+      mctx.imageSmoothingEnabled = true; mctx.imageSmoothingQuality = "high";
+      mctx.drawImage(a, x0, y0, bw, bh, ox, oy, dw, dh);
+      return mctx.getImageData(0, 0, 28, 28).data;
+    }
+    var ox = (28 - dw) / 2, oy = (28 - dh) / 2, m = render(ox, oy), mx = 0, my = 0, ms = 0;
+    for (i = 0; i < 784; i++) { var p = m[i * 4]; ms += p; mx += (i % 28) * p; my += Math.floor(i / 28) * p; }
+    if (ms > 0) {
+      var sx = Math.max(-4, Math.min(4, 13.5 - mx / ms)), sy = Math.max(-4, Math.min(4, 13.5 - my / ms));
+      m = render(ox + sx, oy + sy);
+    }
+    var t = new Float32Array(784);
+    for (i = 0; i < 784; i++) t[i] = m[i * 4] / 255;
+    return t;
+  }
+
+  function show(probs) {
+    var best = 0;
+    for (var k = 1; k < 10; k++) if (probs[k] > probs[best]) best = k;
+    out.textContent = best;
+    out.classList.remove("is-pop"); void out.offsetWidth; out.classList.add("is-pop");
+    conf.textContent = (probs[best] * 100).toFixed(1) + "% confident";
+    bars.forEach(function (b, k) {
+      b.classList.toggle("is-best", k === best);
+      b.querySelector(".mn-fill").style.width = (probs[k] * 100).toFixed(1) + "%";
+      b.querySelector(".mn-pct").textContent = (probs[k] * 100 < 0.1 && probs[k] > 0 ? "<0.1" : (probs[k] * 100).toFixed(1)) + "%";
+    });
+  }
+  function reset() {
+    out.textContent = "–"; conf.innerHTML = "&nbsp;";
+    mctx.fillStyle = "#000"; mctx.fillRect(0, 0, 28, 28);
+    bars.forEach(function (b) { b.classList.remove("is-best"); b.querySelector(".mn-fill").style.width = "0"; b.querySelector(".mn-pct").textContent = "0%"; });
+  }
+  reset();
+
+  function predict(src, sw, sh, isDrawing) {
+    var t = toTensor(src, sw, sh, isDrawing);
+    if (!t) { reset(); return; }
+    load().then(function () {
+      if (!session) return;
+      var z = forward(session, t), mx = Math.max.apply(null, z), e = [], sum = 0;
+      for (var k = 0; k < 10; k++) { e[k] = Math.exp(z[k] - mx); sum += e[k]; }
+      show(e.map(function (v) { return v / sum; }));
+    });
+  }
+
+  // ---- drawing (mouse, pen, touch) ----
+  var drawing = false, last = null;
+  function pos(e) { var r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 280 / r.width, (e.clientY - r.top) * 280 / r.height]; }
+  cv.addEventListener("pointerdown", function (e) {
+    drawing = true; last = pos(e); cv.setPointerCapture(e.pointerId); hint.hidden = true;
+    ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(last[0], last[1], 9, 0, 7); ctx.fill();
+  });
+  cv.addEventListener("pointermove", function (e) {
+    if (!drawing) return;
+    var p = pos(e);
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 18; ctx.lineCap = "round"; ctx.lineJoin = "round";
+    ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(p[0], p[1]); ctx.stroke();
+    last = p;
+    clearTimeout(timer); timer = setTimeout(function () { predict(cv, 280, 280, true); }, 120); // live while drawing
+  });
+  ["pointerup", "pointercancel"].forEach(function (ev) {
+    cv.addEventListener(ev, function () { if (drawing) { drawing = false; predict(cv, 280, 280, true); } });
+  });
+
+  // ---- upload / samples ----
+  function useImage(url) {
+    var img = new Image();
+    img.onload = function () {
+      blank(); hint.hidden = true;
+      var k = Math.min(280 / img.width, 280 / img.height), w = img.width * k, h = img.height * k;
+      ctx.imageSmoothingEnabled = img.width > 64;
+      ctx.drawImage(img, (280 - w) / 2, (280 - h) / 2, w, h);
+      ctx.imageSmoothingEnabled = true;
+      setMode("draw", true);
+      predict(img, img.width, img.height, false);
+    };
+    img.src = url;
+  }
+  // read files as data: URLs (the site's security policy allows data: images, not blob:)
+  function useFile(f) {
+    if (!f || f.type.indexOf("image/") !== 0) return;
+    var rd = new FileReader();
+    rd.onload = function () { useImage(rd.result); };
+    rd.readAsDataURL(f);
+  }
+  file.addEventListener("change", function () { useFile(file.files[0]); file.value = ""; });
+  drop.addEventListener("dragover", function (e) { e.preventDefault(); drop.classList.add("is-over"); });
+  drop.addEventListener("dragleave", function () { drop.classList.remove("is-over"); });
+  drop.addEventListener("drop", function (e) {
+    e.preventDefault(); drop.classList.remove("is-over");
+    useFile(e.dataTransfer.files[0]);
+  });
+  root.querySelectorAll(".mn-sample").forEach(function (b) {
+    b.addEventListener("click", function () {
+      root.querySelectorAll(".mn-sample").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+      useImage(b.dataset.src);
+    });
+  });
+
+  // ---- tabs + clear ----
+  function setMode(m, keep) {
+    root.querySelectorAll(".mn-tabs button").forEach(function (t) { t.classList.toggle("is-on", t.dataset.mode === m); });
+    drop.hidden = m !== "upload";
+    if (m === "upload" && !keep) { blank(); reset(); hint.hidden = true; }
+    if (m === "draw" && !keep) { hint.hidden = false; }
+  }
+  root.querySelectorAll(".mn-tabs button").forEach(function (t) { t.addEventListener("click", function () { setMode(t.dataset.mode); if (t.dataset.mode === "draw") { blank(); reset(); } }); });
+  root.querySelector(".mn-clear").addEventListener("click", function () {
+    blank(); reset(); hint.hidden = false; setMode("draw", true);
+    root.querySelectorAll(".mn-sample").forEach(function (x) { x.classList.remove("is-on"); });
+  });
+})();
+</script> <details class="pj-more"> <summary>Tips for good predictions</summary> <ul> <li>Draw <strong>one</strong> digit, large and roughly centred, the way you’d write it on paper.</li> <li>MNIST digits were written by American students and census staff, so a European-style <strong>1</strong> with a long flag, or a <strong>7</strong> with a crossbar, can confuse the model.</li> <li>Photos work best with a plain background. The demo turns dark-on-light images into light-on-dark, like MNIST, automatically.</li> <li>The small <strong>Model input</strong> square shows exactly what the network sees after preprocessing.</li> </ul> </details> <h2 id="the-model">The model</h2> <h3 id="architecture">Architecture</h3> <p>Two convolution blocks extract strokes and shapes, and two fully connected layers turn them into scores for the ten digits:</p> <div class="pj-caption">Table 1. Network layers</div> <table class="pj-table"> <thead> <tr> <th style="text-align: left">Layer</th> <th style="text-align: left">Output shape</th> <th style="text-align: left">Details</th> </tr> </thead> <tbody> <tr> <td style="text-align: left">Input</td> <td style="text-align: left">1 × 28 × 28</td> <td style="text-align: left">grayscale, pixels in [0, 1]</td> </tr> <tr> <td style="text-align: left">Conv + ReLU</td> <td style="text-align: left">32 × 26 × 26</td> <td style="text-align: left">3 × 3 kernels</td> </tr> <tr> <td style="text-align: left">Max-pool</td> <td style="text-align: left">32 × 13 × 13</td> <td style="text-align: left">2 × 2</td> </tr> <tr> <td style="text-align: left">Conv + ReLU</td> <td style="text-align: left">64 × 11 × 11</td> <td style="text-align: left">3 × 3 kernels</td> </tr> <tr> <td style="text-align: left">Max-pool</td> <td style="text-align: left">64 × 5 × 5</td> <td style="text-align: left">2 × 2</td> </tr> <tr> <td style="text-align: left">Dense + ReLU</td> <td style="text-align: left">128</td> <td style="text-align: left">dropout 0.5</td> </tr> <tr> <td style="text-align: left">Dense</td> <td style="text-align: left">10</td> <td style="text-align: left">one score (logit) per digit</td> </tr> </tbody> </table> <p>The scores \(z_k\) become probabilities with the softmax, and the prediction is the most likely digit:</p> \[p_k = \frac{e^{z_k}}{\sum_{j=0}^{9} e^{z_j}}, \qquad \hat{y} = \arg\max_k \, p_k .\] <h3 id="training">Training</h3> <p>The 60,000 MNIST training images were split 67% / 33% into training and held-out test sets. The network was trained with cross-entropy loss and Adam for 50 epochs, with the learning rate decayed by 10% after every epoch:</p> \[\eta_t = 0.001 \times 0.9^{\,t}, \qquad t = 0, 1, \dots, 49 .\] <p>It reaches <strong>99.21% accuracy</strong> on the held-out images. The trained network is then exported to ONNX (opset 11) with a dynamic batch size, giving a single 0.9 MB file that any ONNX runtime can execute.</p> <h2 id="deployment">Deployment</h2> <h3 id="flask-web-service">Flask web service</h3> <p>The original app wraps the ONNX model in a small Flask server (simplified):</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">session</span> <span class="o">=</span> <span class="n">ort</span><span class="p">.</span><span class="nc">InferenceSession</span><span class="p">(</span><span class="sh">"</span><span class="s">mnist_cnn.onnx</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="sh">"</span><span class="s">/predict</span><span class="sh">"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">POST</span><span class="sh">"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">():</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">files</span><span class="p">[</span><span class="sh">"</span><span class="s">file</span><span class="sh">"</span><span class="p">]).</span><span class="nf">convert</span><span class="p">(</span><span class="sh">"</span><span class="s">L</span><span class="sh">"</span><span class="p">).</span><span class="nf">resize</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)[</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span>     <span class="c1"># [1, 1, 28, 28]
+</span>    <span class="n">logits</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">{</span><span class="n">session</span><span class="p">.</span><span class="nf">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span><span class="p">:</span> <span class="n">x</span><span class="p">})[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">logits</span><span class="p">).</span><span class="nf">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nf">jsonify</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="nf">int</span><span class="p">(</span><span class="n">probs</span><span class="p">.</span><span class="nf">argmax</span><span class="p">()),</span> <span class="n">confidence</span><span class="o">=</span><span class="n">probs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">())</span>
+</code></pre></div></div> <p>The web page uploads an image, the server runs the model, and the page draws the returned confidences as a bar chart.</p> <h3 id="in-the-browser">In the browser</h3> <p>The demo above loads <strong>the same <code class="language-plaintext highlighter-rouge">mnist_cnn.onnx</code> file</strong> with ONNX Runtime Web (WebAssembly), so inference happens on your device: there’s no server to run, it costs nothing to host, and your drawing never leaves the page.</p> <p>Real inputs rarely look like MNIST, so the browser version adds the same preprocessing that was used to build the dataset:</p> <ol> <li> <strong>Polarity.</strong> Digits must be white on black; dark-on-light images are inverted.</li> <li> <strong>Crop.</strong> The digit’s bounding box is cut out, discarding empty space.</li> <li> <strong>Scale.</strong> The digit is resized to fit a 20 × 20 box, keeping its aspect ratio.</li> <li> <strong>Centre.</strong> It is placed in a 28 × 28 frame so that its <strong>centre of mass</strong> sits in the middle:</li> </ol> \[\bar{x} = \frac{\sum_{i} x_i\, I_i}{\sum_i I_i}, \qquad \bar{y} = \frac{\sum_{i} y_i\, I_i}{\sum_i I_i}, \qquad (\bar{x}, \bar{y}) \to (14, 14).\] <p>Skipping these steps is the most common reason a 99 % model “fails” on hand-drawn digits: the network has only ever seen centred, normalized strokes.</p> <h2 id="takeaways">Takeaways</h2> <ul> <li> <strong>ONNX decouples training from serving.</strong> One file trained in PyTorch runs unchanged in Python (Flask) and in JavaScript (the browser).</li> <li> <strong>Preprocessing is part of the model.</strong> Matching the training distribution (polarity, size, centring) matters as much as accuracy on the test set.</li> <li> <strong>Small models belong at the edge.</strong> At 0.9 MB, this network loads in a moment and runs instantly on a phone, with no server at all.</li> </ul> <h2 id="code">Code</h2> <div class="pj-note pj-ref"> <p><i class="fa-solid fa-code"></i> <strong>Source:</strong> the training notebook, exported ONNX model and Flask app are in <a href="https://github.com/nsriad/MNIST-Flask-App" rel="external nofollow noopener" target="_blank">nsriad/MNIST-Flask-App</a>. The in-browser demo uses that same model file.</p> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Md Nazmus Shakib. Last updated: November 22, 2026. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
   };
@@ -309,7 +681,7 @@ ninja.data = [{
               window.location.href = "/projects/0_carla_ros2_fusion/";
             },},{id: "projects-mnist-digit-classifier-web-app",
           title: 'MNIST Digit Classifier Web App',
-          description: "A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction.",
+          description: "A convolutional neural network for handwritten digits, exported to ONNX and deployed two ways, as a Flask web service and right here in your browser. Draw a digit and try it.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/10_mnist_flask/";
             },},{id: "projects-string-stability-of-followerstopper",
@@ -349,7 +721,7 @@ ninja.data = [{
               window.location.href = "/projects/8_cruise_control/";
             },},{id: "projects-16-bit-single-cycle-cpu-in-verilog",
           title: '16-bit Single-Cycle CPU in Verilog',
-          description: "A custom 16-bit ISA with its own ALU, register file, control unit and memories.",
+          description: "A custom 16-bit instruction set and the single-cycle processor that runs it, from opcode map to waveform-verified Verilog and an FPGA demo.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_isa_cpu/";
             },},{

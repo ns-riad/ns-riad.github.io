@@ -20,7 +20,7 @@ facts:
 
 {% include site/project_parts/sectionnav.liquid %}
 
-A model is only useful once someone can use it. This project trains a small convolutional neural network to read handwritten digits, exports it to the portable **ONNX** format, and serves it through a **Flask** web app where you upload an image and get a prediction. The same ONNX file also powers the live demo below, running directly in your browser.
+This project trains a small convolutional neural network to read handwritten digits, exports it to the portable **ONNX** format, and serves it through a **Flask** web app where you upload an image and get a prediction. The same ONNX file also powers the live demo below, running directly in your browser.
 
 ## Try it
 
@@ -28,14 +28,14 @@ Draw a digit with your mouse, finger or pen, upload a photo of one, or pick an M
 
 {% include site/demos/mnist.liquid %}
 
-<details class="pj-more" markdown="1">
+<!-- <details class="pj-more" markdown="1">
 <summary>Tips for good predictions</summary>
 
 - Draw **one** digit, large and roughly centred, the way you'd write it on paper.
 - MNIST digits were written by American students and census staff, so a European-style **1** with a long flag, or a **7** with a crossbar, can confuse the model.
 - Photos work best with a plain background. The demo turns dark-on-light images into light-on-dark, like MNIST, automatically.
 - The small **Model input** square shows exactly what the network sees after preprocessing.
-</details>
+</details> -->
 
 ## The model
 

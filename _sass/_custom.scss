@@ -3633,3 +3633,31 @@ html[data-theme="dark"] .mn-tabs button.is-on {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- PROJECT PAGES: "References" block (layout page.liquid, related_publications: true) ----------
+   The theme repeats a faded year heading inside the list; on a project page that only adds empty space. */
+.post > h2:has(+ .publications) {
+  margin: 2.25rem 0 0.9rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.35rem;
+  border-bottom: 1px solid var(--global-divider-color);
+}
+.post > h2 + .publications {
+  margin-bottom: 0.5rem;
+  h2.bibliography {
+    display: none;
+  }
+  ol.bibliography {
+    margin: 0;
+  }
+  ol.bibliography > li:last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width: 576px) {
+    ol.bibliography > li > .row > .col-sm-8 {
+      flex: 1 1 0;
+      max-width: none;
+      min-width: 0;
+    }
+  }
+}

@@ -240,6 +240,18 @@
         tag.textContent = t;
         n.previousElementSibling.appendChild(tag);
       });
+      // "N more authors": the theme types the hidden names back as plain text; once it finishes,
+      // highlight my name there too (same <em> as in the visible list).
+      var ME = /(Md\.? Nazmus Shakib|M\. ?N\. Shakib)/;
+      document.querySelectorAll(".publications .more-authors").forEach(function (el) {
+        new MutationObserver(function () {
+          if (/more authors?$/.test(el.textContent) || el.querySelector("em") || !ME.test(el.textContent)) return;
+          clearTimeout(el._me);
+          el._me = setTimeout(function () {
+            if (ME.test(el.textContent) && !el.querySelector("em")) el.innerHTML = el.innerHTML.replace(ME, "<em>$1</em>");
+          }, 60);
+        }).observe(el, { childList: true, characterData: true, subtree: true });
+      });
     });
   </script>
   {% comment %}

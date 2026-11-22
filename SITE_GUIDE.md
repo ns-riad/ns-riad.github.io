@@ -283,6 +283,8 @@ items:
 ```
 
 An entry in `items:` **without** a matching file is listed under "Also completed" until you add the file.
+To hide the "Also completed" section, set `show_also_completed: false` at the top of `_data/certificates.yml` (currently
+hidden; `true` shows it).
 Without an entry, the title is made from the file name.
 
 ### CV (`_pages/cv.md` + `_data/cv.yml`)

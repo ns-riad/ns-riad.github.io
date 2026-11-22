@@ -98,7 +98,7 @@
 
 {% comment %} ---------- Listed in _data/certificates.yml but no file yet ---------- {% endcomment %}
 {% assign text_only = site.data.certificate_text_only %}
-{% if text_only.size > 0 %}
+{% if text_only.size > 0 and site.data.certificates.show_also_completed != false %}
   <h2 class="section-title">Also completed</h2>
   <ul class="cert-text-list">
     {% for c in text_only %}

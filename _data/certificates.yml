@@ -12,6 +12,9 @@
 #   An entry whose file doesn't exist yet is listed as text under "Also completed",
 #   and moves into the gallery as soon as you add the file.
 
+# "Also completed" section: lists items below that have no file yet. true = show, false = hide.
+show_also_completed: false
+
 # Order = priority. Tabs and the gallery ("All") follow the order of `categories:` below,
 # newest first inside each group. Move a line up or down to change the priority.
 # `rank:` on an item (lower = earlier, default 50) pins it within its group.

@@ -202,7 +202,7 @@
           scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
         });
       });
-    </script> </header> <div class="container mt-5" role="main"> <div class="post photo-page"> <a class="photo-back" href="/photography/"><i class="fa-solid fa-arrow-left"></i> All photographs</a> <figure class="photo-hero photo-landscape"> <a href="/assets/photos/sony-headphones-wallpaper-2560x1440-large.jpg" target="_blank" rel="noopener" aria-label="Open full size"> <img src="/assets/photos/sony-headphones-wallpaper-2560x1440-large.jpg" width="2560" height="1440" alt="Autumn, unplugged"> </a> </figure> <header class="photo-info"> <h1 class="post-title">Autumn, unplugged</h1> </header> <nav class="photo-nav" aria-label="More photographs"> <span></span> <a class="photo-nav-link next" href="/photography/image/"> <span><small class="muted">Next</small>Forest stream.</span> <img src="/assets/photos/image-thumb.jpg" alt="" loading="lazy"> </a> </nav> </div> <script>
+    </script> </header> <div class="container mt-5" role="main"> <div class="post photo-page"> <a class="photo-back" href="/photography/"><i class="fa-solid fa-arrow-left"></i> All photographs</a> <figure class="photo-hero photo-landscape"> <a href="/assets/photos/sony-headphones-wallpaper-2560x1440-large.jpg" target="_blank" rel="noopener" aria-label="Open full size"> <img src="/assets/photos/sony-headphones-wallpaper-2560x1440-large.jpg" width="2560" height="1440" alt="Autumn, unplugged"> </a> </figure> <header class="photo-info"> <h1 class="post-title">Autumn, unplugged</h1> </header> <nav class="photo-nav" aria-label="More photographs"> <a class="photo-nav-link prev" href="/photography/1000025652/"> <img src="/assets/photos/1000025652-thumb.jpg" alt="" loading="lazy"> <span><small class="muted">Previous</small>Sunset at Lake Guntersville</span> </a> <a class="photo-nav-link next" href="/photography/image/"> <span><small class="muted">Next</small>Forest stream.</span> <img src="/assets/photos/image-thumb.jpg" alt="" loading="lazy"> </a> </nav> </div> <script>
   // ← / → to move between photos
   document.addEventListener("keydown", function (e) {
     if (e.target.closest("input, textarea")) return;
@@ -321,7 +321,12 @@ ninja.data = [{
           section: "News",},{id: "news-presented-our-paper-string-stability-analysis-of-followerstopper-for-mixed-autonomy-vehicle-platoons-at-the-2026-ieee-intelligent-vehicles-symposium-iv-supported-by-an-ieee-iv-travel-grant",
           title: 'Presented our paper “String Stability Analysis of Followerstopper for Mixed-Autonomy Vehicle Platoons” at...',
           description: "",
-          section: "News",},{id: "projects-multimodal-headway-estimation-in-carla-ros-2",
+          section: "News",},{id: "photos-sunset-at-lake-guntersville",
+          title: 'Sunset at Lake Guntersville',
+          description: "",
+          section: "Photos",handler: () => {
+              window.location.href = "/photos/sunset-at-lake-guntersville/";
+            },},{id: "projects-multimodal-headway-estimation-in-carla-ros-2",
           title: 'Multimodal Headway Estimation in CARLA + ROS 2',
           description: "A camera–LiDAR simulation pipeline and a lightweight fusion model that stays accurate when one sensor degrades.",
           section: "Projects",handler: () => {

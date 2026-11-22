@@ -427,6 +427,14 @@ on burgundy. It's set by `icon:` in `_config.yml`, which also accepts an emoji (
 bookmarks use `assets/img/apple-touch-icon.png` (180×180). If you redesign the SVG, replace that PNG too. Changes to
 `_config.yml` need a restart of `jekyll serve`.
 
+### Justified text
+
+Paragraph text on every page is justified, with automatic hyphenation so narrow screens don't get wide word gaps.
+That covers page text, posts, project write-ups, teaching summaries, award descriptions, CV entries, news and project
+cards. Headings, captions, tables and centered elements keep their own alignment. The list of what's justified is the
+"JUSTIFIED TEXT" block at the end of `_sass/_custom.scss`. Remove a selector there to exclude it, or delete the whole
+block to go back to left-aligned text.
+
 ### Font
 
 ```scss

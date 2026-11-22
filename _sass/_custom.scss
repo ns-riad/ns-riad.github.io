@@ -3661,3 +3661,33 @@ html[data-theme="dark"] .mn-tabs button.is-on {
     }
   }
 }
+
+/* ---------- JUSTIFIED TEXT (all pages) ----------
+   Paragraph-style text is justified with hyphenation (avoids wide gaps on narrow screens).
+   Headings, captions, tables, buttons, labels and anything centred keep their own alignment.
+   To turn off: delete this block (the home bio keeps its own rule under HOME). */
+:where(
+    .post article > p,
+    .post article > ul > li,
+    .post article > ol > li,
+    .post article .post-content p,
+    .post article details > p,
+    .post article details > ul > li,
+    .pj-note,
+    .post-description,
+    .tl-summary,
+    .tl-list li,
+    .award-row p,
+    .cvx-summary,
+    .cvx-bullets li,
+    .cvx-pubs > li,
+    .cvx-text,
+    .cvx-oneline dd,
+    .news td:last-child,
+    .pcard-text,
+    .photo-caption
+  ) {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}

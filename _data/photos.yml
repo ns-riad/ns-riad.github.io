@@ -10,23 +10,17 @@
 # To add details, use the file name WITHOUT extension as the key:
 #
 #   items:
-#     smoky-mountains:
-#       title: Above the clouds
-#       place: Great Smoky Mountains, TN
-#       date: 2026-07-04
-#       caption: A short line shown on the photo page.
-#       story: /blog/2026/smoky-mountains/   # optional: link to a blog post / essay about it
-#       story_label: Read the story           # optional (default "Read the story")
-#       order: 1                              # optional: lower = earlier on the canvas
-#       hidden: true                          # optional: keep the file but don't show it
+  oconaluftee-forest-stream:
+    title: Forest stream
+    place: Oconaluftee Visitor Center, North Carolina
+    caption: A quiet stream through the woods at the edge of the Great Smoky Mountains, near the Oconaluftee Visitor Center.
 
-items:
-  # Placeholder titles. Rename the files to something meaningful and edit freely.
-  image copy:
-    title: Ridges under a summer sky
-  image:
-    title: Forest stream.
-  image copy 2:
+  cane-creek-falls-bridge:
     title: The long bridge
-  sony_headphones-wallpaper-2560x1440:
-    title: Autumn, unplugged
+    place: Cane Creek Falls, Fall Creek Falls State Park, Tennessee
+    caption: The suspension bridge above Cane Creek Falls, one of the trails in Fall Creek Falls State Park.
+
+  smoky-mountains-ridges:
+    title: Ridges under a summer sky
+    place: Great Smoky Mountains
+    caption: Layer after layer of blue ridges, the view that gives the Smoky Mountains their name.

@@ -3763,9 +3763,21 @@ html[data-theme="dark"] .mn-tabs button.is-on {
 }
 
 /* ---------- ADMIN link (footer): nearly invisible dot after the footer text ---------- */
+footer .ft-line {
+  display: inline-block;
+  color: var(--global-footer-text-color) !important;
+  text-align: center;
+  white-space: nowrap; /* one line on phones too */
+  font-size: 0.82rem;
+}
+@media (max-width: 360px) {
+  footer .ft-line {
+    white-space: normal;
+  }
+}
 .footer-admin {
-  margin-left: 0.35rem;
-  padding: 0 0.3rem;
+  margin-left: 0.15rem;
+  padding: 0 0.25rem;
   opacity: 0.35;
   color: inherit !important;
   text-decoration: none !important;

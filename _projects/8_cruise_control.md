@@ -3,7 +3,7 @@ layout: page
 title: Cruise Control with GA-PID and LQR
 description: A side-by-side study of PID and LQR speed controllers for a vehicle cruise control system, from the physics model to MATLAB/Simulink results.
 img: assets/img/projects/thumb-cruise-control.webp
-importance: 3
+importance: 1
 category: coursework
 writeup: true
 github: https://github.com/nsriad/cruise-control-lqr-pid

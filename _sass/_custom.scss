@@ -2852,7 +2852,7 @@ details.pj-more {
     animation: roll-content 0.45s cubic-bezier(0.22, 0.8, 0.28, 1) both;
   }
 }
-/* projects grid: "Full write-up" marker on cards with a detailed page */
+/* projects grid: "Full Text" marker on cards with a detailed page */
 .pcard-writeup {
   display: inline-flex;
   align-items: center;
@@ -3328,5 +3328,308 @@ details.pj-more {
   .pjtl-list li.is-active .dot::after {
     animation: none;
     opacity: 0;
+  }
+}
+
+/* ---------- MNIST DEMO (_includes/site/demos/mnist.liquid) ---------- */
+.mn-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+.mn-panel {
+  padding: 1.1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 12px;
+  background: var(--global-card-bg-color);
+  box-shadow: 0 14px 32px -26px rgba(40, 28, 10, 0.55);
+}
+.mn-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--global-text-color-light);
+  margin-bottom: 0.35rem;
+}
+.mn-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 3px;
+  margin-bottom: 0.8rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  button {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--global-text-color-light);
+    font-size: 0.86rem;
+    cursor: pointer;
+    transition:
+      background-color 0.25s $ease,
+      color 0.25s $ease;
+    &:hover {
+      color: var(--global-text-color);
+    }
+    &.is-on {
+      background: var(--global-theme-color);
+      color: #fff;
+    }
+  }
+}
+html[data-theme="dark"] .mn-tabs button.is-on {
+  color: #2a1d10;
+}
+.mn-stage {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.mn-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  cursor: crosshair;
+  touch-action: none; /* drawing with a finger must not scroll the page */
+}
+.mn-hint {
+  position: absolute;
+  inset: auto 0 0.8rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+.mn-drop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.88);
+  color: rgba(255, 255, 255, 0.85);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s $ease,
+    background-color 0.2s $ease;
+  i {
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+  }
+  small {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  &:hover,
+  &.is-over {
+    border-color: var(--global-theme-color);
+    background: rgba(20, 12, 8, 0.92);
+  }
+}
+.mn-drop[hidden],
+.mn-hint[hidden] {
+  display: none !important;
+}
+.mn-drop span,
+.mn-drop small {
+  background: none !important;
+  color: inherit;
+}
+.mn-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  max-width: 280px;
+  margin: 0.7rem auto 0;
+}
+.mn-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 6px;
+  background: none;
+  color: var(--global-text-color);
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: border-color 0.2s $ease, color 0.2s $ease;
+  &:hover {
+    border-color: var(--global-theme-color);
+    color: var(--global-theme-color);
+  }
+}
+.mn-status {
+  font-size: 0.78rem;
+  color: var(--global-text-color-light);
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 0.35rem;
+    border-radius: 50%;
+    background: #c9a227;
+    animation: mn-blink 1s ease-in-out infinite;
+  }
+}
+.mn-demo.is-ready .mn-status::before {
+  background: #2e9d5b;
+  animation: none;
+}
+@keyframes mn-blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+.mn-samples {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--global-divider-color);
+}
+.mn-sample-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.3rem;
+}
+.mn-sample {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background: #000;
+  cursor: pointer;
+  transition:
+    transform 0.2s $ease,
+    border-color 0.2s $ease;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    border-radius: 3px;
+  }
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &.is-on {
+    border-color: var(--global-theme-color);
+  }
+}
+.mn-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+.mn-digit {
+  font-size: 4.2rem;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--global-theme-color);
+  font-variant-numeric: tabular-nums;
+  &.is-pop {
+    animation: mn-pop 0.35s cubic-bezier(0.34, 1.6, 0.64, 1);
+  }
+}
+@keyframes mn-pop {
+  from {
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+}
+.mn-conf {
+  font-size: 0.85rem;
+  color: var(--global-text-color-light);
+  margin-top: 0.2rem;
+}
+.mn-seen {
+  text-align: center;
+  small {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--global-text-color-light);
+  }
+}
+.mn-mini {
+  display: block;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 0.2rem;
+  border-radius: 6px;
+  image-rendering: pixelated;
+  background: #000;
+}
+.mn-bars {
+  display: grid;
+  gap: 0.3rem;
+}
+.mn-bar {
+  display: grid;
+  grid-template-columns: 1rem 1fr 3.4rem;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  .mn-k {
+    font-weight: 600;
+    text-align: center;
+  }
+  .mn-track {
+    height: 8px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--global-text-color) 8%, transparent);
+    overflow: hidden;
+  }
+  .mn-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--global-text-color-light) 55%, transparent);
+    transition: width 0.45s cubic-bezier(0.22, 0.8, 0.28, 1);
+  }
+  .mn-pct {
+    text-align: right;
+    color: var(--global-text-color-light);
+  }
+  &.is-best {
+    .mn-fill {
+      background: var(--global-theme-color);
+    }
+    .mn-k,
+    .mn-pct {
+      color: var(--global-theme-color);
+      font-weight: 600;
+    }
+  }
+}
+.mn-foot {
+  margin: 0.9rem 0 0;
+  font-size: 0.76rem;
+  color: var(--global-text-color-light);
+  i {
+    margin-right: 0.25rem;
+  }
+}
+@media (max-width: 700px) {
+  .mn-demo {
+    grid-template-columns: 1fr;
   }
 }

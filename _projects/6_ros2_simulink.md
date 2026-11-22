@@ -3,7 +3,7 @@ layout: page
 title: Two-Vehicle V2V Messaging with ROS 2 + Simulink
 description: A MATLAB/Simulink prototype in which two vehicles exchange velocity and position over ROS 2 topics.
 img: assets/img/projects/ros2_simulink.jpg
-importance: 1
+importance: 5
 category: coursework
 github: https://github.com/nsriad/ros2-simulink-vehicle-communication
 ---

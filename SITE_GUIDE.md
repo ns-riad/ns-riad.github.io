@@ -239,7 +239,7 @@ Example: `_projects/8_cruise_control.md`. A write-up page has a facts box, equat
    **never published** (it's in `exclude:` in `_config.yml` and in `.gitignore`), so the report stays on your computer.
 2. **Web figures** go in `assets/img/projects/<slug>/` as `.webp`. To convert PDF figures:
    `gs -sDEVICE=png16m -r300 -o fig.png fig.pdf`, then `magick fig.png -trim fig.png`, then `cwebp -q 90 fig.png -o fig.webp`.
-3. **Front matter:** `writeup: true` (adds a "Full write-up" label on the project card) and `facts:` (the box at the
+3. **Front matter:** `writeup: true` (adds a "Full Text" label on the project card) and `facts:` (the box at the
    top; `highlight: true` colors bold numbers). Don't put course or university names in project pages.
 4. **Building blocks in the page:**
    - Facts box: `{% raw %}{% include site/project_parts/facts.liquid %}{% endraw %}`
@@ -261,6 +261,11 @@ Example: `_projects/8_cruise_control.md`. A write-up page has a facts box, equat
    near-empty page. Delete that line once the write-up exists.
 
 Styles: `_sass/_custom.scss` → "PROJECT PAGE".
+
+**Live MNIST demo** (on the MNIST project page): `{% raw %}{% include site/demos/mnist.liquid %}{% endraw %}`. It loads
+`assets/demos/mnist/mnist_cnn.onnx`, the same file as in the GitHub repo, reads the weights directly from it, and runs
+the CNN in plain JavaScript (no server, no library). To update the model, replace that file; the layer structure must
+stay the same. Sample digits are in `assets/demos/mnist/samples/`. Styles: `_sass/_custom.scss` → "MNIST DEMO".
 
 ### Awards & certificates (`_pages/awards.html`)
 

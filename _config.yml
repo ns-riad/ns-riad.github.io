@@ -34,6 +34,11 @@ top_button: true # set to false to hide the "Top" button
 # Defaults only: the live switches are in _data/sections.yml (editable from the /admin portal).
 sections:
   blog: true # technical / research / PhD-journey posts
+  research: true
+  teaching: true
+  projects: true
+  awards: true
+  cv: true
   writing: false # poems + Bangla essays
   photography: true
   vlog: false
@@ -329,6 +334,10 @@ defaults:
       type: news
     values:
       section: news
+  - scope:
+      type: projects
+    values:
+      section: projects
   - scope:
       type: poems
     values:

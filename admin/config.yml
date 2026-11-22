@@ -30,11 +30,13 @@ media_libraries:
       max_file_size: 31457280 # 30 MB before shrinking
       slugify_filename: true
       transformations:
-        raster_image: # phone photos are shrunk in the browser before upload (also removes GPS/EXIF)
+        raster_image: # phone photos are shrunk in the browser before upload (also removes GPS/EXIF).
+          # Kept modest on purpose: iPhone Safari can't encode WebP natively, so the editor uses a slower
+          # built-in encoder there; 2048 px keeps that to seconds instead of minutes.
           format: webp
-          quality: 88
-          width: 3000
-          height: 3000
+          quality: 82
+          width: 2048
+          height: 2048
 
 slug:
   encoding: unicode # keeps Bangla titles readable in file names / URLs
@@ -62,7 +64,7 @@ collections:
     sortable_fields: [date, title, order]
     fields:
       - { name: title, label: Title }
-      - { name: image, label: Photo, widget: image, hint: "Taken on your phone or camera. It's resized to 3000 px and location data is removed before upload." }
+      - { name: image, label: Photo, widget: image, hint: "Taken on your phone or camera. It's resized to 2048 px and location data is removed before upload. Tip: in the iPhone photo picker, tap Options → Size: Large for a faster upload." }
       - { name: place, label: Place, required: false }
       - { name: date, label: Date taken, widget: datetime, type: date, format: "YYYY-MM-DD", required: false }
       - { name: caption, label: Caption, widget: text, required: false, hint: "One or two lines shown under the photo." }
@@ -316,9 +318,14 @@ collections:
     icon: toggle_on
     files:
       - name: sections
-        label: Turn sections on/off
+        label: Turn pages on/off (everything except Home)
         file: _data/sections.yml
         fields:
+          - { name: research, label: Research (publications page), widget: boolean, default: true }
+          - { name: teaching, label: Teaching, widget: boolean, default: true }
+          - { name: projects, label: Projects, widget: boolean, default: true }
+          - { name: awards, label: Awards & certificates, widget: boolean, default: true }
+          - { name: cv, label: CV, widget: boolean, default: true }
           - { name: blog, label: Blog, widget: boolean, default: true }
           - { name: writing, label: Writing (poems & essays), widget: boolean, default: false }
           - { name: photography, label: Photography, widget: boolean, default: true }

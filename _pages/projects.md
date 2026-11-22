@@ -7,6 +7,7 @@ nav: true
 nav_order: 3
 display_categories: [research, coursework]
 horizontal: false
+section: projects
 ---
 
 <!-- pages/projects.md -->

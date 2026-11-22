@@ -5,6 +5,7 @@ title: Research
 description: Multimodal data fusion, machine intelligence and cyber-physical systems for autonomous vehicles. Publications are listed newest first. Use the search box to filter by title, venue, year or type.
 nav: true
 nav_order: 1
+section: research
 ---
 
 <!-- Publications are generated from _bibliography/papers.bib by jekyll-scholar. -->

@@ -249,7 +249,7 @@ Example: `_projects/8_cruise_control.md`. A write-up page has a facts box, equat
      (bottom-left) whose border fills as you read and opens the section list.
    - `##` sections are numbered and centered automatically, and `###` subsections get a small marker.
    - Figure: `{% raw %}{% include site/project_parts/figure.liquid src="/assets/img/projects/x/y.webp" n=1 caption="..." %}{% endraw %}`
-     (`small=true` for simple diagrams; wrap two in `<div class="pj-fig-row">` to place them side by side).
+     (`small=true` for simple diagrams; `width=460` to narrow a figure whose labels look bigger than the text; wrap two in `<div class="pj-fig-row">` to place them side by side).
    - Equations: `$$ ... $$` (on their own lines for display, inline inside a sentence). Display equations sit in a
      soft block. Split long ones over several lines with `\begin{aligned} ... \\ ... \end{aligned}` so they fit on phones.
    - Table: a normal Markdown table followed by `{: .pj-table}`. Bold a row to highlight it.

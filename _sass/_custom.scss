@@ -2703,11 +2703,15 @@ html[data-theme="dark"] .seg-tabs .chip-btn.is-active {
   }
 }
 /* figures */
+/* Figure widths are capped so the text inside a figure stays close to the body text size.
+   $pj-fig-w: normal figures (plots, diagrams); is-small: simple block diagrams; rows: two side by side. */
+$pj-fig-w: 600px;
 .pj-fig {
   margin: 1.5rem auto;
+  max-width: $pj-fig-w;
   text-align: center;
   &.is-small {
-    max-width: 560px;
+    max-width: 520px;
   }
   .pj-fig-btn {
     display: block;
@@ -2753,6 +2757,8 @@ html[data-theme="dark"] .pj-fig .pj-fig-btn {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+  max-width: 720px;
+  margin-inline: auto;
   .pj-fig {
     margin: 1rem 0;
   }

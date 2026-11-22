@@ -195,7 +195,7 @@ All simulations run in MATLAB/Simulink on the linearized model, with zero initia
 
 Taking the lowest-cost design of each type (PID-ITSE and LQR-ITAE) and the actual 60 km/h (16.67 m/s) reference:
 
-{% include site/project_parts/figure.liquid src="/assets/img/projects/cruise-control/step-optimal.webp" n=6 caption="PID rises faster but overshoots to about 18.4 m/s before settling; LQR rises a little slower and lands smoothly with no overshoot." %}
+{% include site/project_parts/figure.liquid src="/assets/img/projects/cruise-control/step-optimal.webp" width=470 n=6 caption="PID rises faster but overshoots to about 18.4 m/s before settling; LQR rises a little slower and lands smoothly with no overshoot." %}
 
 <div class="pj-caption">Table 3. Optimal PID vs. optimal LQR</div>
 
@@ -209,7 +209,7 @@ LQR gives up about 0.8 s of rise time, but it removes the overshoot completely a
 
 ### Acceleration and deceleration
 
-{% include site/project_parts/figure.liquid src="/assets/img/projects/cruise-control/acc-dcc.webp" n=7 caption="Speed-up at 20 s and slow-down at 40 s. PID overshoots on the way up and undershoots on the way down; LQR follows each change smoothly." %}
+{% include site/project_parts/figure.liquid src="/assets/img/projects/cruise-control/acc-dcc.webp" width=500 n=7 caption="Speed-up at 20 s and slow-down at 40 s. PID overshoots on the way up and undershoots on the way down; LQR follows each change smoothly." %}
 
 Both controllers track the changing reference. PID overshoots and oscillates after each speed-up and undershoots after each slow-down, then recovers slowly. LQR's state feedback damps every transition.
 

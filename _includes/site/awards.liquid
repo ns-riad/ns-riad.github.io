@@ -160,6 +160,8 @@
       grid.style.minHeight = "";
     }
     function filter(f) {
+      // cards are taken over by the tab animation: drop the page's scroll-reveal so it can't replay later
+      cards.forEach(function (c) { c.classList.remove("rv", "is-in", "reveal"); c.style.removeProperty("--rv-delay"); });
       if (reduce) return showGroup(f);
       clearTimeout(busy);
       grid.style.minHeight = grid.offsetHeight + "px"; // no page jump while swapping

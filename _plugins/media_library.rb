@@ -231,12 +231,13 @@ module MediaLibrary
         m["date"] = m["date"].strftime("%Y-%m-%d") if m["date"].respond_to?(:strftime)
         body = doc.content.to_s.strip
         m["story_html"] = md.convert(body) unless body.empty?
+        m["slug"] = doc.basename_without_ext # page URL from the entry name, not the phone's file name
         sources << [path, m]
       end
 
       photos = sources.map do |path, m|
         stem = File.basename(path, ".*")
-        slug = Jekyll::Utils.slugify(stem)
+        slug = Jekyll::Utils.slugify(m["slug"] || stem)
         next nil if m["hidden"]
 
         sizes = { "thumb" => 900, "large" => 2200 }

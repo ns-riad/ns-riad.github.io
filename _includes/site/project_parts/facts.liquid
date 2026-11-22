@@ -3,7 +3,7 @@
     facts:
       - { label: Course, value: "EE 586" }
       - { label: Result, value: "...", highlight: true }
-  plus page.github for the Code button.
+  plus page.github for the Code button (label: page.code_label, default "Code").
 {% endcomment %}
 <div class="pj-facts">
   <dl>
@@ -16,7 +16,7 @@
   </dl>
   {% if page.github %}
     <div class="pj-actions">
-      <a class="pcard-btn" href="{{ page.github }}"><i class="fa-brands fa-github"></i> Code &amp; Simulink models</a>
+      <a class="pcard-btn" href="{{ page.github }}"><i class="fa-brands fa-github"></i> {{ page.code_label | default: "Code" }}</a>
     </div>
   {% endif %}
 </div>

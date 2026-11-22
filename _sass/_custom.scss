@@ -1756,8 +1756,10 @@ html[data-theme="dark"] .desk {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top;
+    object-fit: contain; /* show the whole image (diagrams/plots must not be cropped) */
+    object-position: center;
+    padding: 0.5rem;
+    background: #fff;
   }
 }
 .pcard-body {
@@ -2763,6 +2765,9 @@ html[data-theme="dark"] .pj-fig .pj-fig-btn {
     margin: 1rem 0;
   }
 }
+.pj-fig-row.is-compact {
+  max-width: 600px; /* plots with large built-in labels */
+}
 @media (max-width: 640px) {
   .pj-fig-row {
     grid-template-columns: 1fr;
@@ -2802,7 +2807,8 @@ table.pj-table {
       background: color-mix(in srgb, var(--global-theme-color) 6%, transparent);
     }
   }
-  tbody tr:has(strong) {
+  /* highlight a row only when its first cell is bold (e.g. the best design) */
+  tbody tr:has(> td:first-child strong) {
     background: color-mix(in srgb, var(--global-theme-color) 7%, transparent);
   }
 }

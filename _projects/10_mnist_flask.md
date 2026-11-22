@@ -3,6 +3,7 @@ layout: page
 title: MNIST Digit Classifier Web App
 description: A CNN exported to ONNX and served with Flask; upload a handwritten digit and get a prediction.
 importance: 5
+img: assets/img/projects/thumb-mnist.webp
 category: coursework
 github: https://github.com/nsriad/MNIST-Flask-App
 redirect: https://github.com/nsriad/MNIST-Flask-App # card opens GitHub directly until a detailed write-up exists (delete this line then)

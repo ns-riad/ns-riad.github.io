@@ -32,6 +32,7 @@ layout: default
         {% if p.exif.iso %}<span>{{ p.exif.iso }}</span>{% endif %}
       </p>
     {% endif %}
+    {% if p.story_html %}<div class="photo-story">{{ p.story_html }}</div>{% endif %}
     {% if p.story %}
       <a class="hero-btn hero-btn-primary" href="{{ p.story | relative_url }}"><i class="fa-solid fa-book-open"></i> {{ p.story_label | default: 'Read the story' }}</a>
     {% endif %}

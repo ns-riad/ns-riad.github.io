@@ -1,0 +1,326 @@
+# Content portal (/admin) — Sveltia CMS configuration.
+# Every save is a commit to GitHub; the site redeploys in ~2 minutes.
+# Structural/design changes are done locally, not here.
+
+backend:
+  name: github
+  repo: ns-riad/ns-riad.github.io
+  branch: master
+  auth_methods: [token] # sign in with a fine-grained GitHub token (see SITE_GUIDE.md → Mobile portal)
+  commit_messages:
+    create: "Portal: add {{collection}} “{{slug}}”"
+    update: "Portal: update {{collection}} “{{slug}}”"
+    delete: "Portal: delete {{collection}} “{{slug}}”"
+    uploadMedia: "Portal: upload {{path}}"
+    deleteMedia: "Portal: delete {{path}}"
+
+app_title: Content portal
+site_url: https://ns-riad.github.io
+display_url: https://ns-riad.github.io
+logo_url: /assets/img/favicon.svg
+show_preview_links: true
+
+# images inserted into posts etc. go here; photos have their own folder (below)
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+media_libraries:
+  default:
+    config:
+      max_file_size: 31457280 # 30 MB before shrinking
+      slugify_filename: true
+      transformations:
+        raster_image: # phone photos are shrunk in the browser before upload (also removes GPS/EXIF)
+          format: webp
+          quality: 88
+          width: 3000
+          height: 3000
+
+slug:
+  encoding: unicode # keeps Bangla titles readable in file names / URLs
+  clean_accents: false
+  sanitize_replacement: "-"
+
+output:
+  omit_empty_optional_fields: true
+
+collections:
+  # ------------------------------------------------------------------ PUBLISH
+  - name: photos
+    label: Photography
+    label_singular: Photo
+    icon: photo_camera
+    description: Upload a photo with a title, caption and optional story. It appears on /photography/ with its own page.
+    folder: _photos
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    media_folder: /assets/photography/portal
+    public_folder: /assets/photography/portal
+    summary: "{{title}}"
+    thumbnail: image
+    sortable_fields: [date, title, order]
+    fields:
+      - { name: title, label: Title }
+      - { name: image, label: Photo, widget: image, hint: "Taken on your phone or camera. It's resized to 3000 px and location data is removed before upload." }
+      - { name: place, label: Place, required: false }
+      - { name: date, label: Date taken, widget: datetime, type: date, format: "YYYY-MM-DD", required: false }
+      - { name: caption, label: Caption, widget: text, required: false, hint: "One or two lines shown under the photo." }
+      - { name: body, label: Story, widget: markdown, required: false, hint: "Optional longer story, shown on the photo's page." }
+      - { name: order, label: Order, widget: number, value_type: int, required: false, hint: "Lower numbers appear first. Leave empty to sort by date." }
+      - { name: hidden, label: Hide this photo, widget: boolean, default: false, required: false }
+
+  - name: poems
+    label: Poems
+    label_singular: Poem
+    icon: edit_note
+    description: Verse in English or বাংলা. Line breaks are kept as typed. Turn on "Writing" in Site sections to show the page.
+    folder: _poems
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{date | date('YYYY-MM-DD')}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: datetime, type: date, format: "YYYY-MM-DD" }
+      - name: lang
+        label: Language
+        widget: select
+        default: bn
+        options:
+          - { label: বাংলা (Bangla), value: bn }
+          - { label: English, value: en }
+      - { name: place, label: Place, required: false }
+      - { name: body, label: Poem, widget: markdown, hint: "Type one line of verse per line; leave an empty line between stanzas." }
+
+  - name: essays
+    label: Essays
+    label_singular: Essay
+    icon: article
+    description: Longer prose, in English or বাংলা (listed on /writing/).
+    folder: _essays
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: datetime, type: date, format: "YYYY-MM-DD" }
+      - name: lang
+        label: Language
+        widget: select
+        default: bn
+        options:
+          - { label: বাংলা (Bangla), value: bn }
+          - { label: English, value: en }
+      - { name: description, label: Short description, required: false }
+      - { name: body, label: Text, widget: markdown }
+
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    icon: edit_document
+    folder: _posts
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: layout, widget: hidden, default: post }
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: datetime, type: date, format: "YYYY-MM-DD" }
+      - { name: description, label: Short description, required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - name: categories
+        label: Category
+        widget: select
+        multiple: true
+        required: false
+        options: [research, phd-journey, tech, thoughts]
+      - { name: giscus_comments, label: Allow comments, widget: boolean, default: true, required: false }
+      - { name: body, label: Post, widget: markdown }
+
+  - name: news
+    label: News
+    label_singular: News item
+    icon: campaign
+    description: Short updates shown on the home page and /news/.
+    folder: _news
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date]
+    summary: "{{date | date('YYYY-MM-DD')}} · {{title}}"
+    fields:
+      - { name: layout, widget: hidden, default: post }
+      - { name: title, label: Headline, hint: "Used for the file name and the full news page." }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD HH:mm:ss ZZ" }
+      - { name: inline, label: Show as a one-liner, widget: boolean, default: true, hint: "On: the text below is shown directly in the news list. Off: the headline links to a full page." }
+      - { name: body, label: Text, widget: markdown }
+
+  # ------------------------------------------------------------------ PAGES
+  - name: pages
+    label: Pages
+    icon: description
+    files:
+      - name: about
+        label: Home / About (bio, interests, home blocks)
+        file: _pages/about.md
+        fields:
+          - { name: layout, widget: hidden, default: home }
+          - { name: title, widget: hidden, default: About }
+          - { name: permalink, widget: hidden, default: / }
+          - name: hero
+            label: Intro
+            widget: object
+            fields:
+              - { name: eyebrow, label: Line above your name }
+              - { name: tagline, label: Tagline, required: false }
+              - { name: affiliation, label: Affiliation line (HTML allowed) }
+              - { name: image, label: Photo file (in assets/img), default: profile.jpg }
+          - { name: interests, label: Research interests, widget: list }
+          - name: announcements
+            label: News block on home page
+            widget: object
+            fields:
+              - { name: enabled, label: Show, widget: boolean, default: true }
+              - { name: scrollable, label: Scrollable, widget: boolean, default: false }
+              - { name: limit, label: How many, widget: number, value_type: int, default: 5 }
+          - { name: selected_papers, label: Show selected papers, widget: boolean, default: true }
+          - name: latest_posts
+            label: Latest blog posts block on home page
+            widget: object
+            fields:
+              - { name: enabled, label: Show, widget: boolean, default: false }
+              - { name: scrollable, label: Scrollable, widget: boolean, default: false }
+              - { name: limit, label: How many, widget: number, value_type: int, default: 3 }
+          - { name: body, label: Bio, widget: markdown }
+
+      - name: teaching
+        label: Teaching (roles and courses)
+        file: _data/teaching.yml
+        fields:
+          - name: roles
+            label: Roles (newest first)
+            widget: list
+            label_singular: role
+            summary: "{{title}} · {{org}}"
+            fields:
+              - { name: title, label: Title }
+              - { name: org, label: Institution }
+              - { name: org_url, label: Institution website, required: false }
+              - { name: dept, label: Department, required: false }
+              - { name: period, label: Period, hint: "e.g. Jun 2022 – 2024" }
+              - { name: duration, label: Duration, required: false, hint: "e.g. 2.5 years" }
+              - { name: location, label: Location, required: false }
+              - { name: summary, label: Summary, widget: text, required: false }
+              - { name: highlights, label: Bullet points, widget: list, required: false }
+              - name: courses
+                label: Courses (without semesters)
+                widget: list
+                required: false
+                label_singular: course
+                summary: "{{code}} {{name}}"
+                fields: &coursefields
+                  - { name: name, label: Course name }
+                  - { name: code, label: Code, required: false }
+                  - { name: parts, label: Type, widget: select, multiple: true, required: false, options: [Theory, Lab] }
+                  - { name: note, label: Note, required: false, hint: "e.g. Course coordinator" }
+                  - name: links
+                    label: Links (slides, syllabus…)
+                    widget: list
+                    required: false
+                    fields:
+                      - { name: label, label: Label }
+                      - { name: url, label: URL or file path }
+                      - { name: icon, label: Icon class, required: false, hint: "e.g. fa-solid fa-file-pdf" }
+              - name: terms
+                label: Courses by semester (newest first)
+                widget: list
+                required: false
+                label_singular: semester
+                summary: "{{term}}"
+                fields:
+                  - { name: term, label: Semester, hint: "e.g. Fall 2023" }
+                  - { name: courses, label: Courses, widget: list, label_singular: course, summary: "{{name}}", fields: *coursefields }
+          - name: supervision
+            label: Supervised students / projects
+            widget: list
+            required: false
+            label_singular: student
+            summary: "{{name}} · {{year}}"
+            fields:
+              - { name: name, label: Student name }
+              - { name: level, label: Level, required: false, hint: "e.g. B.Sc. capstone" }
+              - { name: year, label: Year, required: false }
+              - { name: topic, label: Project title, required: false }
+              - { name: outcome, label: Outcome, required: false, hint: "e.g. Published at XYZ 2024" }
+              - { name: url, label: Link, required: false }
+
+      - name: awards
+        label: Honors & awards
+        file: _data/awards.yml
+        fields:
+          - name: honors
+            label: Honors (shown in this order)
+            widget: list
+            label_singular: honor
+            summary: "{{title}} · {{year}}"
+            fields:
+              - { name: title, label: Title }
+              - { name: issuer, label: Issuer, required: false }
+              - { name: year, label: Year / date, required: false }
+              - { name: description, label: Description, widget: text, required: false }
+              - { name: certificate, label: Certificate file name, required: false, hint: "File name without extension, in assets/certificates/…" }
+              - name: extra
+                label: More certificates for this award
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: Label }
+                  - { name: certificate, label: Certificate file name }
+
+      # Complex files are edited as plain text so nothing (comments, field order) is lost.
+      - name: cv
+        label: CV (text editor)
+        file: _data/cv.yml
+        format: raw
+        fields:
+          - { name: body, label: cv.yml, widget: code, default_language: yaml, output_code_only: true, allow_language_selection: false, hint: "Edit carefully: keep the indentation. The web CV is rebuilt from this file." }
+
+      - name: publications
+        label: Publications (BibTeX)
+        file: _bibliography/papers.bib
+        format: raw
+        fields:
+          - { name: body, label: papers.bib, widget: code, default_language: bibtex, output_code_only: true, allow_language_selection: false, hint: "Add a new @inproceedings/@article block at the top. Use `selected = {true}` to show it on the home page, and `note = {Submitted}` for a status tag." }
+
+      - name: certificates
+        label: Certificate details (text editor)
+        file: _data/certificates.yml
+        format: raw
+        fields:
+          - { name: body, label: certificates.yml, widget: code, default_language: yaml, output_code_only: true, allow_language_selection: false }
+
+      - name: photo_details
+        label: Details for folder photos (text editor)
+        file: _data/photos.yml
+        format: raw
+        fields:
+          - { name: body, label: photos.yml, widget: code, default_language: yaml, output_code_only: true, allow_language_selection: false }
+
+  # ------------------------------------------------------------------ SETTINGS
+  - name: settings
+    label: Site sections
+    icon: toggle_on
+    files:
+      - name: sections
+        label: Turn sections on/off
+        file: _data/sections.yml
+        fields:
+          - { name: blog, label: Blog, widget: boolean, default: true }
+          - { name: writing, label: Writing (poems & essays), widget: boolean, default: false }
+          - { name: photography, label: Photography, widget: boolean, default: true }
+          - { name: vlog, label: Vlog, widget: boolean, default: false }
+          - { name: news, label: News, widget: boolean, default: true }

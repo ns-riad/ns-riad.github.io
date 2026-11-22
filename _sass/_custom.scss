@@ -3761,3 +3761,25 @@ html[data-theme="dark"] .mn-tabs button.is-on {
   text-transform: uppercase;
   color: var(--global-text-color-light);
 }
+
+/* ---------- ADMIN link (footer): nearly invisible dot after the footer text ---------- */
+.footer-admin {
+  margin-left: 0.35rem;
+  padding: 0 0.3rem;
+  opacity: 0.35;
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s $ease;
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+}
+/* story written for a photo in the /admin portal (shown under the caption) */
+.photo-story {
+  margin: 1rem auto 0;
+  max-width: 640px;
+  text-align: justify;
+  hyphens: auto;
+  line-height: 1.75;
+}

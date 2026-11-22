@@ -14,6 +14,8 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
 
 keywords: Md Nazmus Shakib, machine learning, intelligent transportation systems, cyber-physical systems, mixed autonomy, UAH
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
+footer_text: >- # end of the footer line; the discreet "·" opens the /admin content portal
+  <a class="footer-admin" href="/admin/" rel="nofollow" aria-label="Site admin" title="Admin">·</a>
 icon: favicon.svg # tab icon in /assets/img/ (three inputs fusing into one: a neuron / multimodal fusion). An emoji also works, e.g. 🧠
 apple_touch_icon: apple-touch-icon.png # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
 
@@ -29,6 +31,7 @@ top_button: true # set to false to hide the "Top" button
 # Academic core (about, research, teaching, projects, awards, cv) is always on.
 # -----------------------------------------------------------------------------
 
+# Defaults only: the live switches are in _data/sections.yml (editable from the /admin portal).
 sections:
   blog: true # technical / research / PhD-journey posts
   writing: false # poems + Bangla essays
@@ -212,6 +215,8 @@ collections:
   essays: # longer prose, e.g. Bangla essays (set `lang: bn` in front matter)
     output: true
     permalink: /writing/essays/:title/
+  photos: # one file per photo, added from the /admin portal; pages are made by _plugins/media_library.rb
+    output: false
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

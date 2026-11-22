@@ -215,10 +215,28 @@ module MediaLibrary
 
       meta = site.data.dig("photos", "items") || {}
       cache = MediaLibrary.cache_root(site)
-      photos = files.map do |path|
+
+      # sources: images dropped into the folder (details from _data/photos.yml) …
+      sources = files.map { |path| [path, meta[File.basename(path, ".*")] || {}] }
+      # … plus photos added from the /admin portal: one file per photo in _photos/
+      md = site.find_converter_instance(Jekyll::Converters::Markdown)
+      (site.collections["photos"]&.docs || []).each do |doc|
+        img = doc.data["image"].to_s
+        path = File.join(site.source, img.sub(%r{\A/}, ""))
+        unless !img.empty? && File.file?(path)
+          Jekyll.logger.warn("Photos:", "#{doc.relative_path}: image not found (#{img})") unless img.empty?
+          next
+        end
+        m = doc.data.slice("title", "place", "date", "caption", "album", "story", "story_label", "order", "hidden")
+        m["date"] = m["date"].strftime("%Y-%m-%d") if m["date"].respond_to?(:strftime)
+        body = doc.content.to_s.strip
+        m["story_html"] = md.convert(body) unless body.empty?
+        sources << [path, m]
+      end
+
+      photos = sources.map do |path, m|
         stem = File.basename(path, ".*")
         slug = Jekyll::Utils.slugify(stem)
-        m = meta[stem] || {}
         next nil if m["hidden"]
 
         sizes = { "thumb" => 900, "large" => 2200 }
@@ -245,6 +263,7 @@ module MediaLibrary
           "album" => m["album"],
           "story" => m["story"],
           "story_label" => m["story_label"],
+          "story_html" => m["story_html"],
           "thumb" => urls["thumb"] || urls["large"],
           "large" => urls["large"] || urls["thumb"],
           "width" => info["width"],

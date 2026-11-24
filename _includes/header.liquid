@@ -1,7 +1,8 @@
 {% comment %}
   SITE OVERRIDE of al_folio_core/_includes/header.liquid
   Changes: (1) dropdown children honour `section:` toggles, (2) icon-only search button (magnifying glass only; the ⌘K / Ctrl+K shortcut still works),
-  (3) two-state theme button with circle reveal, (4) scroll reveal + cursor spotlight scripts at the bottom.
+  (3) two-state theme button with circle reveal, (4) scroll reveal + cursor spotlight scripts at the bottom,
+  (5) phones: a floating menu button (bottom-right) that opens the menu as a card above it.
 {% endcomment %}
 <header>
   <!-- Nav Bar -->
@@ -332,6 +333,23 @@
       })();
     </script>
   {% endunless %}
+  {% comment %} Phones: floating menu button. It forwards its click to the theme's (hidden) navbar toggle,
+     so the theme keeps handling open/close/Escape/outside-click. Style: _sass/_custom.scss → "MOBILE MENU FAB". {% endcomment %}
+  <button class="nav-fab" type="button" aria-label="Menu" aria-controls="navbarNav" aria-expanded="false">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menu</span>
+  </button>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var fab = document.querySelector(".nav-fab"), tog = document.querySelector(".navbar-toggler-main"), panel = document.getElementById("navbarNav");
+      if (!fab || !tog || !panel) return;
+      fab.addEventListener("click", function (e) { e.stopPropagation(); tog.click(); });
+      new MutationObserver(function () {
+        var open = panel.classList.contains("show");
+        fab.classList.toggle("is-open", open);
+        fab.setAttribute("aria-expanded", open);
+      }).observe(panel, { attributes: true, attributeFilter: ["class"] });
+    });
+  </script>
   {% if site.top_button %}
     {% comment %} Minimal "Top" button (OUR addition). Style: _sass/_custom.scss → "TOP BUTTON". {% endcomment %}
     <button class="to-top" id="to-top" type="button" aria-label="Back to top">
